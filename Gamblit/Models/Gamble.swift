@@ -8,7 +8,7 @@
 import Foundation
 
 struct Gamble: Identifiable, Codable {
-    var id: UUID
+    var id: String
     var user: String
     var event: Event
     var title: String
@@ -24,4 +24,3 @@ struct TableTalk: Identifiable, Codable {
     var content: String
     var replies: [TableTalk]
 }
-
