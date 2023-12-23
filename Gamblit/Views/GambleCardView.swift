@@ -65,5 +65,5 @@ struct GambleCardView: View {
 }
 
 //#Preview {
-//    GambleCardView(Gamble:)
+//    GambleCardView()
 //}

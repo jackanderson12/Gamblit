@@ -10,7 +10,8 @@ import Foundation
 struct Gamble: Identifiable, Codable {
     var id: String
     var user: String
-    var event: Event
+    var game: Game
+    var sportsBooks: [String]
     var title: String
     var description: String
     var likes: Int

@@ -14,6 +14,13 @@
 		1302A91A2B2B9364008D2E79 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A9192B2B9364008D2E79 /* ProfileViewModel.swift */; };
 		1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A91B2B2CB26E008D2E79 /* DBUser.swift */; };
 		1302A91E2B2CE53A008D2E79 /* GambleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A91D2B2CE53A008D2E79 /* GambleManager.swift */; };
+		133105C62B366A38009356B4 /* games_nfl_api_output.json in Resources */ = {isa = PBXBuildFile; fileRef = 133105C52B366A38009356B4 /* games_nfl_api_output.json */; };
+		133105CA2B3670AC009356B4 /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105C92B3670AC009356B4 /* GamesViewModel.swift */; };
+		133105CC2B3670C0009356B4 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105CB2B3670C0009356B4 /* GamesView.swift */; };
+		133105CE2B367182009356B4 /* SportMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105CD2B367182009356B4 /* SportMenuView.swift */; };
+		133105D22B36734C009356B4 /* SportsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105D12B36734C009356B4 /* SportsMenuViewModel.swift */; };
+		133105D42B367D2A009356B4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105D32B367D2A009356B4 /* Game.swift */; };
+		133105D62B36820C009356B4 /* GamesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105D52B36820C009356B4 /* GamesManager.swift */; };
 		138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA2E2B261414007F006E /* GamblitApp.swift */; };
 		138EFA312B261414007F006E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA302B261414007F006E /* ContentView.swift */; };
 		138EFA332B261415007F006E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 138EFA322B261415007F006E /* Assets.xcassets */; };
@@ -41,8 +48,6 @@
 		13CD7A642B28B3D600E261DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13CD7A632B28B3D600E261DA /* GoogleService-Info.plist */; };
 		13CD7A662B28BDDD00E261DA /* GambleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A652B28BDDD00E261DA /* GambleCardView.swift */; };
 		13CD7A6A2B28D7B900E261DA /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A692B28D7B900E261DA /* ChartView.swift */; };
-		13CD7A6D2B28ECF000E261DA /* NFL_H2H_Request.json in Resources */ = {isa = PBXBuildFile; fileRef = 13CD7A6C2B28ECF000E261DA /* NFL_H2H_Request.json */; };
-		13CD7A6F2B28F0C000E261DA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A6E2B28F0C000E261DA /* Event.swift */; };
 		13CD7A722B293E0D00E261DA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A712B293E0D00E261DA /* ViewModel.swift */; };
 		13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EEAECC2B2782870014CD9F /* Gamble.swift */; };
 		13EEAED02B2788C40014CD9F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 13EEAECF2B2788C40014CD9F /* FirebaseAnalytics */; };
@@ -66,6 +71,13 @@
 		1302A9192B2B9364008D2E79 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		1302A91B2B2CB26E008D2E79 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
 		1302A91D2B2CE53A008D2E79 /* GambleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleManager.swift; sourceTree = "<group>"; };
+		133105C52B366A38009356B4 /* games_nfl_api_output.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games_nfl_api_output.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		133105C92B3670AC009356B4 /* GamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewModel.swift; sourceTree = "<group>"; };
+		133105CB2B3670C0009356B4 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
+		133105CD2B367182009356B4 /* SportMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportMenuView.swift; sourceTree = "<group>"; };
+		133105D12B36734C009356B4 /* SportsMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsMenuViewModel.swift; sourceTree = "<group>"; };
+		133105D32B367D2A009356B4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		133105D52B36820C009356B4 /* GamesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesManager.swift; sourceTree = "<group>"; };
 		138EFA2B2B261414007F006E /* Gamblit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gamblit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		138EFA2E2B261414007F006E /* GamblitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamblitApp.swift; sourceTree = "<group>"; };
 		138EFA302B261414007F006E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,8 +88,6 @@
 		13CD7A632B28B3D600E261DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13CD7A652B28BDDD00E261DA /* GambleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleCardView.swift; sourceTree = "<group>"; };
 		13CD7A692B28D7B900E261DA /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		13CD7A6C2B28ECF000E261DA /* NFL_H2H_Request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NFL_H2H_Request.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		13CD7A6E2B28F0C000E261DA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		13CD7A712B293E0D00E261DA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		13EEAECC2B2782870014CD9F /* Gamble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamble.swift; sourceTree = "<group>"; };
 		13EEAEDB2B2791DE0014CD9F /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -168,7 +178,7 @@
 		13CD7A6B2B28ECC600E261DA /* API Data */ = {
 			isa = PBXGroup;
 			children = (
-				13CD7A6C2B28ECF000E261DA /* NFL_H2H_Request.json */,
+				133105C52B366A38009356B4 /* games_nfl_api_output.json */,
 			);
 			path = "API Data";
 			sourceTree = "<group>";
@@ -179,6 +189,7 @@
 				13EEAEE42B279A390014CD9F /* AuthenticationManager.swift */,
 				1302A9172B2B70CC008D2E79 /* UserManager.swift */,
 				1302A91D2B2CE53A008D2E79 /* GambleManager.swift */,
+				133105D52B36820C009356B4 /* GamesManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -192,6 +203,8 @@
 				13CD7A692B28D7B900E261DA /* ChartView.swift */,
 				1302A9112B2B5969008D2E79 /* SettingsView.swift */,
 				1302A9152B2B5BAF008D2E79 /* ProfileView.swift */,
+				133105CB2B3670C0009356B4 /* GamesView.swift */,
+				133105CD2B367182009356B4 /* SportMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +216,8 @@
 				13CD7A712B293E0D00E261DA /* ViewModel.swift */,
 				1302A9132B2B5B0A008D2E79 /* SettingsViewModel.swift */,
 				1302A9192B2B9364008D2E79 /* ProfileViewModel.swift */,
+				133105C92B3670AC009356B4 /* GamesViewModel.swift */,
+				133105D12B36734C009356B4 /* SportsMenuViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -212,7 +227,7 @@
 			children = (
 				13CD7A702B28F4C600E261DA /* Managers */,
 				13EEAECC2B2782870014CD9F /* Gamble.swift */,
-				13CD7A6E2B28F0C000E261DA /* Event.swift */,
+				133105D32B367D2A009356B4 /* Game.swift */,
 				1302A91B2B2CB26E008D2E79 /* DBUser.swift */,
 			);
 			path = Models;
@@ -319,8 +334,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				138EFA362B261415007F006E /* Preview Assets.xcassets in Resources */,
-				13CD7A6D2B28ECF000E261DA /* NFL_H2H_Request.json in Resources */,
 				13CD7A642B28B3D600E261DA /* GoogleService-Info.plist in Resources */,
+				133105C62B366A38009356B4 /* games_nfl_api_output.json in Resources */,
 				138EFA332B261415007F006E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,21 +347,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				133105D22B36734C009356B4 /* SportsMenuViewModel.swift in Sources */,
 				13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */,
-				13CD7A6F2B28F0C000E261DA /* Event.swift in Sources */,
 				13EEAEDE2B2798A90014CD9F /* AuthenticationViewModel.swift in Sources */,
 				1302A9182B2B70CC008D2E79 /* UserManager.swift in Sources */,
 				13CD7A722B293E0D00E261DA /* ViewModel.swift in Sources */,
 				13CD7A6A2B28D7B900E261DA /* ChartView.swift in Sources */,
+				133105D42B367D2A009356B4 /* Game.swift in Sources */,
 				13EEAEE92B279C8A0014CD9F /* Utilities.swift in Sources */,
 				138EFA312B261414007F006E /* ContentView.swift in Sources */,
 				13CD7A662B28BDDD00E261DA /* GambleCardView.swift in Sources */,
+				133105CC2B3670C0009356B4 /* GamesView.swift in Sources */,
 				1302A9142B2B5B0A008D2E79 /* SettingsViewModel.swift in Sources */,
+				133105D62B36820C009356B4 /* GamesManager.swift in Sources */,
 				13EEAEE52B279A390014CD9F /* AuthenticationManager.swift in Sources */,
 				1302A9122B2B5969008D2E79 /* SettingsView.swift in Sources */,
+				133105CE2B367182009356B4 /* SportMenuView.swift in Sources */,
 				1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */,
 				13EEAEDC2B2791DE0014CD9F /* AuthenticationView.swift in Sources */,
 				1302A9162B2B5BAF008D2E79 /* ProfileView.swift in Sources */,
+				133105CA2B3670AC009356B4 /* GamesViewModel.swift in Sources */,
 				1302A91A2B2B9364008D2E79 /* ProfileViewModel.swift in Sources */,
 				138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */,
 				1302A91E2B2CE53A008D2E79 /* GambleManager.swift in Sources */,

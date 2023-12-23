@@ -20,7 +20,7 @@ final class GambleManager {
         gambleCollection.document(gambleId)
     }
     
-    func uploadGamble(gamble: Gamble) async throws {
-        try gambleDocument(gambleId: gamble.id).setData(from: gamble, merge: false)
-    }
+//    func uploadGamble(gamble: Gamble) async throws {
+//        try gambleDocument(gambleId: gamble.id).setData(from: gamble, merge: false)
+//    }
 }

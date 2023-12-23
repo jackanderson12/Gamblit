@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class ViewModel: ObservableObject {
-    @Published var feed: [Gamble] = []
+//    @Published var feed: [Gamble] = []
     
     
 }
