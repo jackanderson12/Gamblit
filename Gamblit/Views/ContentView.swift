@@ -16,7 +16,16 @@ struct ContentView: View {
             ZStack {
                 if !showSignInView {
                     NavigationStack {
-                        ProfileView(showSignInView: $showSignInView)
+                        TabView {
+                            GamesView(sport: "football")
+                                .tabItem {
+                                    Image(systemName: "football.fill")
+                                }
+                            ProfileView(showSignInView: $showSignInView)
+                                .tabItem {
+                                    Image(systemName: "gear")
+                                }
+                        }
                     }
                 }
             }
