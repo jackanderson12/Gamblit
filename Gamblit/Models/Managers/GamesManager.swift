@@ -41,7 +41,6 @@ final class GamesManager {
         do {
             let decodeResults = try JSONDecoder().decode([Game].self, from: data)
             games = decodeResults
-            calculateAverages()
         } catch {
             throw error
         }
@@ -49,6 +48,7 @@ final class GamesManager {
     
     func calculateAverages() {
         for game in games {
+            print(game.id ?? "nil game id")
             if let gameId = game.id {
                 gameAverages[gameId] = calculateGameAverages(game)
             }
@@ -61,14 +61,16 @@ final class GamesManager {
         var spreads: [Double] = []
         
         game.bookmakers?.forEach { bookmaker in
+            print(bookmaker.key ?? "nil bookmaker")
             bookmaker.markets?.forEach { market in
+                print(market.key ?? "nil market")
                 switch market.key {
                 case "h2h":
-                    calculateGameH2HAverage(h2hs: &h2h, outcomes: market.outcome ?? [])
+                    calculateGameH2HAverage(h2hs: &h2h, outcomes: market.outcomes ?? [])
                 case "totals":
-                    calculateGameTotalAverage(totals: &total, outcomes: market.outcome ?? [])
+                    calculateGameTotalAverage(totals: &total, outcomes: market.outcomes ?? [])
                 case "spreads":
-                    calculateGameSpreadAverage(spreads: &spreads, outcomes: market.outcome ?? [])
+                    calculateGameSpreadAverage(spreads: &spreads, outcomes: market.outcomes ?? [])
                 default:
                     break
                 }
@@ -85,6 +87,7 @@ final class GamesManager {
     func calculateGameSpreadAverage(spreads: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
             if let price = outcome.price {
+                print(outcome.price ?? "nil price")
                 spreads.append(price)
             }
         }
@@ -93,6 +96,7 @@ final class GamesManager {
     func calculateGameTotalAverage(totals: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
             if let point = outcome.point {
+                print(outcome.price ?? "nil point")
                 totals.append(point)
             }
         }
@@ -101,6 +105,7 @@ final class GamesManager {
     func calculateGameH2HAverage(h2hs: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
             if let price = outcome.price {
+                print(outcome.price ?? "nil price")
                 h2hs.append(price)
             }
         }

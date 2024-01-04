@@ -79,6 +79,7 @@ final class GamesViewModel: ObservableObject {
         do {
             let token = try await fetchFirebaseAuthToken()
             try await gamesManager.fetchGamesFromURL(url: self.url, token: token)
+            gamesManager.calculateAverages()
         } catch {
             print(error.localizedDescription)
         }

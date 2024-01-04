@@ -23,16 +23,16 @@ struct Game: Identifiable, Codable, Hashable {
         case homeTeam = "home_team"
         case awayTeam = "away_team"
         case sportKey = "sport_key"
-        case sportTitle = "sport_Title"
+        case sportTitle = "sport_title"
         case bookmakers
     }
     
     static func == (lhs: Game, rhs: Game) -> Bool {
-        lhs.commenceTime == rhs.commenceTime
+        lhs.id == rhs.id
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(commenceTime)
+        hasher.combine(id)
     }
 }
 
@@ -53,7 +53,13 @@ struct Bookmakers: Codable {
 struct Markets: Codable {
     let key: String?
     let lastUpdate: String?
-    let outcome: [Outcome]?
+    let outcomes: [Outcome]?
+    
+    enum CodingKeys: String, CodingKey {
+        case key
+        case lastUpdate = "last_update"
+        case outcomes
+    }
 }
 
 struct Outcome: Codable {

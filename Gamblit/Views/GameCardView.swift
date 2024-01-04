@@ -30,9 +30,9 @@ struct GameCardView: View {
                 }
                 VStack(alignment: .center, spacing: 3) {
                     // Example: "Avg. Price: 100.0"
-                    Text("H2H: \(gameAverage.0 ?? 0, specifier: "%.2f")")
-                    Text("Spread: \(gameAverage.1 ?? 0, specifier: "%.2f")")
-                    Text("Total: \(gameAverage.2 ?? 0, specifier: "%.2f")")
+                    Text("H2H: \(gameAverage.0 ?? 1, specifier: "%.2f")")
+                    Text("Spread: \(gameAverage.1 ?? 1, specifier: "%.2f")")
+                    Text("Total: \(gameAverage.2 ?? 1, specifier: "%.2f")")
                 }
             }
             .padding(.horizontal)
