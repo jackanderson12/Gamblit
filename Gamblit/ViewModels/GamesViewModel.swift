@@ -8,45 +8,20 @@
 import Foundation
 import FirebaseAuth
 
-enum Sport: String, CaseIterable {
-    case football = "Football"
-    case basketball = "Basketball"
-    case soccer = "Soccer"
-    case baseball = "Baseball"
-    case hockey = "Hockey"
-    case mma = "MMA"
-    
-    var leagues: [String] {
-        switch self {
-        case .football:
-            return ["americanfootball_nfl", "americanfootball_ncaaf"]
-        case .basketball:
-            return ["basketball_nba", "basketball_ncaab"]
-        case .soccer:
-            return ["soccer_uefa_europa_league", "soccer_spain_la_liga", "soccer_epl", "soccer_france_ligue_one", "soccer_italy_serie_a", "soccer_germany_bundesliga", "soccer_uefa_champs_league"]
-        case .baseball:
-            return ["baseball_mlb", "baseball_ncaa"]
-        case .hockey:
-            return ["icehockey_nhl"]
-        case .mma:
-            return ["mma_mixed_martial_arts"]
-        }
-    }
-}
-
 @MainActor
 final class GamesViewModel: ObservableObject {
     
     @Published var games: [Game]? = []
-    @Published var gameAverages: [String: (Double?, Double?, Double?)]? = [:]
-    @Published var selectedSport: Sport = .football
+    @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)]? = [:]
+    @Published var selectedSport: Sport?
+    @Published var selectedLeague: String?
     
     var gamesManager: GamesManager
     
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
     
     var url: URL {
-        return URL(string: "https://api.the-odds-api.com/v4/sports/americanfootball_nfl/odds?markets=h2h,spreads,totals&regions=us&bookmakers=betmgm,draftkings,fanduel,pointsbetus&apiKey=\(key)")!
+        return URL(string: "https://api.the-odds-api.com/v4/sports/\(selectedLeague ?? "americanfootball_nfl" )/odds?markets=h2h,spreads,totals&regions=us&bookmakers=betmgm,draftkings,fanduel,pointsbetus&apiKey=\(key)")!
     }
     
     init(_ gamesManager: GamesManager) {

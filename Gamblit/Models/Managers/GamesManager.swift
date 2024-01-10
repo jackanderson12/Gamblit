@@ -11,7 +11,7 @@ import Foundation
 final class GamesManager {
     
     @Published var games: [Game] = []
-    @Published var gameAverages: [String: (Double?, Double?, Double?)] = [:]
+    @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)] = [:]
     
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
     
@@ -48,66 +48,113 @@ final class GamesManager {
     
     func calculateAverages() {
         for game in games {
-            print(game.id ?? "nil game id")
             if let gameId = game.id {
                 gameAverages[gameId] = calculateGameAverages(game)
             }
         }
     }
     
-    func calculateGameAverages(_ game: Game) -> (Double?, Double?, Double?) {
-        var h2h: [Double] = []
-        var total: [Double] = []
-        var spreads: [Double] = []
+    func calculateGameAverages(_ game: Game) -> (Double?, Double?, Double?, Double?, Double?, Double?) {
+        
+        var h2hHomeTeam: [Double] = []
+        var h2hAwayTeam: [Double] = []
+        var totalOver: [Double] = []
+        var totalUnder: [Double] = []
+        var spreadHomeTeam: [Double] = []
+        var spreadAwayTeam: [Double] = []
         
         game.bookmakers?.forEach { bookmaker in
-            print(bookmaker.key ?? "nil bookmaker")
             bookmaker.markets?.forEach { market in
-                print(market.key ?? "nil market")
                 switch market.key {
                 case "h2h":
-                    calculateGameH2HAverage(h2hs: &h2h, outcomes: market.outcomes ?? [])
+                    calculateGameH2HAverage(game: game, h2hHomeTeam: &h2hHomeTeam, h2hAwayTeam: &h2hAwayTeam, outcomes: market.outcomes ?? [])
                 case "totals":
-                    calculateGameTotalAverage(totals: &total, outcomes: market.outcomes ?? [])
+                    calculateGameTotalAverage(game: game, totalOver: &totalOver, totalUnder: &totalUnder, outcomes: market.outcomes ?? [])
                 case "spreads":
-                    calculateGameSpreadAverage(spreads: &spreads, outcomes: market.outcomes ?? [])
+                    calculateGameSpreadAverage(game: game, spreadHomeTeam: &spreadHomeTeam, spreadAwayTeam: &spreadAwayTeam, outcomes: market.outcomes ?? [])
                 default:
                     break
                 }
             }
         }
         
-        let h2hAverage = h2h.isEmpty ? nil : h2h.reduce(0, +) / Double(h2h.count)
-        let totalAverage = total.isEmpty ? nil : total.reduce(0, +) / Double(total.count)
-        let spreadsAverage = spreads.isEmpty ? nil : spreads.reduce(0, +) / Double(spreads.count)
+        let h2hHomeTeamAverage = h2hHomeTeam.isEmpty ? nil : averageDecimalOddsToAmericanOdds(oddsArray: h2hHomeTeam)
+        let h2hAwayTeamAverage = h2hAwayTeam.isEmpty ? nil : averageDecimalOddsToAmericanOdds(oddsArray: h2hAwayTeam)
+        let totalOverAverage = totalOver.isEmpty ? nil : totalOver.reduce(0, +) / Double(totalOver.count)
+        let totalUnderAverage = totalUnder.isEmpty ? nil : totalUnder.reduce(0, +) / Double(totalUnder.count)
+        let spreadHomeTeamAverage = spreadHomeTeam.isEmpty ? nil : spreadHomeTeam.reduce(0, +) / Double(spreadHomeTeam.count)
+        let spreadAwayTeamAverage = spreadAwayTeam.isEmpty ? nil : spreadAwayTeam.reduce(0, +) / Double(spreadAwayTeam.count)
         
-        return (h2hAverage, totalAverage, spreadsAverage)
+        return (h2hHomeTeamAverage, h2hAwayTeamAverage, totalOverAverage, totalUnderAverage, spreadHomeTeamAverage, spreadAwayTeamAverage)
     }
     
-    func calculateGameSpreadAverage(spreads: inout [Double], outcomes: [Outcome]) {
+    func calculateGameSpreadAverage(game: Game, spreadHomeTeam: inout [Double], spreadAwayTeam: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
-            if let price = outcome.price {
-                print(outcome.price ?? "nil price")
-                spreads.append(price)
+            if let teamName = outcome.name {
+                switch teamName {
+                case game.homeTeam:
+                    if let point = outcome.point {
+                        spreadHomeTeam.append(point)
+                    }
+                case game.awayTeam:
+                    if let point = outcome.point {
+                        spreadAwayTeam.append(point)
+                    }
+                default:
+                    break
+                }
             }
         }
     }
     
-    func calculateGameTotalAverage(totals: inout [Double], outcomes: [Outcome]) {
+    func calculateGameTotalAverage(game: Game, totalOver: inout [Double], totalUnder: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
-            if let point = outcome.point {
-                print(outcome.price ?? "nil point")
-                totals.append(point)
+            if let name = outcome.name {
+                switch name {
+                case "Over":
+                    if let point = outcome.point {
+                        totalOver.append(point)
+                    }
+                case "Under":
+                    if let point = outcome.point {
+                        totalUnder.append(point)
+                    }
+                default:
+                    break
+                }
             }
         }
     }
     
-    func calculateGameH2HAverage(h2hs: inout [Double], outcomes: [Outcome]) {
+    func calculateGameH2HAverage(game: Game, h2hHomeTeam: inout [Double], h2hAwayTeam: inout [Double], outcomes: [Outcome]) {
         for outcome in outcomes {
-            if let price = outcome.price {
-                print(outcome.price ?? "nil price")
-                h2hs.append(price)
+            if let teamName = outcome.name {
+                switch teamName {
+                case game.homeTeam:
+                    if let price = outcome.price {
+                        h2hHomeTeam.append(price)
+                    }
+                case game.awayTeam:
+                    if let price = outcome.price {
+                        h2hAwayTeam.append(price)
+                    }
+                default:
+                    break
+                }
             }
         }
+    }
+    
+    func averageDecimalOddsToAmericanOdds(oddsArray: [Double]) -> Double {
+        var average = oddsArray.reduce(0, +) / Double(oddsArray.count)
+        switch average {
+        case 0..<2:
+            average = 100 / (1 - average)
+        case 2...:
+            average = (average - 1) * 100
+        default:
+            break
+        }
+        return average
     }
 }

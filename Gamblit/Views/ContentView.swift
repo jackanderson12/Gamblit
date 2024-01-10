@@ -17,7 +17,7 @@ struct ContentView: View {
                 if !showSignInView {
                     NavigationStack {
                         TabView {
-                            GamesView(sport: "football")
+                            SportMenuView()
                                 .tabItem {
                                     Image(systemName: "football.fill")
                                 }

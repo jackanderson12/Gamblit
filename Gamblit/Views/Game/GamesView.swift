@@ -9,11 +9,9 @@ import SwiftUI
 
 struct GamesView: View {
     
-    @StateObject var viewModel = GamesViewModel(GamesManager())
-    @State var sport = "Football"
-    @State private var leagues: [String] = []
+    @StateObject var viewModel: GamesViewModel
+    @State private var leagues: [League] = []
     @State private var searchGames: String = ""
-    @State private var openSportMenu: Bool = false
     
     var body: some View {
         ZStack {
@@ -21,21 +19,21 @@ struct GamesView: View {
                 TextField("Search Games", text: $searchGames)
                     .padding()
                 HStack {
-                    ForEach(leagues, id: \.self) { league in
+                    ForEach(leagues, id: \.apiIdentifier) { league in
                         Button(action: {
-                            // Action for when a league button is tapped
+                            viewModel.selectedLeague = league.apiIdentifier
                         }, label: {
-                            Text(league)
+                            Text(league.displayName)
                         })
                         .buttonStyle(.borderedProminent)
+                        .opacity(league.apiIdentifier == viewModel.selectedLeague ? 1.0 : 0.5)
                     }
                 }
                 ScrollView {
                     LazyVStack {
                         ForEach(viewModel.games ?? [], id: \.self) { game in
-                            // safely unwrap game.id and gameAverages
                             if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
-                                GameCardView(game: game, gameAverage: gameAverage)
+                                GameCardView(viewModel: viewModel, game: game, gameAverage: gameAverage)
                                     .frame(width: 355, height: 200)
                             }
                         }
@@ -43,23 +41,10 @@ struct GamesView: View {
                 }
             }
             .padding(.horizontal)
-            
-            if openSportMenu {
-                SportMenuView() // Assuming SportMenuView is defined somewhere
-            }
         }
         .navigationTitle("Games View")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    openSportMenu.toggle()
-                }, label: {
-                    Image(systemName: "line.3.horizontal")
-                })
-            }
-        }
         .onAppear {
-            leagues = viewModel.selectedSport.leagues // Ensure this is safely accessed
+            leagues = viewModel.selectedSport?.leagues ?? Sport.football.leagues
         }
         .task {
             await viewModel.start()
@@ -69,5 +54,5 @@ struct GamesView: View {
 
 
 #Preview {
-    GamesView()
+    GamesView(viewModel: GamesViewModel(GamesManager()))
 }

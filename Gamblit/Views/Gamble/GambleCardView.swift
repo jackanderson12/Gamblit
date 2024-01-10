@@ -17,8 +17,8 @@ struct GambleCardView: View {
             Text(Gamble.title) //Placeholder for what to place here
                 .font(.headline)
 
-            ChartView()
-                .frame(height: 100) // Adjust as needed
+            //ChartView()
+                //.frame(height: 100) // Adjust as needed
 
             Text(Gamble.title)
                 .font(.title2)
@@ -65,5 +65,5 @@ struct GambleCardView: View {
 }
 
 //#Preview {
-//    GambleCardView()
+//    GambleCardView(Gamble: <#Binding<Gamble>#>)
 //}
