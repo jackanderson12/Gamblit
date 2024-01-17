@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Charts
 
 struct GameChartView: View {
     @StateObject var viewModel: GamesViewModel

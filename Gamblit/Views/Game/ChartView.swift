@@ -15,7 +15,7 @@ struct ChartView: View {
     var body: some View {
         Chart {
             ForEach(coordinates, id: \.?.0) { coord in
-                PointMark(
+                LineMark(
                     x: .value("Time", coord?.0 ?? Date()),
                     y: .value("Value", coord?.1 ?? 100.0)
                 )

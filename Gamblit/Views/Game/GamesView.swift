@@ -22,6 +22,9 @@ struct GamesView: View {
                     ForEach(leagues, id: \.apiIdentifier) { league in
                         Button(action: {
                             viewModel.selectedLeague = league.apiIdentifier
+                            Task {
+                                await viewModel.refreshData()
+                            }
                         }, label: {
                             Text(league.displayName)
                         })

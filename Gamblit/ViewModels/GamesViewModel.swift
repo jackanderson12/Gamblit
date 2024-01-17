@@ -13,7 +13,11 @@ final class GamesViewModel: ObservableObject {
     
     @Published var games: [Game]? = []
     @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)]? = [:]
-    @Published var selectedSport: Sport?
+    @Published var selectedSport: Sport? {
+        didSet {
+            selectedLeague = selectedSport?.leagues.first?.apiIdentifier
+        }
+    }
     @Published var selectedLeague: String?
     
     var gamesManager: GamesManager
@@ -66,6 +70,12 @@ final class GamesViewModel: ObservableObject {
             throw URLError(.badServerResponse)
         }
         return credential
+    }
+    
+    func refreshData() async {
+        await start()
+        getGames()
+        getAverages()
     }
     
 }

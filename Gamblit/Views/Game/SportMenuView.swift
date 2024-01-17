@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SportMenuView: View {
-    
     @StateObject private var viewModel = GamesViewModel(GamesManager())
     
     var body: some View {
@@ -19,9 +18,9 @@ struct SportMenuView: View {
                 } label: {
                     Text(sport.rawValue)
                 }
-                .onSubmit {
+                .simultaneousGesture(TapGesture().onEnded {
                     viewModel.selectedSport = sport
-                }
+                })
             }
         }
     }
