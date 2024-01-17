@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct GameCardView: View {
     
     @StateObject var viewModel: GamesViewModel
@@ -54,15 +52,16 @@ struct GameCardView: View {
                 }
             }
             .padding(.horizontal)
+            // Invisible Navigation Link
+            NavigationLink(
+                destination: GameChartView(viewModel: viewModel, game: game),
+                label: {
+                    RoundedRectangle(cornerRadius: 25.0, style: .continuous)
+                        .foregroundStyle(.clear)
+                }
+            )
         }
         .padding(.all)
-        .overlay {
-            NavigationLink {
-                GameChartView(viewModel: viewModel, game: game)
-            } label: {
-                
-            }
-        }
     }
 }
 
