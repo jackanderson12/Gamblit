@@ -19,13 +19,15 @@ final class GamesViewModel: ObservableObject {
         }
     }
     @Published var selectedLeague: String?
+    @Published var selectedMarkets: [Markets]?
+    @Published var selectedBooks: [Bookmakers]?
     
     var gamesManager: GamesManager
     
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
     
     var url: URL {
-        return URL(string: "https://api.the-odds-api.com/v4/sports/\(selectedLeague ?? "americanfootball_nfl" )/odds?markets=h2h,spreads,totals&regions=us&bookmakers=betmgm,draftkings,fanduel,pointsbetus&apiKey=\(key)")!
+        return URL(string: "https://api.the-odds-api.com/v4/sports/\(selectedLeague ?? "americanfootball_nfl" )/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us&bookmakers=\(selectedBooks?.compactMap { $0.key }.joined(separator: ",") ?? "draftkings,betmgm,fanduel,pointsbetus")&apiKey=\(key)")!
     }
     
     init(_ gamesManager: GamesManager) {

@@ -11,21 +11,38 @@ struct SportMenuView: View {
     @StateObject private var viewModel = GamesViewModel(GamesManager())
     
     var body: some View {
-        ZStack {
-            List(Sport.allCases, id: \.self) { sport in
+        VStack(alignment: .center, spacing: 20) {
+            ForEach(Sport.allCases, id: \.self) { sport in
                 NavigationLink {
-                    GamesView(viewModel: viewModel)
+                    DelayedGamesView(viewModel: viewModel)
                 } label: {
                     Text(sport.rawValue)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
                     viewModel.selectedSport = sport
                 })
+                .buttonStyle(.borderedProminent)
             }
         }
     }
 }
 
-#Preview {
-    SportMenuView()
+struct DelayedGamesView: View {
+    
+    @StateObject var viewModel: GamesViewModel
+    @State private var isLoading: Bool = true
+    
+    var body: some View {
+        ZStack {
+            if isLoading {
+                ProgressView()
+            } else {
+                GamesView(viewModel: viewModel)
+            }
+        }
+        .task(priority: .high) {
+            await viewModel.refreshData()
+            isLoading = false
+        }
+    }
 }
