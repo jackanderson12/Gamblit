@@ -54,7 +54,8 @@ final class GamesManager {
         }
     }
     
-    func calculateGameAverages(_ game: Game) -> (Double?, Double?, Double?, Double?, Double?, Double?) {
+    func calculateGameAverages(_ game
+                               : Game) -> (Double?, Double?, Double?, Double?, Double?, Double?) {
         
         var h2hHomeTeam: [Double] = []
         var h2hAwayTeam: [Double] = []

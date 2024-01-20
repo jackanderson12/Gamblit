@@ -67,3 +67,17 @@ struct Outcome: Codable {
     let price: Double?
     let point: Double?
 }
+
+struct Historical: Codable {
+    let timestamp: String?
+    let previousTimestamp: String?
+    let nextTimestamp: String?
+    let data: [Game]
+    
+    enum CodingKeys: String, CodingKey {
+        case timestamp
+        case previousTimestamp = "previous_timestamp"
+        case nextTimestamp = "next_timestamp"
+        case data
+    }
+}

@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 @MainActor
 final class GamesViewModel: ObservableObject {
@@ -21,13 +22,28 @@ final class GamesViewModel: ObservableObject {
     @Published var selectedLeague: String?
     @Published var selectedMarkets: [Markets]?
     @Published var selectedBooks: [Bookmakers]?
+    @Published var selectedDate: String?
+    @Published var selectedFilter: apiFilter?
+    @Published var eventId: String?
     
     var gamesManager: GamesManager
     
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
     
     var url: URL {
-        return URL(string: "https://api.the-odds-api.com/v4/sports/\(selectedLeague ?? "americanfootball_nfl" )/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us&bookmakers=\(selectedBooks?.compactMap { $0.key }.joined(separator: ",") ?? "draftkings,betmgm,fanduel,pointsbetus")&apiKey=\(key)")!
+        let baseURL = "https://api.the-odds-api.com/v4/"
+        
+        switch selectedFilter {
+            
+        case .sports:
+            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+        case .event:
+            return  URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/events/\(eventId ?? "")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+        case .historical:
+            return URL(string: "\(baseURL)/historical/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))&apiKey=\(key)")!
+        default:
+            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+        }
     }
     
     init(_ gamesManager: GamesManager) {

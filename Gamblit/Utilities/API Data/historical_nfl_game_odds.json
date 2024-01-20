@@ -1,0 +1,895 @@
+{
+    "timestamp": "2024-01-19T23:30:39Z",
+    "previous_timestamp": "2024-01-19T23:25:39Z",
+    "next_timestamp": null,
+    "data": [
+        {
+            "id": "a9d0896e7cb33aef7a51723f9cd7230a",
+            "sport_key": "americanfootball_nfl",
+            "sport_title": "NFL",
+            "commence_time": "2024-01-20T21:31:00Z",
+            "home_team": "Baltimore Ravens",
+            "away_team": "Houston Texans",
+            "bookmakers": [
+                {
+                    "key": "fanduel",
+                    "title": "FanDuel",
+                    "last_update": "2024-01-19T23:28:50Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.23
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 4.4
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "betmgm",
+                    "title": "BetMGM",
+                    "last_update": "2024-01-19T23:29:14Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.22
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 4.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "draftkings",
+                    "title": "DraftKings",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.24
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 4.3
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.89,
+                                    "point": 43.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.93,
+                                    "point": 43.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "pointsbetus",
+                    "title": "PointsBet (US)",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.24
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 4.3
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Baltimore Ravens",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                },
+                                {
+                                    "name": "Houston Texans",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 43.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "bcba70d77b8cd7d1666b6c4179df2071",
+            "sport_key": "americanfootball_nfl",
+            "sport_title": "NFL",
+            "commence_time": "2024-01-21T01:16:00Z",
+            "home_team": "San Francisco 49ers",
+            "away_team": "Green Bay Packers",
+            "bookmakers": [
+                {
+                    "key": "fanduel",
+                    "title": "FanDuel",
+                    "last_update": "2024-01-19T23:28:50Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 4.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.22
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 1.93,
+                                    "point": 9.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.89,
+                                    "point": -9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "draftkings",
+                    "title": "DraftKings",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 4.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.22
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 1.93,
+                                    "point": 9.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.89,
+                                    "point": -9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.89,
+                                    "point": 50.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.93,
+                                    "point": 50.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "betmgm",
+                    "title": "BetMGM",
+                    "last_update": "2024-01-19T23:29:14Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 4.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.22
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "pointsbetus",
+                    "title": "PointsBet (US)",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 4.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.22
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Green Bay Packers",
+                                    "price": 1.91,
+                                    "point": 9.5
+                                },
+                                {
+                                    "name": "San Francisco 49ers",
+                                    "price": 1.91,
+                                    "point": -9.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 50.5
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "967657674563bebaf7d86113f872c471",
+            "sport_key": "americanfootball_nfl",
+            "sport_title": "NFL",
+            "commence_time": "2024-01-21T20:01:00Z",
+            "home_team": "Detroit Lions",
+            "away_team": "Tampa Bay Buccaneers",
+            "bookmakers": [
+                {
+                    "key": "fanduel",
+                    "title": "FanDuel",
+                    "last_update": "2024-01-19T23:28:50Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.36
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 3.25
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.95,
+                                    "point": -6.5
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 1.87,
+                                    "point": 6.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.87,
+                                    "point": 49.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.95,
+                                    "point": 49.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "draftkings",
+                    "title": "DraftKings",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.36
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 3.25
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.87,
+                                    "point": -6
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 1.95,
+                                    "point": 6
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.93,
+                                    "point": 49.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.89,
+                                    "point": 49.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "betmgm",
+                    "title": "BetMGM",
+                    "last_update": "2024-01-19T23:29:14Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.36
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 3.2
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.91,
+                                    "point": -6
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 1.91,
+                                    "point": 6
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 49.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 49.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "pointsbetus",
+                    "title": "PointsBet (US)",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.34
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 3.3
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Detroit Lions",
+                                    "price": 1.91,
+                                    "point": -6.5
+                                },
+                                {
+                                    "name": "Tampa Bay Buccaneers",
+                                    "price": 1.91,
+                                    "point": 6.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 49
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 49
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "d06d2bfbdddbf4348e34ca0a396fdcfc",
+            "sport_key": "americanfootball_nfl",
+            "sport_title": "NFL",
+            "commence_time": "2024-01-21T23:31:00Z",
+            "home_team": "Buffalo Bills",
+            "away_team": "Kansas City Chiefs",
+            "bookmakers": [
+                {
+                    "key": "fanduel",
+                    "title": "FanDuel",
+                    "last_update": "2024-01-19T23:28:50Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.69
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2.22
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.82,
+                                    "point": -2.5
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2,
+                                    "point": 2.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:28:50Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "draftkings",
+                    "title": "DraftKings",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.68
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2.24
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.83,
+                                    "point": -2.5
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2,
+                                    "point": 2.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "betmgm",
+                    "title": "BetMGM",
+                    "last_update": "2024-01-19T23:29:14Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.69
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2.2
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.83,
+                                    "point": -2.5
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2,
+                                    "point": 2.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:14Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 45.5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "pointsbetus",
+                    "title": "PointsBet (US)",
+                    "last_update": "2024-01-19T23:29:13Z",
+                    "markets": [
+                        {
+                            "key": "h2h",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.69
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2.2
+                                }
+                            ]
+                        },
+                        {
+                            "key": "spreads",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Buffalo Bills",
+                                    "price": 1.83,
+                                    "point": -2.5
+                                },
+                                {
+                                    "name": "Kansas City Chiefs",
+                                    "price": 2,
+                                    "point": 2.5
+                                }
+                            ]
+                        },
+                        {
+                            "key": "totals",
+                            "last_update": "2024-01-19T23:29:13Z",
+                            "outcomes": [
+                                {
+                                    "name": "Over",
+                                    "price": 1.91,
+                                    "point": 46
+                                },
+                                {
+                                    "name": "Under",
+                                    "price": 1.91,
+                                    "point": 46
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
