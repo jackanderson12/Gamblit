@@ -23,6 +23,8 @@
 		134911502B5A1DFA00311799 /* GambleFromGameChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349114F2B5A1DFA00311799 /* GambleFromGameChartView.swift */; };
 		134911522B5A1E5500311799 /* GambleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911512B5A1E5500311799 /* GambleViewModel.swift */; };
 		134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911552B5C2F3200311799 /* GameChartPickerView.swift */; };
+		1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */; };
+		1371EEE02B5C488500A95866 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDF2B5C488500A95866 /* GameDetailView.swift */; };
 		138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA2E2B261414007F006E /* GamblitApp.swift */; };
 		138EFA312B261414007F006E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA302B261414007F006E /* ContentView.swift */; };
 		138EFA332B261415007F006E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 138EFA322B261415007F006E /* Assets.xcassets */; };
@@ -86,6 +88,8 @@
 		134911512B5A1E5500311799 /* GambleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleViewModel.swift; sourceTree = "<group>"; };
 		134911532B5B008700311799 /* historical_nfl_game_odds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = historical_nfl_game_odds.json; sourceTree = "<group>"; };
 		134911552B5C2F3200311799 /* GameChartPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartPickerView.swift; sourceTree = "<group>"; };
+		1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakersButtonsView.swift; sourceTree = "<group>"; };
+		1371EEDF2B5C488500A95866 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		138EFA2B2B261414007F006E /* Gamblit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gamblit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		138EFA2E2B261414007F006E /* GamblitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamblitApp.swift; sourceTree = "<group>"; };
 		138EFA302B261414007F006E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			children = (
 				1349114D2B5813C200311799 /* ChartView.swift */,
 				134911552B5C2F3200311799 /* GameChartPickerView.swift */,
+				1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				133105CB2B3670C0009356B4 /* GamesView.swift */,
 				13AE6B0D2B44820F0067B6B7 /* GameCardView.swift */,
 				13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */,
+				1371EEDF2B5C488500A95866 /* GameDetailView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 				13AE6B102B476D9A0067B6B7 /* GameChartView.swift in Sources */,
 				13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */,
 				13EEAEDE2B2798A90014CD9F /* AuthenticationViewModel.swift in Sources */,
+				1371EEE02B5C488500A95866 /* GameDetailView.swift in Sources */,
 				134911502B5A1DFA00311799 /* GambleFromGameChartView.swift in Sources */,
 				1302A9182B2B70CC008D2E79 /* UserManager.swift in Sources */,
 				13AE6B0E2B44820F0067B6B7 /* GameCardView.swift in Sources */,
@@ -412,6 +419,7 @@
 				133105CC2B3670C0009356B4 /* GamesView.swift in Sources */,
 				1302A9142B2B5B0A008D2E79 /* SettingsViewModel.swift in Sources */,
 				133105D62B36820C009356B4 /* GamesManager.swift in Sources */,
+				1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */,
 				13EEAEE52B279A390014CD9F /* AuthenticationManager.swift in Sources */,
 				1302A9122B2B5969008D2E79 /* SettingsView.swift in Sources */,
 				133105CE2B367182009356B4 /* SportMenuView.swift in Sources */,

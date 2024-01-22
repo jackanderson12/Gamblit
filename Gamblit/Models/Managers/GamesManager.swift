@@ -17,7 +17,7 @@ final class GamesManager {
     
     let exampleURL = URL(string: "")
     
-    func fetchGamesFromURL(url: URL, token: String?) async throws {
+    func fetchGamesFromURL(url: URL, token: String?, apiFilter: apiFilter) async throws {
         var request = URLRequest(url: url)
         //        if let token = token {
         //            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -25,13 +25,20 @@ final class GamesManager {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             print(response)
-            try handleResponse(data: data, response: response)
+            switch apiFilter {
+            case .sports:
+                try handleSportsResponse(data: data, response: response)
+            case .event:
+                try handleEventResponse(data: data, response: response)
+            case .historical:
+                try handleHistoricalResponse(data: data, response: response)
+            }
         } catch {
             throw error
         }
     }
     
-    func handleResponse(data: Data?, response: URLResponse?) throws {
+    func handleSportsResponse(data: Data?, response: URLResponse?) throws {
         guard
             let data = data,
             let response = response as? HTTPURLResponse,
@@ -41,6 +48,37 @@ final class GamesManager {
         do {
             let decodeResults = try JSONDecoder().decode([Game].self, from: data)
             games = decodeResults
+        } catch {
+            throw error
+        }
+    }
+    
+    func handleEventResponse(data: Data?, response: URLResponse?) throws {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+            return
+        }
+        do {
+            let decodeResults = try JSONDecoder().decode(Game.self, from: data)
+            games = []
+            games.append(decodeResults)
+        } catch {
+            throw error
+        }
+    }
+    
+    func handleHistoricalResponse(data: Data?, response: URLResponse?) throws {
+        guard
+            let data = data,
+            let response = response as? HTTPURLResponse,
+            response.statusCode >= 200 && response.statusCode < 300 else {
+            return
+        }
+        do {
+            let decodeResults = try JSONDecoder().decode(Historical.self, from: data)
+            games = decodeResults.data
         } catch {
             throw error
         }

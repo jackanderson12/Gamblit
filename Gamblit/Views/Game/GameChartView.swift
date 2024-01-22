@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 
 struct GameChartView: View {
+    
     @StateObject var viewModel: GamesViewModel
     
     var game: Game
@@ -24,49 +25,44 @@ struct GameChartView: View {
     let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack {
-            HStack {
-                GameChartPickerView(viewModel: viewModel)
+        ScrollView {
+            VStack(alignment: .center, spacing: 15) {
+                Text("H2H")
+                    .font(.headline)
+                ChartView(coordinates: h2hAverage)
+                    .onTapGesture {
+                        gambleChart = h2hAverage
+                    }
+                
+                Text("Total")
+                    .font(.headline)
+                ChartView(coordinates: totalAverage)
+                    .onTapGesture {
+                        gambleChart = totalAverage
+                    }
+                
+                Text("Spread")
+                    .font(.headline)
+                ChartView(coordinates: spreadAverage)
+                    .onTapGesture {
+                        gambleChart = spreadAverage
+                    }
+                
             }
-            ScrollView {
-                VStack(alignment: .center, spacing: 15) {
-                    Text("H2H")
-                        .font(.headline)
-                    ChartView(coordinates: h2hAverage)
-                        .onTapGesture {
-                            gambleChart = h2hAverage
-                        }
-                    
-                    Text("Total")
-                        .font(.headline)
-                    ChartView(coordinates: totalAverage)
-                        .onTapGesture {
-                            gambleChart = totalAverage
-                        }
-                    
-                    Text("Spread")
-                        .font(.headline)
-                    ChartView(coordinates: spreadAverage)
-                        .onTapGesture {
-                            gambleChart = spreadAverage
-                        }
-                    
+            .onReceive(timer) { _ in
+                let now = Date() // Update the current time
+                if let h2hAvg = viewModel.gameAverages?[game.id ?? ""]?.0 {
+                    h2hAverage.append((now, h2hAvg))
                 }
-                .onReceive(timer) { _ in
-                    let now = Date() // Update the current time
-                    if let h2hAvg = viewModel.gameAverages?[game.id ?? ""]?.0 {
-                        h2hAverage.append((now, h2hAvg))
-                    }
-                    if let totalAvg = viewModel.gameAverages?[game.id ?? ""]?.2 {
-                        totalAverage.append((now, totalAvg))
-                    }
-                    if let spreadAvg = viewModel.gameAverages?[game.id ?? ""]?.4 {
-                        spreadAverage.append((now, spreadAvg))
-                    }
+                if let totalAvg = viewModel.gameAverages?[game.id ?? ""]?.2 {
+                    totalAverage.append((now, totalAvg))
                 }
-                .task {
-                    userId = try? await AuthenticationManager.shared.getAuthenticatedUser().uid
+                if let spreadAvg = viewModel.gameAverages?[game.id ?? ""]?.4 {
+                    spreadAverage.append((now, spreadAvg))
                 }
+            }
+            .task {
+                userId = try? await AuthenticationManager.shared.getAuthenticatedUser().uid
             }
         }
         .navigationTitle((game.homeTeam ?? "Home Team") + " vs. " +  (game.awayTeam ?? "Away Team"))
@@ -74,6 +70,6 @@ struct GameChartView: View {
 }
 
 
-//#Preview {
-//    GameChartView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
-//}
+#Preview {
+    GameChartView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
+}

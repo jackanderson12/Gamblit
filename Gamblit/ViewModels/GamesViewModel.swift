@@ -23,7 +23,7 @@ final class GamesViewModel: ObservableObject {
     @Published var selectedMarkets: [Markets]?
     @Published var selectedBooks: [Bookmakers]?
     @Published var selectedDate: String?
-    @Published var selectedFilter: apiFilter?
+    @Published var selectedFilter: apiFilter? = .sports
     @Published var eventId: String?
     
     var gamesManager: GamesManager
@@ -31,12 +31,12 @@ final class GamesViewModel: ObservableObject {
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
     
     var url: URL {
-        let baseURL = "https://api.the-odds-api.com/v4/"
+        let baseURL = "https://api.the-odds-api.com/v4"
         
         switch selectedFilter {
             
         case .sports:
-            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0.title }.joined(separator: ",") ?? "draftkings")&apiKey=\(key)")!
         case .event:
             return  URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/events/\(eventId ?? "")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
         case .historical:
@@ -75,7 +75,7 @@ final class GamesViewModel: ObservableObject {
     func start() async {
         do {
             let token = try await fetchFirebaseAuthToken()
-            try await gamesManager.fetchGamesFromURL(url: self.url, token: token)
+            try await gamesManager.fetchGamesFromURL(url: self.url, token: token, apiFilter: selectedFilter ?? .sports)
             gamesManager.calculateAverages()
         } catch {
             print(error.localizedDescription)
