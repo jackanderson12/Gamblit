@@ -21,28 +21,26 @@ final class GamesViewModel: ObservableObject {
     }
     @Published var selectedLeague: String?
     @Published var selectedMarkets: [Markets]?
-    @Published var selectedBooks: [Bookmakers]?
+    @Published var selectedBooks: [String]?
     @Published var selectedDate: String?
     @Published var selectedFilter: apiFilter? = .sports
     @Published var eventId: String?
     
     var gamesManager: GamesManager
     
-    let key = "e37ef2b2520c5f2a152db29a1e2267c3"
-    
     var url: URL {
-        let baseURL = "https://api.the-odds-api.com/v4"
+        let baseURL = "https://us-central1-gamblit-47419.cloudfunctions.net/main"
         
         switch selectedFilter {
             
         case .sports:
-            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0.title }.joined(separator: ",") ?? "draftkings")&apiKey=\(key)")!
+            return URL(string: "\(baseURL)/sports/?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .event:
-            return  URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/events/\(eventId ?? "")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+            return  URL(string: "\(baseURL)/event/?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(eventId ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .historical:
-            return URL(string: "\(baseURL)/historical/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))&apiKey=\(key)")!
+            return URL(string: "\(baseURL)/historical/?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))")!
         default:
-            return URL(string: "\(baseURL)/sports/\(selectedLeague ?? "americanfootball_nfl")/odds?markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&apiKey=\(key)")!
+            return URL(string: "\(baseURL)/sports/?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         }
     }
     

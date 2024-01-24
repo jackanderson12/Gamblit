@@ -23,6 +23,10 @@ struct ContentView: View {
                                 }
                             ProfileView(showSignInView: $showSignInView)
                                 .tabItem {
+                                    Image(systemName: "person.fill")
+                                }
+                            SettingsView(showSignInView: $showSignInView)
+                                .tabItem {
                                     Image(systemName: "gear")
                                 }
                         }

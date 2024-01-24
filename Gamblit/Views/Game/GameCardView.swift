@@ -10,6 +10,8 @@ import SwiftUI
 struct GameCardView: View {
     
     @StateObject var viewModel: GamesViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+    
     var game: Game
     var gameAverage: (Double?, Double?, Double?, Double?, Double?, Double?)
     
@@ -54,7 +56,7 @@ struct GameCardView: View {
             .padding(.horizontal)
             // Invisible Navigation Link
             NavigationLink(
-                destination: GameDetailView(viewModel: viewModel, game: game),
+                destination: GameDetailView(viewModel: viewModel, profileViewModel: profileViewModel, game: game),
                 label: {
                     RoundedRectangle(cornerRadius: 25.0, style: .continuous)
                         .foregroundStyle(.clear)
@@ -66,5 +68,5 @@ struct GameCardView: View {
 }
 
 #Preview {
-    GameCardView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
+    GameCardView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
 }

@@ -10,6 +10,8 @@ import SwiftUI
 struct GameDetailView: View {
     
     @StateObject var viewModel: GamesViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+    
     var game: Game
     
     @State private var pickerValue: apiFilter?
@@ -17,13 +19,13 @@ struct GameDetailView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            BookmakersButtonsView(viewModel: viewModel, bookmakers: game.bookmakers ?? [])
+            BookmakersButtonsView(viewModel: viewModel, bookmakers: game.bookmakers?.compactMap { $0.title } ?? [])
             GameChartPickerView(viewModel: viewModel)
         }
         VStack {
             switch pickerValue {
-            case .sports: 
-                GameChartView(viewModel: viewModel, game: game)
+            case .sports:
+                GameChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             case .event: Text("Event")
             case .historical: Text("Historical")
             default: Text("Default")
@@ -32,12 +34,9 @@ struct GameDetailView: View {
         .onAppear {
             pickerValue = viewModel.selectedFilter
         }
-        .task {
-            userId = try? await AuthenticationManager.shared.getAuthenticatedUser().uid
-        }
     }
 }
 
 #Preview {
-    GameDetailView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
+    GameDetailView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
 }

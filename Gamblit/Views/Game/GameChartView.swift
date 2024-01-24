@@ -11,6 +11,7 @@ import FirebaseFirestore
 struct GameChartView: View {
     
     @StateObject var viewModel: GamesViewModel
+    @StateObject var profileViewModel: ProfileViewModel
     
     var game: Game
     
@@ -71,5 +72,5 @@ struct GameChartView: View {
 
 
 #Preview {
-    GameChartView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
+    GameChartView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "01/01/24 8:00PM EST", homeTeam: "Home Team", awayTeam: "Away Team", sportKey: "americanfootball_nfl", sportTitle: "NFL", bookmakers: []))
 }

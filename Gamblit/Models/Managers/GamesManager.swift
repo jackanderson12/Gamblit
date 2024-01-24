@@ -19,9 +19,10 @@ final class GamesManager {
     
     func fetchGamesFromURL(url: URL, token: String?, apiFilter: apiFilter) async throws {
         var request = URLRequest(url: url)
-        //        if let token = token {
-        //            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        //        }
+        if let token = token {
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            print(token)
+        }
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             print(response)

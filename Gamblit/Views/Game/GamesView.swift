@@ -10,6 +10,8 @@ import SwiftUI
 struct GamesView: View {
     
     @StateObject var viewModel: GamesViewModel
+    @StateObject var profileViewModel: ProfileViewModel
+    
     @State private var leagues: [League] = []
     @State private var searchGames: String = ""
     
@@ -46,7 +48,7 @@ struct GamesView: View {
                     LazyVStack {
                         ForEach(filteredGames, id: \.self) { game in
                             if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
-                                GameCardView(viewModel: viewModel, game: game, gameAverage: gameAverage)
+                                GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
                                     .frame(width: 355, height: 200)
                             }
                         }
@@ -67,5 +69,5 @@ struct GamesView: View {
 
 
 #Preview {
-    GamesView(viewModel: GamesViewModel(GamesManager()))
+    GamesView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel())
 }
