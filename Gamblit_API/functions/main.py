@@ -3,8 +3,9 @@
 # Deploy with `firebase deploy`
 
 from flask import Flask, request, jsonify
-from firebase_admin import initialize_app, auth
-from firebase_functions import https_fn
+from firebase_admin import initialize_app, auth, firestore, db
+import google.cloud.firestore
+from firebase_functions import https_fn, firestore_fn
 import requests
 
 initialize_app()
@@ -16,16 +17,26 @@ api_key = 'e37ef2b2520c5f2a152db29a1e2267c3'
 base_url = 'https://api.the-odds-api.com/v4'
 
 def verify_token(req):
-    #Verify the token in the request header
-    header = req.headers.get('Authorization')
-    if header:
-        token = header.split("Bearer ")[1]
-        try:
-            decoded_token = auth.verify_id_token(token)
-            return decoded_token
-        except Exception as e:
-            return jsonify({'error': 'str(e)'}), 401
-    return None
+    # Verify the token in the request header
+    auth_header = req.headers.get('Authorization')
+    
+    if not auth_header:
+        return jsonify({'error': 'No Authorization header provided'}), 401
+
+    # Extract the token from the header
+    try:
+        id_token = auth_header.split("Bearer ")[1]
+    except IndexError:
+        return jsonify({'error': 'Bearer token not found in Authorization header'}), 401
+
+    # Verify the extracted token
+    try:
+        decoded_token = auth.verify_id_token(id_token)
+        uid = decoded_token['uid']
+        return uid
+    except Exception as e:
+        return jsonify({'error': 'error with verify_id_token'}), 401
+
 
 @app.route('/sports', methods=['GET'])
 def sports():
@@ -40,8 +51,12 @@ def sports():
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
     url = f'{base_url}/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&apiKey={api_key}'
+
     response = requests.get(url)
-    return response.json()
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({'error': 'Error with API request'}), 500
 
 @app.route('/event', methods=['GET'])
 def event():
@@ -57,8 +72,12 @@ def event():
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
     url = f'{base_url}/sports/{league}/events/{event_id}/odds?markets={markets}&bookmakers={bookmakers}&apiKey={api_key}'
+    
     response = requests.get(url)
-    return response.json()
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({'error': 'Error with API request'}), 500
 
 @app.route('/historical', methods=['GET'])
 def historical():
@@ -74,11 +93,15 @@ def historical():
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
     url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&date={date}&apiKey={api_key}'
+    
     response = requests.get(url)
-    return response.json()
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({'error': 'Error with API request'}), 500
 
 # Define a Firebase Cloud Function to handle requests
 @https_fn.on_request()
 def main(req: https_fn.Request) -> https_fn.Response:
-    # Dispatch request to Flask app
-    return app(req)
+    with app.request_context(req.environ):
+        return app.full_dispatch_request()
