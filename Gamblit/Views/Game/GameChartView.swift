@@ -15,7 +15,6 @@ struct GameChartView: View {
     
     var game: Game
     
-    @State private var userId: String? = ""
     @State private var h2hAverage: [(Date, Double)?] = []
     @State private var totalAverage: [(Date, Double)?] = []
     @State private var spreadAverage: [(Date, Double)?] = []
@@ -61,9 +60,6 @@ struct GameChartView: View {
                 if let spreadAvg = viewModel.gameAverages?[game.id ?? ""]?.4 {
                     spreadAverage.append((now, spreadAvg))
                 }
-            }
-            .task {
-                userId = try? await AuthenticationManager.shared.getAuthenticatedUser().uid
             }
         }
         .navigationTitle((game.homeTeam ?? "Home Team") + " vs. " +  (game.awayTeam ?? "Away Team"))

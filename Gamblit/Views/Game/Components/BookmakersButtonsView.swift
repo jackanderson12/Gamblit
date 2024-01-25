@@ -8,42 +8,36 @@
 import SwiftUI
 
 struct BookmakersButtonsView: View {
-    
     @StateObject var viewModel: GamesViewModel
+    @StateObject var profileViewModel: ProfileViewModel
     
-    @State var bookmakers: [String?]
+    @Binding var bookmakers: [(String, Bool)]
+    @Binding var isAverage: Bool
 
     var body: some View {
         HStack(alignment: .center, spacing: 15) {
             Button {
-                // Logic for "Average" button
+                isAverage.toggle()
             } label: {
                 Text("Average")
             }
             .buttonStyle(.borderedProminent)
-
-            ForEach(bookmakers, id: \.self) { bookmaker in
+            .tint(isAverage ? .red : .green)
+            
+            ForEach(bookmakers.indices, id: \.self) { index in
+                let bookmaker = bookmakers[index].0
                 Button {
-                    if let bookmakerName = bookmaker {
-                        if viewModel.selectedBooks?.contains(bookmakerName) == true {
-                            viewModel.selectedBooks?.removeAll { $0 == bookmakerName }
-                        } else {
-                            viewModel.selectedBooks?.append(bookmakerName)
-                        }
-                    }
+                    bookmakers[index].1.toggle()
                 } label: {
-                    Text(bookmaker ?? "Unknown")
+                    Text(bookmaker)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(viewModel.selectedBooks?.contains(bookmaker ?? "") == true ? .red : .green)
+                .tint(bookmakers[index].1 ? .red : .green)
             }
         }
     }
 }
 
-
-
-
-#Preview {
-    BookmakersButtonsView(viewModel: GamesViewModel(GamesManager()), bookmakers: [])
-}
+//#Preview {
+//    BookmakersButtonsView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), bookmakers: )
+//}
