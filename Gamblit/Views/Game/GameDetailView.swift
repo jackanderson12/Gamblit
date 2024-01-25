@@ -13,27 +13,29 @@ struct GameDetailView: View {
     @StateObject var profileViewModel: ProfileViewModel
     
     var game: Game
-    
-    @State private var pickerValue: apiFilter?
     @State private var bookmakers: [(String, Bool)] = []
     @State private var isAverage: Bool = true
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
             BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
-            GameChartPickerView(viewModel: viewModel)
+            GameChartPickerView(selectedFilter: $viewModel.selectedFilter)
         }
         VStack {
-            switch pickerValue {
+            switch viewModel.selectedFilter {
             case .sports:
                 GameChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
-            case .event: EventView()
-            case .historical: HistoricalView()
-            default: GameChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
+            case .event:
+                EventView(viewModel: viewModel, game: game)
+            case .historical:
+                HistoricalView()
             }
         }
-        .onAppear {
-            pickerValue = viewModel.selectedFilter
+        .onChange(of: viewModel.selectedFilter) {
+            Task {
+                viewModel.eventId = game.id
+                await viewModel.refreshData()
+            }
         }
         .task {
             try? await profileViewModel.loadCurrentUser()

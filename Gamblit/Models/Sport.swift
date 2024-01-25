@@ -12,7 +12,7 @@ struct League: Hashable {
     let apiIdentifier: String
 }
 
-enum apiFilter: String {
+enum apiFilter: String, CaseIterable {
     case sports = "sports"
     case event = "event"
     case historical = "historical"

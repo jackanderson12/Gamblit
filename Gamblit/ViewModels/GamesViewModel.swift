@@ -23,8 +23,16 @@ final class GamesViewModel: ObservableObject {
     @Published var selectedMarkets: [Markets]?
     @Published var selectedBooks: [String]?
     @Published var selectedDate: String?
-    @Published var selectedFilter: apiFilter? = .sports
-    @Published var eventId: String?
+    @Published var selectedFilter: apiFilter = .sports
+    @Published var eventId: String? {
+        didSet {
+            if selectedFilter == .event { 
+                Task {
+                    await refreshData()
+                }
+            }
+        }
+    }
     
     var gamesManager: GamesManager
     
@@ -36,11 +44,9 @@ final class GamesViewModel: ObservableObject {
         case .sports:
             return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .event:
-            return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(eventId ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
+            return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(eventId ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us")!
         case .historical:
             return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))")!
-        default:
-            return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         }
     }
     
@@ -73,7 +79,7 @@ final class GamesViewModel: ObservableObject {
     func start() async {
         do {
             let token = try await fetchFirebaseAuthToken()
-            try await gamesManager.fetchGamesFromURL(url: self.url, token: token, apiFilter: selectedFilter ?? .sports)
+            try await gamesManager.fetchGamesFromURL(url: self.url, token: token, apiFilter: selectedFilter)
             gamesManager.calculateAverages()
         } catch {
             print(error.localizedDescription)

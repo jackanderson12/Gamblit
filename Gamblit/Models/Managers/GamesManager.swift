@@ -21,11 +21,9 @@ final class GamesManager {
         var request = URLRequest(url: url)
         if let token = token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            print(token)
         }
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            print(response)
             switch apiFilter {
             case .sports:
                 try handleSportsResponse(data: data, response: response)

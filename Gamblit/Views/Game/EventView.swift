@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct EventView: View {
+    @StateObject var viewModel: GamesViewModel
+    
+    var game: Game
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(alignment: .center, spacing: 15) {
+                ForEach(game.bookmakers ?? [], id: \.key) { book in
+                    VStack {
+                        Text("\(book.title ?? "Book Name")")
+                            .font(.subheadline)
+                            .padding(.vertical, 10)
+                        EventCardView(book: book)
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    EventView()
+    EventView(viewModel: GamesViewModel(GamesManager()), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
 }

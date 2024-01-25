@@ -69,9 +69,9 @@ def event():
     league = request.args.get('league', 'americanfootball_nfl')
     event_id = request.args.get('event_id', '')
     markets = request.args.get('markets', 'h2h,totals,spreads')
-    bookmakers = request.args.get('bookmakers', 'draftkings')
+    regions = request.args.get('regions', 'us')
 
-    url = f'{base_url}/sports/{league}/events/{event_id}/odds?markets={markets}&bookmakers={bookmakers}&apiKey={api_key}'
+    url = f'{base_url}/sports/{league}/events/{event_id}/odds?regions={regions}&markets={markets}&apiKey={api_key}'
     
     response = requests.get(url)
     if response.status_code == 200:
