@@ -12,6 +12,8 @@ struct SportMenuView: View {
     @StateObject private var viewModel = GamesViewModel(GamesManager())
     @StateObject private var profileViewModel = ProfileViewModel()
     
+    @State private var selectedSport: Sport = .football
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             ForEach(Sport.allCases, id: \.self) { sport in
@@ -21,10 +23,13 @@ struct SportMenuView: View {
                     Text(sport.rawValue)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    viewModel.selectedSport = sport
+                    selectedSport = sport
                 })
                 .buttonStyle(.borderedProminent)
             }
+        }
+        .onChange(of: selectedSport) {
+            viewModel.selectedSport = selectedSport
         }
         .task {
             try? await profileViewModel.loadCurrentUser()

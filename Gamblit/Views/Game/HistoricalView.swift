@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct HistoricalView: View {
+    
+    @StateObject var viewModel: GamesViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HistoricalPickerView()
+            Text("dskaflls")
+        }
     }
 }
 
 #Preview {
-    HistoricalView()
+    HistoricalView(viewModel: GamesViewModel(GamesManager()))
 }

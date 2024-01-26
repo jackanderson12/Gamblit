@@ -28,7 +28,7 @@ struct GameDetailView: View {
             case .event:
                 EventView(viewModel: viewModel, game: game)
             case .historical:
-                HistoricalView()
+                HistoricalView(viewModel: viewModel)
             }
         }
         .onChange(of: viewModel.selectedFilter) {
@@ -41,6 +41,12 @@ struct GameDetailView: View {
             try? await profileViewModel.loadCurrentUser()
             for book in profileViewModel.user?.sportsBooks ?? [] {
                 bookmakers.append((book, false))
+            }
+        }
+        .onDisappear {
+            Task {
+                viewModel.selectedFilter = .sports
+                await viewModel.refreshData()
             }
         }
     }

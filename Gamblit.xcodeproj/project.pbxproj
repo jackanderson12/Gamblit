@@ -28,6 +28,7 @@
 		1371EEE22B62153B00A95866 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE12B62153B00A95866 /* EventView.swift */; };
 		1371EEE42B62155500A95866 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE32B62155500A95866 /* HistoricalView.swift */; };
 		1371EEE62B62B20F00A95866 /* EventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE52B62B20F00A95866 /* EventCardView.swift */; };
+		1371EEE82B62F65800A95866 /* HistoricalPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE72B62F65800A95866 /* HistoricalPickerView.swift */; };
 		138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA2E2B261414007F006E /* GamblitApp.swift */; };
 		138EFA312B261414007F006E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EFA302B261414007F006E /* ContentView.swift */; };
 		138EFA332B261415007F006E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 138EFA322B261415007F006E /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		1371EEE12B62153B00A95866 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		1371EEE32B62155500A95866 /* HistoricalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalView.swift; sourceTree = "<group>"; };
 		1371EEE52B62B20F00A95866 /* EventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardView.swift; sourceTree = "<group>"; };
+		1371EEE72B62F65800A95866 /* HistoricalPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalPickerView.swift; sourceTree = "<group>"; };
 		138EFA2B2B261414007F006E /* Gamblit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gamblit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		138EFA2E2B261414007F006E /* GamblitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamblitApp.swift; sourceTree = "<group>"; };
 		138EFA302B261414007F006E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,9 @@
 				1349114D2B5813C200311799 /* ChartView.swift */,
 				134911552B5C2F3200311799 /* GameChartPickerView.swift */,
 				1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */,
+				1371EEE52B62B20F00A95866 /* EventCardView.swift */,
+				13AE6B0D2B44820F0067B6B7 /* GameCardView.swift */,
+				1371EEE72B62F65800A95866 /* HistoricalPickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -212,12 +217,10 @@
 				134911542B5C2F0F00311799 /* Components */,
 				133105CD2B367182009356B4 /* SportMenuView.swift */,
 				133105CB2B3670C0009356B4 /* GamesView.swift */,
-				13AE6B0D2B44820F0067B6B7 /* GameCardView.swift */,
-				13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */,
 				1371EEDF2B5C488500A95866 /* GameDetailView.swift */,
 				1371EEE12B62153B00A95866 /* EventView.swift */,
 				1371EEE32B62155500A95866 /* HistoricalView.swift */,
-				1371EEE52B62B20F00A95866 /* EventCardView.swift */,
+				13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1371EEE82B62F65800A95866 /* HistoricalPickerView.swift in Sources */,
 				13AE6B102B476D9A0067B6B7 /* GameChartView.swift in Sources */,
 				13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */,
 				13EEAEDE2B2798A90014CD9F /* AuthenticationViewModel.swift in Sources */,

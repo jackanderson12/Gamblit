@@ -46,6 +46,7 @@ final class GamesManager {
         }
         do {
             let decodeResults = try JSONDecoder().decode([Game].self, from: data)
+            games = []
             games = decodeResults
         } catch {
             throw error
