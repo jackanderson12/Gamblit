@@ -11,6 +11,7 @@ import Foundation
 final class GamesManager {
     
     @Published var games: [Game] = []
+    @Published var historicalGame: [Historical] = []
     @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)] = [:]
     
     let key = "e37ef2b2520c5f2a152db29a1e2267c3"
@@ -78,7 +79,8 @@ final class GamesManager {
         }
         do {
             let decodeResults = try JSONDecoder().decode(Historical.self, from: data)
-            games = decodeResults.data
+            historicalGame.append(decodeResults)
+            print(historicalGame)
         } catch {
             throw error
         }

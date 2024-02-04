@@ -28,7 +28,7 @@ struct GameDetailView: View {
             case .event:
                 EventView(viewModel: viewModel, game: game)
             case .historical:
-                HistoricalView(viewModel: viewModel)
+                HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
         }
         .onChange(of: viewModel.selectedFilter) {

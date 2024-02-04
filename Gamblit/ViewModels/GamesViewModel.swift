@@ -13,6 +13,8 @@ import FirebaseFirestore
 final class GamesViewModel: ObservableObject {
     
     @Published var games: [Game]? = []
+    @Published var historicalGame: [Historical]? = []
+    @Published var convertedHistorical: [String: (String, Date, Double?, Double?)]? = [:]
     @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)]? = [:]
     @Published var selectedSport: Sport? {
         didSet {
@@ -54,6 +56,7 @@ final class GamesViewModel: ObservableObject {
         self.gamesManager = gamesManager
         getGames()
         getAverages()
+        getHistoricalGame()
     }
     
     private func getGames() {
@@ -61,6 +64,16 @@ final class GamesViewModel: ObservableObject {
             for await game in gamesManager.$games.values {
                 await MainActor.run(body: {
                     self.games = game
+                })
+            }
+        }
+    }
+    
+    private func getHistoricalGame() {
+        Task {
+            for await historical in gamesManager.$historicalGame.values {
+                await MainActor.run(body: {
+                    self.historicalGame = historical
                 })
             }
         }
@@ -79,12 +92,23 @@ final class GamesViewModel: ObservableObject {
     func start() async {
         do {
             let token = try await fetchFirebaseAuthToken()
-            try await gamesManager.fetchGamesFromURL(url: self.url, token: token, apiFilter: selectedFilter)
+            
+            if selectedFilter == .historical, let startDateString = selectedDate, let startDate = convertToDate(from: startDateString) {
+                let dates = generateDateRange(from: startDate)
+                for date in dates {
+                    let dateString = ISO8601DateFormatter().string(from: date)
+                    let historicalURL = createHistoricalURL(for: dateString)
+                    try await gamesManager.fetchGamesFromURL(url: historicalURL, token: token, apiFilter: .historical)
+                }
+            } else {
+                try await gamesManager.fetchGamesFromURL(url: self.url, token: token, apiFilter: selectedFilter)
+            }
             gamesManager.calculateAverages()
         } catch {
             print(error.localizedDescription)
         }
     }
+
     
     private func fetchFirebaseAuthToken() async throws -> String {
         guard let credential = try await Auth.auth().currentUser?.getIDToken()
@@ -98,6 +122,54 @@ final class GamesViewModel: ObservableObject {
         await start()
         getGames()
         getAverages()
+        getHistoricalGame()
+    }
+    
+    func convertToDate(from dateString: String) -> Date? {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: dateString)
+    }
+
+    private func generateDateRange(from startDate: Date, to endDate: Date = Date()) -> [Date] {
+        var dates: [Date] = []
+        var currentDate = startDate
+
+        let calendar = Calendar.current
+        while currentDate <= endDate {
+            dates.append(currentDate)
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+
+        return dates
+    }
+    
+    func fetchHistoricalData(startingFrom startDate: Date) async {
+        let dates = generateDateRange(from: startDate)
+        for date in dates {
+            let dateString = ISO8601DateFormatter().string(from: date)
+            let historicalURL = createHistoricalURL(for: dateString)
+            try? await gamesManager.fetchGamesFromURL(url: historicalURL, token: try? await fetchFirebaseAuthToken(), apiFilter: .historical)
+        }
+    }
+
+    private func createHistoricalURL(for date: String) -> URL {
+        let baseURL = "https://us-central1-gamblit-47419.cloudfunctions.net/main"
+        return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(date)")!
+    }
+    
+    func filterHistorical(gameID: String) {
+        if let specificGame = games?.first(where: { $0.id == gameID }) {
+            // Extract and print the required information
+            specificGame.bookmakers?.forEach { bookmaker in
+                bookmaker.markets?.forEach { market in
+                    market.outcomes?.forEach { outcome in
+                        print("Bookmaker: \(bookmaker.title ?? ""), Market: \(market.key ?? ""), Outcome: \(outcome.name ?? ""), Price: \(outcome.price ?? 0.0), \(outcome.point ?? 0.0)")
+                    }
+                }
+            }
+        } else {
+            print("Game with ID \(gameID) not found")
+        }
     }
     
 }

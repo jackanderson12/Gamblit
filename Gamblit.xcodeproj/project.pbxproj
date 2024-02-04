@@ -23,6 +23,8 @@
 		134911502B5A1DFA00311799 /* GambleFromGameChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349114F2B5A1DFA00311799 /* GambleFromGameChartView.swift */; };
 		134911522B5A1E5500311799 /* GambleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911512B5A1E5500311799 /* GambleViewModel.swift */; };
 		134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911552B5C2F3200311799 /* GameChartPickerView.swift */; };
+		136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */; };
+		136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */; };
 		1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */; };
 		1371EEE02B5C488500A95866 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDF2B5C488500A95866 /* GameDetailView.swift */; };
 		1371EEE22B62153B00A95866 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE12B62153B00A95866 /* EventView.swift */; };
@@ -92,6 +94,8 @@
 		134911512B5A1E5500311799 /* GambleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleViewModel.swift; sourceTree = "<group>"; };
 		134911532B5B008700311799 /* historical_nfl_game_odds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = historical_nfl_game_odds.json; sourceTree = "<group>"; };
 		134911552B5C2F3200311799 /* GameChartPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartPickerView.swift; sourceTree = "<group>"; };
+		136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalChartView.swift; sourceTree = "<group>"; };
+		136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericChartView.swift; sourceTree = "<group>"; };
 		1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakersButtonsView.swift; sourceTree = "<group>"; };
 		1371EEDF2B5C488500A95866 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		1371EEE12B62153B00A95866 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				1371EEE12B62153B00A95866 /* EventView.swift */,
 				1371EEE32B62155500A95866 /* HistoricalView.swift */,
 				13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */,
+				136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */,
+				136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 				13AE6B0E2B44820F0067B6B7 /* GameCardView.swift in Sources */,
 				134911522B5A1E5500311799 /* GambleViewModel.swift in Sources */,
 				13AE6B142B4772100067B6B7 /* Sport.swift in Sources */,
+				136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */,
 				13CD7A722B293E0D00E261DA /* ViewModel.swift in Sources */,
 				133105D42B367D2A009356B4 /* Game.swift in Sources */,
 				13EEAEE92B279C8A0014CD9F /* Utilities.swift in Sources */,
@@ -441,6 +448,7 @@
 				1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */,
 				13EEAEDC2B2791DE0014CD9F /* AuthenticationView.swift in Sources */,
 				1302A9162B2B5BAF008D2E79 /* ProfileView.swift in Sources */,
+				136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */,
 				133105CA2B3670AC009356B4 /* GamesViewModel.swift in Sources */,
 				1302A91A2B2B9364008D2E79 /* ProfileViewModel.swift in Sources */,
 				138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */,
