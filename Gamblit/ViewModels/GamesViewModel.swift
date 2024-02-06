@@ -14,7 +14,7 @@ final class GamesViewModel: ObservableObject {
     
     @Published var games: [Game]? = []
     @Published var historicalGame: [Historical]? = []
-    @Published var convertedHistorical: [String: (String, Date, Double?, Double?)]? = [:]
+    @Published var historicalDetailedDataPoints: [DetailedDataPoint]? = []
     @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)]? = [:]
     @Published var selectedSport: Sport? {
         didSet {
@@ -157,19 +157,37 @@ final class GamesViewModel: ObservableObject {
         return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(date)")!
     }
     
-    func filterHistorical(gameID: String) {
-        if let specificGame = games?.first(where: { $0.id == gameID }) {
-            // Extract and print the required information
-            specificGame.bookmakers?.forEach { bookmaker in
-                bookmaker.markets?.forEach { market in
-                    market.outcomes?.forEach { outcome in
-                        print("Bookmaker: \(bookmaker.title ?? ""), Market: \(market.key ?? ""), Outcome: \(outcome.name ?? ""), Price: \(outcome.price ?? 0.0), \(outcome.point ?? 0.0)")
+    func filterHistorical(gameID: String) async {
+        // Convert timestamp string to Date
+        let dateFormatter = ISO8601DateFormatter()
+        
+        historicalGame?.forEach { historicalGame in
+            if let dateString = historicalGame.timestamp, let date = dateFormatter.date(from: dateString) {
+                historicalGame.games.forEach { game in
+                    if game.id == gameID {
+                        game.bookmakers?.forEach { bookmaker in
+                            bookmaker.markets?.forEach { market in
+                                market.outcomes?.forEach { outcome in
+                                    if let price = outcome.price {
+                                        let dataPoint = DetailedDataPoint(
+                                            id: UUID(),
+                                            date: date,
+                                            value: price,
+                                            book: bookmaker.title ?? "Unknown",
+                                            marketKey: market.key ?? "Unknown",
+                                            outcomeName: outcome.name ?? "Unknown",
+                                            outcomePrice: outcome.price ?? 0.0,
+                                            outcomePoint: outcome.point
+                                        )
+                                        historicalDetailedDataPoints?.append(dataPoint)
+                                        print(dataPoint)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        } else {
-            print("Game with ID \(gameID) not found")
         }
     }
-    
 }

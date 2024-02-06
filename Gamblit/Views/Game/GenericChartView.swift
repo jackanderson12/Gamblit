@@ -19,6 +19,18 @@ struct DataPoint: Identifiable, PlottableDataPoint {
     var value: Double
 }
 
+struct DetailedDataPoint: PlottableDataPoint {
+    var id: UUID
+    var date: Date
+    var value: Double
+    
+    var book: String
+    var marketKey: String
+    var outcomeName: String
+    var outcomePrice: Double
+    var outcomePoint: Double?
+}
+
 struct GenericChartView<DataPoint: PlottableDataPoint>: View {
     
     var dataPoints: [DataPoint]
