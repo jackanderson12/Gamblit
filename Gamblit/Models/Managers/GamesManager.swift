@@ -186,15 +186,6 @@ final class GamesManager {
     }
     
     func averageDecimalOddsToAmericanOdds(oddsArray: [Double]) -> Double {
-        var average = oddsArray.reduce(0, +) / Double(oddsArray.count)
-        switch average {
-        case 0..<2:
-            average = 100 / (1 - average)
-        case 2...:
-            average = (average - 1) * 100
-        default:
-            break
-        }
-        return average
+        return oddsArray.reduce(0, +) / Double(oddsArray.count)
     }
 }

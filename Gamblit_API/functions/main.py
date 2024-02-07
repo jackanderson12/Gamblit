@@ -50,7 +50,7 @@ def sports():
     markets = request.args.get('markets', 'h2h,totals,spreads')
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
-    url = f'{base_url}/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&apiKey={api_key}'
+    url = f'{base_url}/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&oddsFormat=american&apiKey={api_key}'
 
     response = requests.get(url)
     if response.status_code == 200:
@@ -71,7 +71,7 @@ def event():
     markets = request.args.get('markets', 'h2h,totals,spreads')
     regions = request.args.get('regions', 'us')
 
-    url = f'{base_url}/sports/{league}/events/{event_id}/odds?regions={regions}&markets={markets}&apiKey={api_key}'
+    url = f'{base_url}/sports/{league}/events/{event_id}/odds?regions={regions}&markets={markets}&oddsFormat=american&apiKey={api_key}'
     
     response = requests.get(url)
     if response.status_code == 200:
@@ -92,7 +92,7 @@ def historical():
     date = request.args.get('date', '')
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
-    url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&date={date}&apiKey={api_key}'
+    url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&date={date}&oddsFormat=american&apiKey={api_key}'
     
     response = requests.get(url)
     if response.status_code == 200:

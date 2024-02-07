@@ -16,9 +16,10 @@ struct HistoricalChartView: View {
     
     @Binding var historicalDetailedDataPoints: [DetailedDataPoint]?
 
+    // Adjusted to include outcomeName in the grouping key
     var groupedData: [String: [DetailedDataPoint]] {
         Dictionary(grouping: historicalDetailedDataPoints ?? []) { (dataPoint) -> String in
-            "\(dataPoint.book) | \(dataPoint.marketKey)"
+            "\(dataPoint.book) | \(dataPoint.marketKey) | \(dataPoint.outcomeName)"
         }
     }
 
@@ -31,7 +32,11 @@ struct HistoricalChartView: View {
                     let pointDataPoints = dataPoints.compactMap { DataPoint(date: $0.date, value: $0.outcomePoint ?? 0) }
                     
                     VStack(alignment: .leading, spacing: 20) {
-                        Text(key)
+                        // Splitting the key to extract book, marketKey, and outcomeName
+                        let components = key.split(separator: "|").map { $0.trimmingCharacters(in: .whitespaces) }
+                        let title = components.joined(separator: " - ")
+                        
+                        Text(title)
                             .font(.headline)
                         if !priceDataPoints.isEmpty {
                             Text("Price Data")

@@ -32,7 +32,6 @@ struct DetailedDataPoint: PlottableDataPoint {
 }
 
 struct GenericChartView<DataPoint: PlottableDataPoint>: View {
-    
     var dataPoints: [DataPoint]
 
     var body: some View {
@@ -42,11 +41,19 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
                     x: .value("Date", dataPoint.date),
                     y: .value("Value", dataPoint.value)
                 )
+                .annotation(position: .top, alignment: .center) {
+                    Text("\(dataPoint.value, specifier: "%.2f")")
+                        .font(.caption)
+                }
             } else {
                 PointMark(
                     x: .value("Date", dataPoint.date),
                     y: .value("Value", dataPoint.value)
                 )
+                .annotation(position: .top, alignment: .center) {
+                    Text("\(dataPoint.value, specifier: "%.2f")")
+                        .font(.caption)
+                }
             }
         }
         .chartXAxis {
@@ -57,6 +64,7 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
         }
     }
 }
+
 
 
 #Preview {
