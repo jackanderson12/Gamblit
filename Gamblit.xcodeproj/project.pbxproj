@@ -25,6 +25,7 @@
 		134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911552B5C2F3200311799 /* GameChartPickerView.swift */; };
 		136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */; };
 		136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */; };
+		136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1262B753FC3004CC5B3 /* DataPoint.swift */; };
 		1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */; };
 		1371EEE02B5C488500A95866 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEDF2B5C488500A95866 /* GameDetailView.swift */; };
 		1371EEE22B62153B00A95866 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371EEE12B62153B00A95866 /* EventView.swift */; };
@@ -96,6 +97,7 @@
 		134911552B5C2F3200311799 /* GameChartPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartPickerView.swift; sourceTree = "<group>"; };
 		136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalChartView.swift; sourceTree = "<group>"; };
 		136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericChartView.swift; sourceTree = "<group>"; };
+		136CF1262B753FC3004CC5B3 /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
 		1371EEDD2B5C370300A95866 /* BookmakersButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmakersButtonsView.swift; sourceTree = "<group>"; };
 		1371EEDF2B5C488500A95866 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		1371EEE12B62153B00A95866 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				133105D32B367D2A009356B4 /* Game.swift */,
 				1302A91B2B2CB26E008D2E79 /* DBUser.swift */,
 				13AE6B132B4772100067B6B7 /* Sport.swift */,
+				136CF1262B753FC3004CC5B3 /* DataPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				133105CA2B3670AC009356B4 /* GamesViewModel.swift in Sources */,
 				1302A91A2B2B9364008D2E79 /* ProfileViewModel.swift in Sources */,
 				138EFA2F2B261414007F006E /* GamblitApp.swift in Sources */,
+				136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */,
 				1371EEE42B62155500A95866 /* HistoricalView.swift in Sources */,
 				134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */,
 				1349114E2B5813C200311799 /* ChartView.swift in Sources */,

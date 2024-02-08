@@ -18,7 +18,9 @@ struct GameDetailView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
+            if viewModel.selectedFilter != .historical {
+                BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
+            }
             GameChartPickerView(selectedFilter: $viewModel.selectedFilter)
         }
         VStack {

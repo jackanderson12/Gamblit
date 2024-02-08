@@ -16,15 +16,20 @@ struct HistoricalView: View {
     
     @State private var selectedDate: Date = Date()
     @State private var historicalDetailedDataPoints: [DetailedDataPoint]? = []
+    @State private var isDatePickerVisible: Bool = true
     
     var body: some View {
         VStack(spacing: 15) {
-            HistoricalPickerView(selectedDate: $selectedDate)
             HistoricalChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, historicalDetailedDataPoints: $historicalDetailedDataPoints)
         }
+        .sheet(isPresented: $isDatePickerVisible, content: {
+            HistoricalPickerView(selectedDate: $selectedDate)
+                .presentationDetents([.medium, .large])
+        })
         .onChange(of: selectedDate) {
             viewModel.selectedDate = ISO8601DateFormatter().string(from: selectedDate)
             Task {
+                viewModel.historicalDetailedDataPoints = []
                 await viewModel.refreshData()
                 await viewModel.filterHistorical(gameID: game.id ?? "")
                 historicalDetailedDataPoints = viewModel.historicalDetailedDataPoints

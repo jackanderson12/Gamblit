@@ -8,36 +8,26 @@
 import SwiftUI
 import Charts
 
-protocol PlottableDataPoint: Identifiable {
-    var date: Date { get }
-    var value: Double { get }
-}
-
-struct DataPoint: Identifiable, PlottableDataPoint {
-    var id = UUID()
-    var date: Date
-    var value: Double
-}
-
-struct DetailedDataPoint: PlottableDataPoint {
-    var id: UUID
-    var date: Date
-    var value: Double
-    
-    var book: String
-    var marketKey: String
-    var outcomeName: String
-    var outcomePrice: Double
-    var outcomePoint: Double?
-}
-
 struct GenericChartView<DataPoint: PlottableDataPoint>: View {
     var dataPoints: [DataPoint]
+    var chartYaxis: [Double]?
+
+    // Calculate domain values separately
+    private var domain: (Double, Double) {
+        guard let yAxisValues = chartYaxis, let first = yAxisValues.first, let last = yAxisValues.last else {
+            return (0, 1) // Provide a default range if chartYaxis is nil
+        }
+        return (first, last)
+    }
 
     var body: some View {
         Chart(dataPoints) { dataPoint in
-            if dataPoints.count <= 2 {
+            if dataPoints.count > 2 {
                 LineMark(
+                    x: .value("Date", dataPoint.date),
+                    y: .value("Value", dataPoint.value)
+                )
+                PointMark(
                     x: .value("Date", dataPoint.date),
                     y: .value("Value", dataPoint.value)
                 )
@@ -56,17 +46,22 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
                 }
             }
         }
+        .padding(.all)
         .chartXAxis {
             AxisMarks(values: .stride(by: .day))
         }
         .chartYAxis {
-            AxisMarks(preset: .automatic)
+            if let yAxisValues = chartYaxis {
+                AxisMarks(values: yAxisValues)
+            } else {
+                AxisMarks(preset: .automatic)
+            }
         }
+        // Apply the pre-calculated domain to .chartYScale
+        .chartYScale(domain: domain.0...domain.1)
     }
 }
 
-
-
 #Preview {
-    GenericChartView(dataPoints: [DataPoint(date: Date(), value: 1.0)])
+    GenericChartView(dataPoints: [DataPoint(date: Date(), value: 1.0)], chartYaxis: [0,1,2])
 }
