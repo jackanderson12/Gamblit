@@ -18,13 +18,18 @@ struct GameDetailView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
-            BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
+            if viewModel.selectedFilter != .historical {
+                BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
+            }
             GameChartPickerView(selectedFilter: $viewModel.selectedFilter)
         }
         VStack {
             switch viewModel.selectedFilter {
             case .sports:
-                GameChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
+                if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
+                    GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
+                        .frame(width: 355, height: 200)
+                }
             case .event:
                 EventView(viewModel: viewModel, game: game)
             case .historical:

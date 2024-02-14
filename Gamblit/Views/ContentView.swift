@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var showSignInView = false
+    @State private var showSignInView = true
     
     var body: some View {
         NavigationStack {

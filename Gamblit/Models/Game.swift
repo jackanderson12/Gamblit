@@ -72,12 +72,12 @@ struct Historical: Codable {
     let timestamp: String?
     let previousTimestamp: String?
     let nextTimestamp: String?
-    let data: [Game]
+    let games: [Game]
     
     enum CodingKeys: String, CodingKey {
         case timestamp
         case previousTimestamp = "previous_timestamp"
         case nextTimestamp = "next_timestamp"
-        case data
+        case games = "data"
     }
 }

@@ -22,7 +22,7 @@ struct BookmakersButtonsView: View {
                 Text("Average")
             }
             .buttonStyle(.borderedProminent)
-            .tint(isAverage ? .red : .green)
+            .tint(isAverage ? .green : .red)
             
             ForEach(bookmakers.indices, id: \.self) { index in
                 let bookmaker = bookmakers[index].0
@@ -32,7 +32,7 @@ struct BookmakersButtonsView: View {
                     Text(bookmaker)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(bookmakers[index].1 ? .red : .green)
+                .tint(bookmakers[index].1 ? .green : .red)
             }
         }
     }
