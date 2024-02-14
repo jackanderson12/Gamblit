@@ -26,7 +26,10 @@ struct GameDetailView: View {
         VStack {
             switch viewModel.selectedFilter {
             case .sports:
-                GameChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
+                if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
+                    GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
+                        .frame(width: 355, height: 200)
+                }
             case .event:
                 EventView(viewModel: viewModel, game: game)
             case .historical:

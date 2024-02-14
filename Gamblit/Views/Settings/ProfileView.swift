@@ -13,7 +13,7 @@ struct ProfileView: View {
     @Binding var showSignInView: Bool
     
     let sportsBooks: [String] = ["Draft Kings", "Fanduel", "Bet MGM", "Caesars"]
-    private func sportsBookIsSelected(sportsBook: String) -> Bool{
+    private func sportsBookIsSelected(sportsBook: String) -> Bool {
         viewModel.user?.sportsBooks?.contains(sportsBook) == true
     }
     

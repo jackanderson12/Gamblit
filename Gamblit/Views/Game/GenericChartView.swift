@@ -15,7 +15,7 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
     // Calculate domain values separately
     private var domain: (Double, Double) {
         guard let yAxisValues = chartYaxis, let first = yAxisValues.first, let last = yAxisValues.last else {
-            return (0, 1) // Provide a default range if chartYaxis is nil
+            return (0, 1)
         }
         return (first, last)
     }
@@ -32,8 +32,9 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
                     y: .value("Value", dataPoint.value)
                 )
                 .annotation(position: .top, alignment: .center) {
-                    Text("\(dataPoint.value, specifier: "%.2f")")
-                        .font(.caption)
+                    Text("\(dataPoint.value, specifier: "%.1f")")
+                        .font(.footnote)
+                        
                 }
             } else {
                 PointMark(
@@ -41,8 +42,8 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
                     y: .value("Value", dataPoint.value)
                 )
                 .annotation(position: .top, alignment: .center) {
-                    Text("\(dataPoint.value, specifier: "%.2f")")
-                        .font(.caption)
+                    Text("\(dataPoint.value, specifier: "%.1f")")
+                        .font(.footnote)
                 }
             }
         }
@@ -57,8 +58,8 @@ struct GenericChartView<DataPoint: PlottableDataPoint>: View {
                 AxisMarks(preset: .automatic)
             }
         }
-        // Apply the pre-calculated domain to .chartYScale
         .chartYScale(domain: domain.0...domain.1)
+        .frame(minHeight: 300)
     }
 }
 

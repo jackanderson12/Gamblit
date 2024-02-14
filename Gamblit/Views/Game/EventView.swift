@@ -17,8 +17,9 @@ struct EventView: View {
             VStack(alignment: .center, spacing: 15) {
                 ForEach(game.bookmakers ?? [], id: \.key) { book in
                     VStack {
-                        Text("\(book.title ?? "Book Name")")
-                            .font(.subheadline)
+                        Text("\(book.title?.capitalized ?? "Book Name")")
+                            .font(.headline)
+                            .fontWeight(.black)
                             .padding(.vertical, 10)
                         EventCardView(book: book)
                     }

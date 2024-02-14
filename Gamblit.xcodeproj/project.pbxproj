@@ -38,7 +38,6 @@
 		138EFA362B261415007F006E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 138EFA352B261415007F006E /* Preview Assets.xcassets */; };
 		13AE6B0A2B446DC90067B6B7 /* nfl_output.json in Resources */ = {isa = PBXBuildFile; fileRef = 13AE6B092B446DC90067B6B7 /* nfl_output.json */; };
 		13AE6B0E2B44820F0067B6B7 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE6B0D2B44820F0067B6B7 /* GameCardView.swift */; };
-		13AE6B102B476D9A0067B6B7 /* GameChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */; };
 		13AE6B142B4772100067B6B7 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AE6B132B4772100067B6B7 /* Sport.swift */; };
 		13BE439B2B280F9D0041DEEE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 13BE439A2B280F9D0041DEEE /* FirebaseAnalytics */; };
 		13BE439D2B280F9D0041DEEE /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 13BE439C2B280F9D0041DEEE /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -111,7 +110,6 @@
 		138EFA352B261415007F006E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		13AE6B092B446DC90067B6B7 /* nfl_output.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nfl_output.json; sourceTree = "<group>"; };
 		13AE6B0D2B44820F0067B6B7 /* GameCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
-		13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartView.swift; sourceTree = "<group>"; };
 		13AE6B132B4772100067B6B7 /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		13BE43972B279E6F0041DEEE /* Gamblit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gamblit.entitlements; sourceTree = "<group>"; };
 		13CD7A622B28AD8F00E261DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 				1371EEDF2B5C488500A95866 /* GameDetailView.swift */,
 				1371EEE12B62153B00A95866 /* EventView.swift */,
 				1371EEE32B62155500A95866 /* HistoricalView.swift */,
-				13AE6B0F2B476D9A0067B6B7 /* GameChartView.swift */,
 				136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */,
 				136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */,
 			);
@@ -424,7 +421,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1371EEE82B62F65800A95866 /* HistoricalPickerView.swift in Sources */,
-				13AE6B102B476D9A0067B6B7 /* GameChartView.swift in Sources */,
 				13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */,
 				13EEAEDE2B2798A90014CD9F /* AuthenticationViewModel.swift in Sources */,
 				1371EEE02B5C488500A95866 /* GameDetailView.swift in Sources */,
