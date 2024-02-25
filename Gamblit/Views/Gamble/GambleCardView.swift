@@ -20,11 +20,6 @@ struct GambleCardView: View {
             //ChartView()
                 //.frame(height: 100) // Adjust as needed
 
-            Text(Gamble.title)
-                .font(.title2)
-                .lineLimit(1)
-                .truncationMode(.tail)
-
             Text(Gamble.description)
                 .font(.body)
                 .lineLimit(1)
@@ -57,8 +52,6 @@ struct GambleCardView: View {
             }
         }
         .padding()
-        .frame(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.width * 0.4)
-        .background(Color.white)
         .cornerRadius(15)
         .shadow(radius: 10)
     }

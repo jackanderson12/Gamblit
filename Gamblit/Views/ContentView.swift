@@ -17,6 +17,14 @@ struct ContentView: View {
                 if !showSignInView {
                     NavigationStack {
                         TabView {
+                            GambleFeedView()
+                                .tabItem {
+                                    Image(systemName: "newspaper.fill")
+                                }
+                            CreateGambleView()
+                                .tabItem {
+                                    Image(systemName: "square.and.pencil")
+                                }
                             SportMenuView()
                                 .tabItem {
                                     Image(systemName: "football.fill")
@@ -24,10 +32,6 @@ struct ContentView: View {
                             ProfileView(showSignInView: $showSignInView)
                                 .tabItem {
                                     Image(systemName: "person.fill")
-                                }
-                            SettingsView(showSignInView: $showSignInView)
-                                .tabItem {
-                                    Image(systemName: "gear")
                                 }
                         }
                     }

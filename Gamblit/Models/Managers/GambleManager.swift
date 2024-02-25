@@ -20,7 +20,26 @@ final class GambleManager {
         gambleCollection.document(gambleId)
     }
     
-//    func uploadGamble(gamble: Gamble) async throws {
-//        try gambleDocument(gambleId: gamble.id).setData(from: gamble, merge: false)
-//    }
+    func uploadGamble(gamble: Gamble) async throws {
+        try gambleDocument(gambleId: gamble.id).setData(from: gamble, merge: false)
+    }
+    
+    func getGamble(gambleId: String) async throws -> Gamble {
+        try await gambleDocument(gambleId: gambleId).getDocument(as: Gamble.self)
+    }
+    
+    func getAllGambles() async throws -> [Gamble] {
+        try await gambleCollection.getDocuments(as: Gamble.self)
+    }
+}
+
+extension Query {
+    
+    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        return try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+    }
 }

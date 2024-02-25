@@ -9,14 +9,14 @@ import Foundation
 
 struct Gamble: Identifiable, Codable {
     var id: String
-    var user: String
-    var game: Game
-    var sportsBooks: [String]
+//    var user: String
+//    var game: Game
+//    var sportsBooks: [String]
     var title: String
     var description: String
     var likes: Int
     var dislikes: Int
-    var tableTalk: [TableTalk]
+//    var tableTalk: [TableTalk]
 }
 
 struct TableTalk: Identifiable, Codable {
