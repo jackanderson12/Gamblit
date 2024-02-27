@@ -9,8 +9,12 @@ import SwiftUI
 
 struct CreateGambleView: View {
     
+    @StateObject var profileViewModel: ProfileViewModel
+    
+    @State private var userId: String = ""
     @State private var gambleTitle: String = ""
     @State private var gambleDescription: String = ""
+    @State private var sportsbooks: [String] = []
     
     var body: some View {
         VStack {
@@ -24,13 +28,17 @@ struct CreateGambleView: View {
             }
             Button("Post") {
                 Task {
-                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), title: gambleTitle, description: gambleDescription, likes: 1, dislikes: 0))
+                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, title: gambleTitle, description: gambleDescription, likes: 1))
                 }
             }
+        }
+        .task {
+            await profileViewModel.loadCurrentUser()
+            userId = profileViewModel.user?.userId
         }
     }
 }
 
 #Preview {
-    CreateGambleView()
+    CreateGambleView(profileViewModel: ProfileViewModel())
 }

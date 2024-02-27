@@ -29,19 +29,13 @@ struct GambleCardView: View {
                 Button(action: {
                     // Handle like action
                 }) {
-                    HStack{
                         Image(systemName: "arrow.up")
-                        Text("\(Gamble.likes)")
-                    }
                 }
-
+                Text("\(Gamble.likes)")
                 Button(action: {
                     // Handle dislike action
                 }) {
-                    HStack{
-                        Image(systemName: "arrow.down")
-                        Text("\(Gamble.dislikes)")
-                    }
+                    Image(systemName: "arrow.down")
                 }
 
                 Button(action: {

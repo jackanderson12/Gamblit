@@ -24,7 +24,7 @@ struct GambleFeedView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-                    CreateGambleView()
+                    CreateGambleView(profileViewModel: ProfileViewModel())
                 } label: {
                     Image(systemName: "square.and.pencil")
                 }

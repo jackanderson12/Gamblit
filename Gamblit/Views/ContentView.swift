@@ -21,7 +21,7 @@ struct ContentView: View {
                                 .tabItem {
                                     Image(systemName: "newspaper.fill")
                                 }
-                            CreateGambleView()
+                            CreateGambleView(profileViewModel: ProfileViewModel())
                                 .tabItem {
                                     Image(systemName: "square.and.pencil")
                                 }
