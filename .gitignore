@@ -3,3 +3,5 @@ Gamblit.xcodeproj/project.pbxproj
 *.pbxproj
 *.xcbkptlist
 *.pbxproj
+.DS_Store
+*.xcuserstate
