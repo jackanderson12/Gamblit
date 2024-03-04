@@ -25,11 +25,21 @@ final class GambleManager {
     }
     
     func getGamble(gambleId: String) async throws -> Gamble {
-        try await gambleDocument(gambleId: gambleId).getDocument(as: Gamble.self)
+        try await gambleDocument(gambleId: gambleId)
+            .getDocument(as: Gamble.self)
     }
     
     func getAllGambles() async throws -> [Gamble] {
-        try await gambleCollection.getDocuments(as: Gamble.self)
+        try await gambleCollection
+            .getDocuments(as: Gamble.self)
+    }
+    
+    func getGambleByLikes(count: Int, lastGamble: Gamble?) async throws -> [Gamble] {
+        try await gambleCollection
+            .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
+            .limit(to: count)
+            .start(afterDocument: lastGamble ?? Gamble(id: <#T##String#>, userId: <#T##String#>, sportsBooks: <#T##[String]#>, title: <#T##String#>, description: <#T##String#>, likes: <#T##Int#>, tableTalk: <#T##[TableTalk]#>))
+            .getDocuments(as: Gamble.self)
     }
 }
 

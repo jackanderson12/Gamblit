@@ -28,13 +28,17 @@ struct CreateGambleView: View {
             }
             Button("Post") {
                 Task {
-                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, title: gambleTitle, description: gambleDescription, likes: 1))
+                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, sportsBooks: [], title: gambleTitle, description: gambleDescription, likes: 1, tableTalk: []))
                 }
             }
         }
         .task {
-            await profileViewModel.loadCurrentUser()
-            userId = profileViewModel.user?.userId
+            do {
+                try await profileViewModel.loadCurrentUser()
+                userId = profileViewModel.user!.userId
+            } catch {
+                
+            }
         }
     }
 }
