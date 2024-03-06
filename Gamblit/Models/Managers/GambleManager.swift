@@ -34,22 +34,44 @@ final class GambleManager {
             .getDocuments(as: Gamble.self)
     }
     
-    func getGambleByLikes(count: Int, lastGamble: Gamble?) async throws -> [Gamble] {
-        try await gambleCollection
-            .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
-            .limit(to: count)
-            .start(afterDocument: lastGamble ?? Gamble(id: <#T##String#>, userId: <#T##String#>, sportsBooks: <#T##[String]#>, title: <#T##String#>, description: <#T##String#>, likes: <#T##Int#>, tableTalk: <#T##[TableTalk]#>))
-            .getDocuments(as: Gamble.self)
+    func getGambleByLikes(count: Int, lastGamble: DocumentSnapshot?) async throws -> (gambles: [Gamble], lastDocument: DocumentSnapshot?) {
+        if let lastGamble {
+            return try await gambleCollection
+                .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
+                .limit(to: count)
+                .start(afterDocument: lastGamble)
+                .getDocumentsWithSnapshot(as: Gamble.self)
+        } else {
+            return try await gambleCollection
+                .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
+                .limit(to: count)
+                .getDocumentsWithSnapshot(as: Gamble.self)
+        }
     }
 }
 
 extension Query {
     
+//    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+//        let snapshot = try await self.getDocuments()
+//        
+//        return try snapshot.documents.map({ document in
+//            try document.data(as: T.self)
+//        })
+//    }
+    
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        try await getDocumentsWithSnapshot(as: type).gambles
+    }
+    
+    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (gambles: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
         let snapshot = try await self.getDocuments()
         
-        return try snapshot.documents.map({ document in
+        let gambles = try snapshot.documents.map({ document in
             try document.data(as: T.self)
         })
+        
+        return (gambles, snapshot.documents.last)
     }
+    
 }

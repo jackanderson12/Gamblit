@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 @MainActor
 final class GambleFeedViewModel: ObservableObject {
     
     @Published private(set) var gambles: [Gamble] = []
+    private var lastDocument: DocumentSnapshot? = nil
     
     func getAllGambles() async throws {
         Task {
@@ -20,8 +22,9 @@ final class GambleFeedViewModel: ObservableObject {
     
     func getGamblesByLikes() {
         Task {
-            let gamblesToAdd = try await GambleManager.shared.getGambleByLikes(count: 5, lastGamble: self.gambles.last)
+            let (gamblesToAdd, lastDocument) = try await GambleManager.shared.getGambleByLikes(count: 5, lastGamble: lastDocument)
             self.gambles.append(contentsOf: gamblesToAdd)
+            self.lastDocument = lastDocument
         }
     }
 }
