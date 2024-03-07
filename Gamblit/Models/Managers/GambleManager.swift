@@ -15,7 +15,9 @@ final class GambleManager {
     private init() {}
     
     private let gambleCollection = Firestore.firestore().collection("gambles")
+    private let tableTalkCollection = Firestore.firestore().collection("tableTalks")
     
+    //
     private func gambleDocument(gambleId: String) -> DocumentReference {
         gambleCollection.document(gambleId)
     }
@@ -51,14 +53,6 @@ final class GambleManager {
 }
 
 extension Query {
-    
-//    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-//        let snapshot = try await self.getDocuments()
-//        
-//        return try snapshot.documents.map({ document in
-//            try document.data(as: T.self)
-//        })
-//    }
     
     func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
         try await getDocumentsWithSnapshot(as: type).gambles

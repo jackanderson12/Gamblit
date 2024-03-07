@@ -20,11 +20,35 @@ struct Gamble: Identifiable, Codable {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case userId = "user_id"
+//        case game = "game"
         case sportsBooks = "sports_books"
         case title = "title"
         case description = "description"
         case likes = "likes"
         case tableTalk = "table_talk"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.userId = try container.decode(String.self, forKey: .userId)
+        self.sportsBooks = try container.decode([String].self, forKey: .sportsBooks)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.likes = try container.decode(Int.self, forKey: .likes)
+        self.tableTalk = try container.decode([TableTalk].self, forKey: .tableTalk)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.userId, forKey: .userId)
+        try container.encode(self.sportsBooks, forKey: .sportsBooks)
+        try container.encode(self.title, forKey: .title)
+        try container.encode(self.id, forKey: .description)
+        try container.encode(self.id, forKey: .likes)
+        try container.encodeIfPresent(self.id, forKey: .tableTalk)
+        
     }
 }
 
