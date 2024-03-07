@@ -17,7 +17,7 @@ final class GambleManager {
     private let gambleCollection = Firestore.firestore().collection("gambles")
     private let tableTalkCollection = Firestore.firestore().collection("tableTalks")
     
-    //
+    //MARK: Gamble Section
     private func gambleDocument(gambleId: String) -> DocumentReference {
         gambleCollection.document(gambleId)
     }
@@ -50,14 +50,46 @@ final class GambleManager {
                 .getDocumentsWithSnapshot(as: Gamble.self)
         }
     }
+    
+    //MARK: TableTalk Section
+    private func tableTalkDocument(tableTalkId: String) -> DocumentReference {
+        tableTalkCollection.document(tableTalkId)
+    }
+    
+    func uploadTableTalk(tableTalk: TableTalk) async throws {
+        try tableTalkDocument(tableTalkId: tableTalk.id).setData(from: tableTalk, merge: false)
+    }
+    
+    func getTableTalkForGamble(gambleId: String, count: Int, lastTableTalk: DocumentSnapshot?) async throws -> (tableTalks: [TableTalk], lastDocument: DocumentSnapshot?) {
+        if let lastTableTalk {
+            return try await tableTalkCollection
+                .limit(to: count)
+                .whereField("gamble_id", isEqualTo: gambleId)
+                .start(afterDocument: lastTableTalk)
+                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+        } else {
+            return try await tableTalkCollection
+                .limit(to: count)
+                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+        }
+    }
+    
 }
 
 extension Query {
     
-    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-        try await getDocumentsWithSnapshot(as: type).gambles
-    }
+        func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+            let snapshot = try await self.getDocuments()
     
+            return try snapshot.documents.map({ document in
+                try document.data(as: T.self)
+            })
+        }
+    
+//    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+//        try await getDocumentsWithSnapshot(as: type).gambles
+//    }
+//    
     func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (gambles: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
         let snapshot = try await self.getDocuments()
         
@@ -66,6 +98,17 @@ extension Query {
         })
         
         return (gambles, snapshot.documents.last)
+    }
+
+    
+    func getTableTalkDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (tableTalks: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        let tableTalks = try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+        
+        return (tableTalks, snapshot.documents.last)
     }
     
 }

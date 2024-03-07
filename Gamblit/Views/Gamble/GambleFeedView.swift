@@ -10,6 +10,7 @@ import SwiftUI
 struct GambleFeedView: View {
     
     @StateObject private var viewModel = GambleFeedViewModel()
+    @StateObject var profileViewModel: ProfileViewModel
     
     @State private var gambles: [Gamble] = []
     
@@ -17,27 +18,18 @@ struct GambleFeedView: View {
         NavigationStack {
             VStack {
                 ForEach($gambles, id: \.id) { gamble in
-                    GambleCardView(Gamble: gamble)
+                    NavigationLink {
+                        GambleDetailView(profileViewModel: profileViewModel, gamble: gamble)
+                    } label: {
+                        GambleCardView(Gamble: gamble)
+                    }
                 }
             }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    CreateGambleView(profileViewModel: ProfileViewModel())
-                } label: {
-                    Image(systemName: "square.and.pencil")
-                }
-
+            .task {
+                try? await viewModel.getAllGambles()
+                gambles = viewModel.gambles
             }
-        }
-        .task {
-            try? await viewModel.getAllGambles()
-            gambles = viewModel.gambles
         }
     }
 }
 
-#Preview {
-    GambleFeedView()
-}

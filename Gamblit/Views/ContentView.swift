@@ -12,29 +12,25 @@ struct ContentView: View {
     @State private var showSignInView = true
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                if !showSignInView {
-                    NavigationStack {
-                        TabView {
-                            GambleFeedView()
-                                .tabItem {
-                                    Image(systemName: "newspaper.fill")
-                                }
-                            CreateGambleView(profileViewModel: ProfileViewModel())
-                                .tabItem {
-                                    Image(systemName: "square.and.pencil")
-                                }
-                            SportMenuView()
-                                .tabItem {
-                                    Image(systemName: "football.fill")
-                                }
-                            ProfileView(showSignInView: $showSignInView)
-                                .tabItem {
-                                    Image(systemName: "person.fill")
-                                }
+        ZStack {
+            if !showSignInView {
+                TabView {
+                    GambleFeedView(profileViewModel: ProfileViewModel())
+                        .tabItem {
+                            Image(systemName: "newspaper.fill")
                         }
-                    }
+                    CreateGambleView(profileViewModel: ProfileViewModel())
+                        .tabItem {
+                            Image(systemName: "square.and.pencil")
+                        }
+                    SportMenuView()
+                        .tabItem {
+                            Image(systemName: "football.fill")
+                        }
+                    ProfileView(showSignInView: $showSignInView)
+                        .tabItem {
+                            Image(systemName: "person.fill")
+                        }
                 }
             }
         }
