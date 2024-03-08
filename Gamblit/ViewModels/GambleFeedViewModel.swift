@@ -17,7 +17,6 @@ final class GambleFeedViewModel: ObservableObject {
     func getAllGambles() async throws {
         Task {
             self.gambles = try await GambleManager.shared.getAllGambles()
-            print(gambles)
         }
     }
     

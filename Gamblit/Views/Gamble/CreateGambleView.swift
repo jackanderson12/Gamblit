@@ -28,7 +28,7 @@ struct CreateGambleView: View {
             }
             Button("Post") {
                 Task {
-                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, sportsBooks: profileViewModel.user!.sportsBooks!, title: gambleTitle, description: gambleDescription, likes: 1, tableTalk: []))
+                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, sportsBooks: profileViewModel.user!.sportsBooks!, title: gambleTitle, description: gambleDescription, likes: 1))
                 }
             }
         }

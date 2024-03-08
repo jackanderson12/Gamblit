@@ -18,7 +18,7 @@ final class GambleManager {
     private let tableTalkCollection = Firestore.firestore().collection("tableTalks")
     
     //MARK: Gamble Section
-    private func gambleDocument(gambleId: String) -> DocumentReference {
+    func gambleDocument(gambleId: String) -> DocumentReference {
         gambleCollection.document(gambleId)
     }
     
@@ -27,13 +27,11 @@ final class GambleManager {
     }
     
     func getGamble(gambleId: String) async throws -> Gamble {
-        try await gambleDocument(gambleId: gambleId)
-            .getDocument(as: Gamble.self)
+        try await gambleDocument(gambleId: gambleId).getDocument(as: Gamble.self)
     }
     
     func getAllGambles() async throws -> [Gamble] {
-        try await gambleCollection
-            .getDocuments(as: Gamble.self)
+        try await gambleCollection.getDocuments(as: Gamble.self)
     }
     
     func getGambleByLikes(count: Int, lastGamble: DocumentSnapshot?) async throws -> (gambles: [Gamble], lastDocument: DocumentSnapshot?) {
@@ -51,6 +49,10 @@ final class GambleManager {
         }
     }
     
+    func updateGambleLikeCount(gambleId: String, likes: Int) async throws {
+        try await gambleDocument(gambleId: gambleId).updateData(["likes": likes])
+    }
+    
     //MARK: TableTalk Section
     private func tableTalkDocument(tableTalkId: String) -> DocumentReference {
         tableTalkCollection.document(tableTalkId)
@@ -62,15 +64,9 @@ final class GambleManager {
     
     func getTableTalkForGamble(gambleId: String, count: Int, lastTableTalk: DocumentSnapshot?) async throws -> (tableTalks: [TableTalk], lastDocument: DocumentSnapshot?) {
         if let lastTableTalk {
-            return try await tableTalkCollection
-                .limit(to: count)
-                .whereField("gamble_id", isEqualTo: gambleId)
-                .start(afterDocument: lastTableTalk)
-                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleDocument(gambleId: gambleId)).start(afterDocument: lastTableTalk).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         } else {
-            return try await tableTalkCollection
-                .limit(to: count)
-                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleDocument(gambleId: gambleId)).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         }
     }
     
@@ -78,18 +74,14 @@ final class GambleManager {
 
 extension Query {
     
-        func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-            let snapshot = try await self.getDocuments()
+    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
+        let snapshot = try await self.getDocuments()
+        
+        return try snapshot.documents.map({ document in
+            try document.data(as: T.self)
+        })
+    }
     
-            return try snapshot.documents.map({ document in
-                try document.data(as: T.self)
-            })
-        }
-    
-//    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-//        try await getDocumentsWithSnapshot(as: type).gambles
-//    }
-//    
     func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (gambles: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
         let snapshot = try await self.getDocuments()
         
@@ -99,7 +91,7 @@ extension Query {
         
         return (gambles, snapshot.documents.last)
     }
-
+    
     
     func getTableTalkDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (tableTalks: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
         let snapshot = try await self.getDocuments()

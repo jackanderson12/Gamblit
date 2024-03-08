@@ -9,41 +9,25 @@ import SwiftUI
 
 struct GambleDetailView: View {
     
-    @StateObject private var viewModel = GambleDetailViewModel()
+    @StateObject var viewModel: GambleDetailViewModel
     @StateObject var profileViewModel: ProfileViewModel
     
     @Binding var gamble: Gamble
     @State private var tableTalks: [TableTalk] = []
     
-    @State private var newTableTalk: Bool = false
-    @State private var tableTalkContent: String = ""
-    
     var body: some View {
-        VStack {
-            GambleCardView(Gamble: $gamble)
-            
-            Button {
-                newTableTalk.toggle()
-            } label: {
-                Image(systemName: "plus")
-            }
-            
-            ForEach($tableTalks, id:\.id) { tableTalk in
-                TableTalkCellView(tableTalk: tableTalk)
-            }
-        }
-        .task {
-            try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
-        }
-        .sheet(isPresented: $newTableTalk) {
-            VStack {
-                TextField("Reply", text: $tableTalkContent)
-                Button("Submit") {
-                    Task {
-                        try? await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), userId: profileViewModel.user!.userId, content: tableTalkContent, replies: []))
-                    }
+        VStack(alignment: .center) {
+            GambleCardView(viewModel: viewModel, profileViewModel: profileViewModel, gamble: $gamble)
+            List {
+                ForEach($tableTalks, id:\.id) { tableTalk in
+                    TableTalkCellView(tableTalk: tableTalk)
                 }
             }
+        }
+        .padding(.all)
+        .task {
+            try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
+            tableTalks = viewModel.tableTalks
         }
     }
 }
