@@ -27,6 +27,7 @@ final class GambleDetailViewModel: ObservableObject {
     }
     
     func uploadTableTalk(gambleId: String, userId: String, content: String) async throws {
-        try await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), gambleReference: GambleManager.shared.gambleDocument(gambleId: gambleId), userId: userId, content: content, replies: []))
+        let gambleRef = GambleManager.shared.gambleDocument(gambleId: gambleId)
+        try await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), gambleReference: gambleRef, userId: userId, content: content, replies: []))
     }
 }

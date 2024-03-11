@@ -19,13 +19,16 @@ struct GambleDetailView: View {
         VStack(alignment: .center) {
             GambleCardView(viewModel: viewModel, profileViewModel: profileViewModel, gamble: $gamble)
             List {
-                ForEach($tableTalks, id:\.id) { tableTalk in
-                    TableTalkCellView(tableTalk: tableTalk)
+                ForEach($tableTalks, id: \.id) { tableTalk in
+                    if tableTalk.gambleReference.wrappedValue == GambleManager.shared.gambleDocument(gambleId: gamble.id) {
+                        TableTalkCellView(tableTalk: tableTalk)
+                    }
                 }
             }
         }
         .padding(.all)
         .task {
+            tableTalks = []
             try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
             tableTalks = viewModel.tableTalks
         }

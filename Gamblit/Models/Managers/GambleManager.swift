@@ -63,10 +63,12 @@ final class GambleManager {
     }
     
     func getTableTalkForGamble(gambleId: String, count: Int, lastTableTalk: DocumentSnapshot?) async throws -> (tableTalks: [TableTalk], lastDocument: DocumentSnapshot?) {
+        let gambleRef = gambleDocument(gambleId: gambleId)
+        
         if let lastTableTalk {
-            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleDocument(gambleId: gambleId)).start(afterDocument: lastTableTalk).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleRef).start(afterDocument: lastTableTalk).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         } else {
-            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleDocument(gambleId: gambleId)).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleRef).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         }
     }
     
