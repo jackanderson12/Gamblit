@@ -61,4 +61,6 @@ final class UserManager {
         ]
         try await userDocument(userId: userId).updateData(data)
     }
+    
+    
 }

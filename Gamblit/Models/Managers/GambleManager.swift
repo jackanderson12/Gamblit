@@ -8,16 +8,19 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import Combine
 
 final class GambleManager {
     
     static let shared = GambleManager()
     private init() {}
     
-    private let gambleCollection = Firestore.firestore().collection("gambles")
-    private let tableTalkCollection = Firestore.firestore().collection("tableTalks")
-    
     //MARK: Gamble Section
+    
+    private let gambleCollection = Firestore.firestore().collection("gambles")
+    
+    private var gambleListener: ListenerRegistration? = nil
+    
     func gambleDocument(gambleId: String) -> DocumentReference {
         gambleCollection.document(gambleId)
     }
@@ -53,7 +56,19 @@ final class GambleManager {
         try await gambleDocument(gambleId: gambleId).updateData(["likes": likes])
     }
     
+    func addListenerForGambleFeed() -> AnyPublisher<[Gamble], Error> {
+        let (publisher, listener) = gambleCollection.addSnapshotListener(as: Gamble.self)
+        
+        self.gambleListener = listener
+        return publisher
+    }
+    
     //MARK: TableTalk Section
+    
+    private let tableTalkCollection = Firestore.firestore().collection("tableTalks")
+    
+    private var tableTalkListener: ListenerRegistration? = nil
+    
     private func tableTalkDocument(tableTalkId: String) -> DocumentReference {
         tableTalkCollection.document(tableTalkId)
     }
@@ -66,43 +81,23 @@ final class GambleManager {
         let gambleRef = gambleDocument(gambleId: gambleId)
         
         if let lastTableTalk {
-            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleRef).start(afterDocument: lastTableTalk).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection
+                .limit(to: count).whereField("gamble_reference", isEqualTo: gambleRef)
+                .start(afterDocument: lastTableTalk)
+                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         } else {
-            return try await tableTalkCollection.limit(to: count).whereField("gamble_reference", isEqualTo: gambleRef).getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
+            return try await tableTalkCollection
+                .limit(to: count)
+                .whereField("gamble_reference", isEqualTo: gambleRef)
+                .getTableTalkDocumentsWithSnapshot(as: TableTalk.self)
         }
     }
     
-}
-
-extension Query {
-    
-    func getDocuments<T>(as type: T.Type) async throws -> [T] where T: Decodable {
-        let snapshot = try await self.getDocuments()
+    func addListenerForAllTableTalksOnGamble() -> AnyPublisher<[TableTalk], Error> {
+        let (publisher, listener) = tableTalkCollection.addSnapshotListener(as: TableTalk.self)
         
-        return try snapshot.documents.map({ document in
-            try document.data(as: T.self)
-        })
-    }
-    
-    func getDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (gambles: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
-        let snapshot = try await self.getDocuments()
-        
-        let gambles = try snapshot.documents.map({ document in
-            try document.data(as: T.self)
-        })
-        
-        return (gambles, snapshot.documents.last)
-    }
-    
-    
-    func getTableTalkDocumentsWithSnapshot<T>(as type: T.Type) async throws -> (tableTalks: [T], lastDocument: DocumentSnapshot?) where T: Decodable {
-        let snapshot = try await self.getDocuments()
-        
-        let tableTalks = try snapshot.documents.map({ document in
-            try document.data(as: T.self)
-        })
-        
-        return (tableTalks, snapshot.documents.last)
+        self.tableTalkListener = listener
+        return publisher
     }
     
 }

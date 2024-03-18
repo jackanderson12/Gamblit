@@ -32,5 +32,8 @@ struct GambleDetailView: View {
             try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
             tableTalks = viewModel.tableTalks
         }
+        .onFirstAppear {
+            viewModel.addListenerForTableTalksOnGamble()
+        }
     }
 }

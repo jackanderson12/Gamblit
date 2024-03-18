@@ -7,12 +7,14 @@
 
 import Foundation
 import FirebaseFirestore
+import Combine
 
 @MainActor
 final class GambleDetailViewModel: ObservableObject {
     
     @Published private(set) var tableTalks: [TableTalk] = []
     private var lastDocument: DocumentSnapshot? = nil
+    private var cancellables = Set<AnyCancellable>()
     
     func getTableTalkForGamble(gambleId: String) async throws {
         Task {
@@ -29,5 +31,15 @@ final class GambleDetailViewModel: ObservableObject {
     func uploadTableTalk(gambleId: String, userId: String, content: String) async throws {
         let gambleRef = GambleManager.shared.gambleDocument(gambleId: gambleId)
         try await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), gambleReference: gambleRef, userId: userId, content: content, replies: []))
+    }
+    
+    func addListenerForTableTalksOnGamble() {
+        GambleManager.shared.addListenerForAllTableTalksOnGamble()
+            .sink { completion in
+            
+            } receiveValue: { [weak self] newTableTalks in
+                self?.tableTalks = newTableTalks
+            }
+            .store(in: &cancellables)
     }
 }

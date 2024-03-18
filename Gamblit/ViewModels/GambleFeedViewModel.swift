@@ -7,12 +7,14 @@
 
 import Foundation
 import FirebaseFirestore
+import Combine
 
 @MainActor
 final class GambleFeedViewModel: ObservableObject {
     
     @Published private(set) var gambles: [Gamble] = []
     private var lastDocument: DocumentSnapshot? = nil
+    private var cancellables = Set<AnyCancellable>()
     
     func getAllGambles() async throws {
         Task {
@@ -26,5 +28,15 @@ final class GambleFeedViewModel: ObservableObject {
             self.gambles.append(contentsOf: gamblesToShow)
             self.lastDocument = lastDocument
         }
+    }
+    
+    func addListenerForTableTalksOnGamble() {
+        GambleManager.shared.addListenerForGambleFeed()
+            .sink { completion in
+            
+            } receiveValue: { [weak self] newGambles in
+                self?.gambles = newGambles
+            }
+            .store(in: &cancellables)
     }
 }
