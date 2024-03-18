@@ -55,7 +55,6 @@ struct ProfileView: View {
             }
             .task {
                 try? await viewModel.loadCurrentUser()
-                print(viewModel.user)
             }
             .navigationTitle("Profile")
             .toolbar {

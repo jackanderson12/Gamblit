@@ -11,13 +11,18 @@ struct CreateGambleView: View {
     
     @StateObject var profileViewModel: ProfileViewModel
     
+    var game: Game
+    
     @State private var userId: String = ""
     @State private var gambleTitle: String = ""
     @State private var gambleDescription: String = ""
     @State private var sportsbooks: [String] = []
     
+    @State private var navigateToFeed: Bool = false
+    
     var body: some View {
         VStack {
+            EventCardView(book: game.bookmakers!.first!)
             Form {
                 Section("Title") {
                     TextField("Title", text: $gambleTitle)
@@ -28,8 +33,11 @@ struct CreateGambleView: View {
             }
             Button("Post") {
                 Task {
-                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, sportsBooks: profileViewModel.user!.sportsBooks!, title: gambleTitle, description: gambleDescription, likes: 1))
+                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, game: game, sportsBooks: profileViewModel.user!.sportsBooks!, title: gambleTitle, description: gambleDescription, likes: 1))
                 }
+            }
+            .onSubmit {
+                navigateToFeed = true
             }
         }
         .task {
@@ -43,6 +51,6 @@ struct CreateGambleView: View {
     }
 }
 
-#Preview {
-    CreateGambleView(profileViewModel: ProfileViewModel())
-}
+//#Preview {
+//    CreateGambleView(profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
+//}

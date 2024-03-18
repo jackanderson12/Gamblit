@@ -19,10 +19,6 @@ struct ContentView: View {
                         .tabItem {
                             Image(systemName: "newspaper.fill")
                         }
-                    CreateGambleView(profileViewModel: ProfileViewModel())
-                        .tabItem {
-                            Image(systemName: "square.and.pencil")
-                        }
                     SportMenuView()
                         .tabItem {
                             Image(systemName: "football.fill")

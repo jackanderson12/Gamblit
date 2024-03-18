@@ -14,7 +14,7 @@ final class GamesManager {
     @Published var historicalGame: [Historical] = []
     @Published var gameAverages: [String: (Double?, Double?, Double?, Double?, Double?, Double?)] = [:]
     
-    let key = "e37ef2b2520c5f2a152db29a1e2267c3"
+    let key = "1896f5bab1666cdf9efd5bed944d2ed9"
     
     let exampleURL = URL(string: "")
     
@@ -63,7 +63,6 @@ final class GamesManager {
         }
         do {
             let decodeResults = try JSONDecoder().decode(Game.self, from: data)
-            games = []
             games.append(decodeResults)
         } catch {
             throw error
