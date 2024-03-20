@@ -42,4 +42,8 @@ final class GambleDetailViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func filteredTableTalks(for gambleId: String) -> [TableTalk] {
+        tableTalks.filter { $0.gambleReference == GambleManager.shared.gambleDocument(gambleId: gambleId) }
+    }
 }

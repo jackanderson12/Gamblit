@@ -49,7 +49,7 @@ struct GambleCardView: View {
                 }) {
                         Image(systemName: "arrow.up")
                 }
-                .tint(userLikes ? .green : .black)
+                .tint(userLikes ? .green : .blue)
                 
                 Text("\(gamble.likes)")
                 
@@ -66,7 +66,7 @@ struct GambleCardView: View {
                 }) {
                     Image(systemName: "arrow.down")
                 }
-                .tint(userDislikes ? .red : .black)
+                .tint(userDislikes ? .red : .blue)
 
                 Button(action: {
                     newTableTalk.toggle()

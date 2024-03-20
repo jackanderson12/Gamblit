@@ -185,6 +185,6 @@ final class GamesManager {
     }
     
     func averageDecimalOddsToAmericanOdds(oddsArray: [Double]) -> Double {
-        return oddsArray.reduce(0, +) / Double(oddsArray.count)
+        return (oddsArray.reduce(0, +) / Double(oddsArray.count))
     }
 }
