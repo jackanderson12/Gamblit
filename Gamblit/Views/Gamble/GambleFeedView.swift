@@ -17,18 +17,20 @@ struct GambleFeedView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                ForEach($gambles, id: \.id) { gamble in
-                    NavigationLink {
-                        GambleDetailView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
-                    } label: {
-                        GambleCardView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
+            ScrollView {
+                VStack {
+                    ForEach($gambles, id: \.id) { gamble in
+                        NavigationLink {
+                            GambleDetailView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
+                        } label: {
+                            GambleCardView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
+                        }
                     }
                 }
-            }
-            .task {
-                try? await viewModel.getAllGambles()
-                gambles = viewModel.gambles
+                .task {
+                    try? await viewModel.getAllGambles()
+                    gambles = viewModel.gambles
+                }
             }
         }
     }

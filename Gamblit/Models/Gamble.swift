@@ -12,7 +12,7 @@ struct Gamble: Identifiable, Codable {
     var id: String
     var userId: String
     var game: Game
-    var sportsBooks: String
+    //var sportsBooks: String
     var title: String
     var description: String
     var likes: Int
@@ -21,7 +21,7 @@ struct Gamble: Identifiable, Codable {
         case id = "id"
         case userId = "user_id"
         case game = "game"
-        case sportsBooks = "sports_books"
+        //case sportsBooks = "sports_books"
         case title = "title"
         case description = "description"
         case likes = "likes"

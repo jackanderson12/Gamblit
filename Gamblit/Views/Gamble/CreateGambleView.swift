@@ -16,7 +16,7 @@ struct CreateGambleView: View {
     @State private var userId: String = ""
     @State private var gambleTitle: String = ""
     @State private var gambleDescription: String = ""
-    @State private var sportsbooks: String = ""
+//    @State private var sportsbooks: String = ""
     
     @State private var navigateToFeed: Bool = false
     
@@ -33,7 +33,7 @@ struct CreateGambleView: View {
             }
             Button("Post") {
                 Task {
-                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, game: game, sportsBooks: game.bookmakers!.first!.key!, title: gambleTitle, description: gambleDescription, likes: 1))
+                    try? await GambleManager.shared.uploadGamble(gamble: Gamble(id: String("\(UUID())"), userId: userId, game: game, title: gambleTitle, description: gambleDescription, likes: 1))
                 }
             }
             .buttonStyle(.borderedProminent)

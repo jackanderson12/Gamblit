@@ -25,7 +25,6 @@ struct GambleDetailView: View {
                 }
             }
         }
-        .padding(.all)
         .task {
             try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
         }

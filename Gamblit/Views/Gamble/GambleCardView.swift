@@ -13,6 +13,8 @@ struct GambleCardView: View {
     @StateObject var viewModel: GambleDetailViewModel
     @StateObject var profileViewModel: ProfileViewModel
     
+    @Environment(\.dismiss) var dismiss
+    
     @Binding var gamble: Gamble
     
     @State private var newTableTalk: Bool = false
@@ -25,14 +27,17 @@ struct GambleCardView: View {
         VStack {
             Text(gamble.title) //Placeholder for what to place here
                 .font(.headline)
+                .foregroundStyle(.foreground)
+                .padding(10)
 
-            //ChartView()
-                //.frame(height: 100) // Adjust as needed
-
+            EventCardView(book: gamble.game.bookmakers!.first!)
+                .foregroundStyle(.blue)
+            
             Text(gamble.description)
                 .font(.body)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                .foregroundStyle(.foreground)
 
             HStack {
                 Button(action: {
@@ -86,9 +91,11 @@ struct GambleCardView: View {
                         try? await viewModel.uploadTableTalk(gambleId:gamble.id, userId:profileViewModel.user!.userId, content: tableTalkContent)
                         try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
                     }
-                    newTableTalk.toggle()
+                    dismiss()
+                    newTableTalk = false
                 }
             }
+            .presentationDetents([.fraction(0.7)])
             .padding(.all)
         }
         .padding()
