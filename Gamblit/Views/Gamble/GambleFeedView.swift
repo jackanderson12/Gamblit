@@ -18,7 +18,7 @@ struct GambleFeedView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
+                LazyVStack {
                     ForEach($gambles, id: \.id) { gamble in
                         NavigationLink {
                             GambleDetailView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
@@ -31,6 +31,16 @@ struct GambleFeedView: View {
                     try? await viewModel.getAllGambles()
                     gambles = viewModel.gambles
                 }
+            }
+            .refreshable {
+                print("DEBUG: Refresh threads")
+            }
+            .navigationTitle("Gambles")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Image(systemName: "arrow.counterclockwise")
             }
         }
     }

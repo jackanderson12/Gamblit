@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showSignInView = true
+    @State private var selectedTab = 0
     
     var body: some View {
         ZStack {
@@ -17,15 +18,22 @@ struct ContentView: View {
                 TabView {
                     GambleFeedView(profileViewModel: ProfileViewModel())
                         .tabItem {
-                            Image(systemName: "newspaper.fill")
+                            Image(systemName: selectedTab == 0 ? "newspaper.fill" : "newspaper")
+                                .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
                         }
                     SportMenuView()
                         .tabItem {
-                            Image(systemName: "football.fill")
+                            Image(systemName: selectedTab == 1 ? "football.fill" : "football")
+                                .environment(\.symbolVariants, selectedTab == 1 ? .fill : .none)
+                        }
+                    ExploreView()
+                        .tabItem {
+                            Image(systemName: "magnifyingglass")
                         }
                     ProfileView(showSignInView: $showSignInView)
                         .tabItem {
-                            Image(systemName: "person.fill")
+                            Image(systemName: selectedTab == 3 ? "person.fill" : "person")
+                                .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
                         }
                 }
             }
