@@ -31,6 +31,10 @@
 		136AEC4E2BB4847F00F99AB9 /* UserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */; };
 		136AEC502BBAFF9300F99AB9 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */; };
 		136AEC522BBB042B00F99AB9 /* ProfileGambleFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC512BBB042B00F99AB9 /* ProfileGambleFilter.swift */; };
+		136AEC542BBC456100F99AB9 /* UIWindow+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC532BBC456100F99AB9 /* UIWindow+EXT.swift */; };
+		136AEC562BBC458200F99AB9 /* UIScreen+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC552BBC458200F99AB9 /* UIScreen+EXT.swift */; };
+		136AEC582BBC472E00F99AB9 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC572BBC472E00F99AB9 /* EditProfileView.swift */; };
+		136AEC5A2BBC69A400F99AB9 /* CreateGambleRemodelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */; };
 		136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */; };
 		136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */; };
 		136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1262B753FC3004CC5B3 /* DataPoint.swift */; };
@@ -115,6 +119,10 @@
 		136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellView.swift; sourceTree = "<group>"; };
 		136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		136AEC512BBB042B00F99AB9 /* ProfileGambleFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGambleFilter.swift; sourceTree = "<group>"; };
+		136AEC532BBC456100F99AB9 /* UIWindow+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+EXT.swift"; sourceTree = "<group>"; };
+		136AEC552BBC458200F99AB9 /* UIScreen+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+EXT.swift"; sourceTree = "<group>"; };
+		136AEC572BBC472E00F99AB9 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGambleRemodelView.swift; sourceTree = "<group>"; };
 		136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalChartView.swift; sourceTree = "<group>"; };
 		136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericChartView.swift; sourceTree = "<group>"; };
 		136CF1262B753FC3004CC5B3 /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
@@ -212,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				13695D002BA72AD800CB9FE3 /* Query+EXT.swift */,
+				136AEC532BBC456100F99AB9 /* UIWindow+EXT.swift */,
+				136AEC552BBC458200F99AB9 /* UIScreen+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +291,7 @@
 				13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */,
 				13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */,
 				136AEC472BB463A600F99AB9 /* GambleCellView.swift */,
+				136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */,
 			);
 			path = Gamble;
 			sourceTree = "<group>";
@@ -292,6 +303,7 @@
 				1302A9112B2B5969008D2E79 /* SettingsView.swift */,
 				1302A9152B2B5BAF008D2E79 /* ProfileView.swift */,
 				136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */,
+				136AEC572BBC472E00F99AB9 /* EditProfileView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -495,6 +507,7 @@
 				138EFA312B261414007F006E /* ContentView.swift in Sources */,
 				13CD7A662B28BDDD00E261DA /* GambleCardView.swift in Sources */,
 				13F557DB2B8BA08500C1398B /* GambleFeedView.swift in Sources */,
+				136AEC562BBC458200F99AB9 /* UIScreen+EXT.swift in Sources */,
 				136AEC4A2BB46BA500F99AB9 /* ExploreView.swift in Sources */,
 				13F557DD2B8BA5EB00C1398B /* CreateGambleView.swift in Sources */,
 				133105CC2B3670C0009356B4 /* GamesView.swift in Sources */,
@@ -509,6 +522,7 @@
 				133105CE2B367182009356B4 /* SportMenuView.swift in Sources */,
 				1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */,
 				13EEAEDC2B2791DE0014CD9F /* AuthenticationView.swift in Sources */,
+				136AEC5A2BBC69A400F99AB9 /* CreateGambleRemodelView.swift in Sources */,
 				1302A9162B2B5BAF008D2E79 /* ProfileView.swift in Sources */,
 				136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */,
 				13695D012BA72AD800CB9FE3 /* Query+EXT.swift in Sources */,
@@ -524,6 +538,8 @@
 				134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */,
 				1349114E2B5813C200311799 /* ChartView.swift in Sources */,
 				1302A91E2B2CE53A008D2E79 /* GambleManager.swift in Sources */,
+				136AEC582BBC472E00F99AB9 /* EditProfileView.swift in Sources */,
+				136AEC542BBC456100F99AB9 /* UIWindow+EXT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
