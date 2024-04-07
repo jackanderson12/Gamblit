@@ -14,7 +14,6 @@ import CryptoKit
 struct AuthenticationView: View {
     
     @StateObject private var viewModel = AuthenticationViewModel()
-    @Binding var showSignInView: Bool
     
     var body: some View {
         VStack {
@@ -29,7 +28,6 @@ struct AuthenticationView: View {
                 Task {
                     do {
                         try await viewModel.signInAnonymous()
-                        showSignInView = false
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -47,7 +45,6 @@ struct AuthenticationView: View {
                 Task {
                     do {
                         try await viewModel.signInGoogle()
-                        showSignInView = false
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -57,7 +54,6 @@ struct AuthenticationView: View {
                 Task {
                     do {
                         try await viewModel.signInApple()
-                        showSignInView = false
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -82,5 +78,5 @@ struct AuthenticationView: View {
 }
 
 #Preview {
-    AuthenticationView(showSignInView: .constant(true))
+    AuthenticationView()
 }

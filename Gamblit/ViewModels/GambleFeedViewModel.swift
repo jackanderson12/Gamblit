@@ -12,9 +12,15 @@ import Combine
 @MainActor
 final class GambleFeedViewModel: ObservableObject {
     
-    @Published private(set) var gambles: [Gamble] = []
+    @Published var gambles: [Gamble] = []
     private var lastDocument: DocumentSnapshot? = nil
     private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        Task {
+            try await getAllGambles()
+        }
+    }
     
     func getAllGambles() async throws {
         Task {

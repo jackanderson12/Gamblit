@@ -15,6 +15,8 @@
 		1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A91B2B2CB26E008D2E79 /* DBUser.swift */; };
 		1302A91E2B2CE53A008D2E79 /* GambleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1302A91D2B2CE53A008D2E79 /* GambleManager.swift */; };
 		13033B672B9A0B3C00BC9EA1 /* GambleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */; };
+		13054D4C2BBCC204009F4F12 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13054D4B2BBCC204009F4F12 /* ContentViewModel.swift */; };
+		13054D4E2BBCC3D9009F4F12 /* GamblitTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */; };
 		133105CA2B3670AC009356B4 /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105C92B3670AC009356B4 /* GamesViewModel.swift */; };
 		133105CC2B3670C0009356B4 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105CB2B3670C0009356B4 /* GamesView.swift */; };
 		133105CE2B367182009356B4 /* SportMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133105CD2B367182009356B4 /* SportMenuView.swift */; };
@@ -102,6 +104,8 @@
 		1302A91B2B2CB26E008D2E79 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
 		1302A91D2B2CE53A008D2E79 /* GambleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleManager.swift; sourceTree = "<group>"; };
 		13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleDetailView.swift; sourceTree = "<group>"; };
+		13054D4B2BBCC204009F4F12 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamblitTabView.swift; sourceTree = "<group>"; };
 		133105C92B3670AC009356B4 /* GamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewModel.swift; sourceTree = "<group>"; };
 		133105CB2B3670C0009356B4 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
 		133105CD2B367182009356B4 /* SportMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportMenuView.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				138EFA2E2B261414007F006E /* GamblitApp.swift */,
 				13EEAEC92B2772870014CD9F /* Views */,
 				13EEAECA2B2772960014CD9F /* ViewModels */,
+				13CD7A702B28F4C600E261DA /* Managers */,
 				13EEAECB2B2772A60014CD9F /* Models */,
 				13EEAEE72B279C740014CD9F /* Utilities */,
 				138EFA322B261415007F006E /* Assets.xcassets */,
@@ -339,6 +344,7 @@
 				136AEC492BB46BA500F99AB9 /* ExploreView.swift */,
 				136AEC4B2BB483F900F99AB9 /* CircularProfileImageView.swift */,
 				136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */,
+				13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				134911512B5A1E5500311799 /* GambleViewModel.swift */,
 				13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */,
 				13E99AB62B9A0D88009A25A1 /* GambleDetailViewModel.swift */,
+				13054D4B2BBCC204009F4F12 /* ContentViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -362,7 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				13695CFF2BA72AC000CB9FE3 /* Extensions */,
-				13CD7A702B28F4C600E261DA /* Managers */,
 				13EEAECC2B2782870014CD9F /* Gamble.swift */,
 				133105D32B367D2A009356B4 /* Game.swift */,
 				1302A91B2B2CB26E008D2E79 /* DBUser.swift */,
@@ -503,6 +509,7 @@
 				136AEC4E2BB4847F00F99AB9 /* UserCellView.swift in Sources */,
 				133105D42B367D2A009356B4 /* Game.swift in Sources */,
 				13E99AB72B9A0D88009A25A1 /* GambleDetailViewModel.swift in Sources */,
+				13054D4E2BBCC3D9009F4F12 /* GamblitTabView.swift in Sources */,
 				13EEAEE92B279C8A0014CD9F /* Utilities.swift in Sources */,
 				138EFA312B261414007F006E /* ContentView.swift in Sources */,
 				13CD7A662B28BDDD00E261DA /* GambleCardView.swift in Sources */,
@@ -519,6 +526,7 @@
 				13EEAEE52B279A390014CD9F /* AuthenticationManager.swift in Sources */,
 				136AEC4C2BB483F900F99AB9 /* CircularProfileImageView.swift in Sources */,
 				1302A9122B2B5969008D2E79 /* SettingsView.swift in Sources */,
+				13054D4C2BBCC204009F4F12 /* ContentViewModel.swift in Sources */,
 				133105CE2B367182009356B4 /* SportMenuView.swift in Sources */,
 				1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */,
 				13EEAEDC2B2791DE0014CD9F /* AuthenticationView.swift in Sources */,

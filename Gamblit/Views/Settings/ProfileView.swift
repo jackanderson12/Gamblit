@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject private var viewModel = ProfileViewModel()
-    @Binding var showSignInView: Bool
     
     let sportsBooks: [String] = ["Draft Kings", "Fanduel", "Bet MGM", "Caesars"]
     private func sportsBookIsSelected(sportsBook: String) -> Bool {
@@ -60,7 +59,7 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SettingsView(showSignInView: $showSignInView)
+                        SettingsView()
                     } label: {
                         Image(systemName: "gear")
                             .font(.headline)

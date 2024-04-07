@@ -27,13 +27,18 @@ enum AuthProviderOption: String {
 
 final class AuthenticationManager: ObservableObject {
     
+    @Published var userSession: FirebaseAuth.User?
+    
     static let shared = AuthenticationManager()
-    private init() { }
+    private init() { 
+        self.userSession = Auth.auth().currentUser
+    }
     
     func getAuthenticatedUser() throws -> AuthDataResultModel {
         guard let user = Auth.auth().currentUser else {
             throw URLError(.badServerResponse)
         }
+        self.userSession = user
         
         return AuthDataResultModel(user: user)
     }
@@ -57,6 +62,7 @@ final class AuthenticationManager: ObservableObject {
     
     func signOut() throws {
         try Auth.auth().signOut()
+        self.userSession = nil
     }
     
     func deleteUser() async throws {
