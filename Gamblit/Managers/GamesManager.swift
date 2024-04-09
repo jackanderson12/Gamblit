@@ -33,6 +33,7 @@ final class GamesManager {
             case .historical:
                 try handleHistoricalResponse(data: data, response: response)
             }
+            calculateAverages()
         } catch {
             throw error
         }
@@ -47,7 +48,6 @@ final class GamesManager {
         }
         do {
             let decodeResults = try JSONDecoder().decode([Game].self, from: data)
-            games = []
             games = decodeResults
         } catch {
             throw error
@@ -185,6 +185,6 @@ final class GamesManager {
     }
     
     func averageDecimalOddsToAmericanOdds(oddsArray: [Double]) -> Double {
-        return (oddsArray.reduce(0, +) / Double(oddsArray.count))
+        return (Double(oddsArray.reduce(0, +)) / Double(oddsArray.count))
     }
 }
