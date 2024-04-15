@@ -10,7 +10,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class UserManager {
-    
     static let shared = UserManager()
     private init() { }
     

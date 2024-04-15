@@ -1,15 +1,16 @@
 //
-//  UserProfileView.swift
+//  CurrentUserProfileView.swift
 //  Gamblit
 //
-//  Created by Jack Anderson on 4/1/24.
+//  Created by Jack Anderson on 4/15/24.
 //
 
 import SwiftUI
+import FirebaseAuth
 
-struct UserProfileView: View {
+struct CurrentUserProfileView: View {
     
-    let user: DBUser
+    @StateObject var viewModel = CurrentUserProfileViewModel()
     
     @State private var selectedFilter: ProfileGambleFilter = .gambles
     @Namespace var animation
@@ -17,6 +18,14 @@ struct UserProfileView: View {
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ProfileGambleFilter.allCases.count)
         return (UIScreen.current?.bounds.size.width)! / count - 16
+    }
+    
+    private var currentUser: DBUser? {
+        var user: DBUser? = nil
+        Task {
+            user = try? await UserManager.shared.getUser(userId: viewModel.currentUser?.uid ?? "")
+        }
+        return user
     }
     
     var body: some View {
@@ -28,15 +37,15 @@ struct UserProfileView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             //Full Name and Username
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(user.userId)
+                                Text(currentUser?.userId ?? "")
                                     .font(.title2)
                                     .fontWeight(.semibold)
                                 
-                                Text(user.userId)
+                                Text(currentUser?.userId ?? "")
                                     .font(.subheadline)
                             }
                             
-                            if let books = user.sportsBooks {
+                            if let books = currentUser?.sportsBooks {
                                 ForEach(books, id: \.self) { book in
                                     Text(book)
                                         .font(.footnote)
@@ -117,5 +126,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(user: dev.user)
+    CurrentUserProfileView()
 }

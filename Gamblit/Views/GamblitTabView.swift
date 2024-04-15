@@ -48,7 +48,7 @@ struct GamblitTabView: View {
                     selectedTab = 3
                 }
                 .tag(3)
-            ProfileView()
+            CurrentUserProfileView()
                 .tabItem {
                     Image(systemName: selectedTab == 3 ? "person.fill" : "person")
                         .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
