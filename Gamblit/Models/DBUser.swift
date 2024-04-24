@@ -7,13 +7,18 @@
 
 import Foundation
 
-struct DBUser: Codable {
+struct DBUser: Codable, Identifiable, Hashable {
     let userId: String
     let isAnonymous: Bool?
     let dateCreated: Date?
     let photoUrl: String?
     let isPremium: Bool?
     let sportsBooks: [String]?
+    
+    // Computed property to conform to Identifiable
+    var id: String {
+        return userId
+    }
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid

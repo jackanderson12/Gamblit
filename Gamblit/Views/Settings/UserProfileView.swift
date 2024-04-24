@@ -117,5 +117,5 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView(user: dev.user)
+    UserProfileView(user: DeveloperPreview.shared.user)
 }

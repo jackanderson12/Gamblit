@@ -40,6 +40,10 @@ final class UserManager {
         try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }
     
+    func getAllUsers() async throws -> [DBUser] {
+        try await userCollection.getDocuments(as: DBUser.self)
+    }
+    
     func updateUserPremiumStatus(userId: String, isPremium: Bool) async throws {
         let data: [String:Any] = [
             DBUser.CodingKeys.isPremium.rawValue : isPremium
