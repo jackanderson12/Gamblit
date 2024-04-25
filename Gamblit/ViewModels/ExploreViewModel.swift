@@ -19,6 +19,7 @@ class ExploreViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     private func fetchUsers() async throws {
         self.users = try await UserManager.shared.getAllUsers()
     }

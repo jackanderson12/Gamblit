@@ -14,7 +14,7 @@ struct UserCellView: View {
         HStack {
             CircularProfileImageView()
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(user.userId)
                     .fontWeight(.semibold)
                 

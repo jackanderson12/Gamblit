@@ -41,6 +41,8 @@
 		136AEC5C2BCD604300F99AB9 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC5B2BCD604300F99AB9 /* DeveloperPreview.swift */; };
 		136AEC5E2BCD67BB00F99AB9 /* CurrentUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */; };
 		136AEC602BCD694400F99AB9 /* CurrentUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC5F2BCD694400F99AB9 /* CurrentUserProfileViewModel.swift */; };
+		136AEC632BDAA02F00F99AB9 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC622BDAA02F00F99AB9 /* UserProfileHeaderView.swift */; };
+		136AEC652BDAC04100F99AB9 /* UserContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC642BDAC04100F99AB9 /* UserContentListView.swift */; };
 		136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */; };
 		136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */; };
 		136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1262B753FC3004CC5B3 /* DataPoint.swift */; };
@@ -135,6 +137,8 @@
 		136AEC5B2BCD604300F99AB9 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileView.swift; sourceTree = "<group>"; };
 		136AEC5F2BCD694400F99AB9 /* CurrentUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileViewModel.swift; sourceTree = "<group>"; };
+		136AEC622BDAA02F00F99AB9 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
+		136AEC642BDAC04100F99AB9 /* UserContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListView.swift; sourceTree = "<group>"; };
 		136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalChartView.swift; sourceTree = "<group>"; };
 		136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericChartView.swift; sourceTree = "<group>"; };
 		136CF1262B753FC3004CC5B3 /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
@@ -238,6 +242,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		136AEC612BDA9FED00F99AB9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */,
+				136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */,
+				136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */,
+				136AEC622BDAA02F00F99AB9 /* UserProfileHeaderView.swift */,
+				136AEC642BDAC04100F99AB9 /* UserContentListView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		138EFA222B261414007F006E = {
 			isa = PBXGroup;
 			children = (
@@ -317,9 +333,7 @@
 				13EEAEDB2B2791DE0014CD9F /* AuthenticationView.swift */,
 				1302A9112B2B5969008D2E79 /* SettingsView.swift */,
 				1302A9152B2B5BAF008D2E79 /* ProfileView.swift */,
-				136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */,
 				136AEC572BBC472E00F99AB9 /* EditProfileView.swift */,
-				136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -347,6 +361,7 @@
 		13EEAEC92B2772870014CD9F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				136AEC612BDA9FED00F99AB9 /* Profile */,
 				13695CFC2BA7153200CB9FE3 /* ViewModifier */,
 				13AE6B152B4790F40067B6B7 /* Settings */,
 				13AE6B122B476DE40067B6B7 /* Gamble */,
@@ -354,7 +369,6 @@
 				138EFA302B261414007F006E /* ContentView.swift */,
 				136AEC492BB46BA500F99AB9 /* ExploreView.swift */,
 				136AEC4B2BB483F900F99AB9 /* CircularProfileImageView.swift */,
-				136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */,
 				13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */,
 			);
 			path = Views;
@@ -531,6 +545,8 @@
 				136AEC562BBC458200F99AB9 /* UIScreen+EXT.swift in Sources */,
 				136AEC4A2BB46BA500F99AB9 /* ExploreView.swift in Sources */,
 				13F557DD2B8BA5EB00C1398B /* CreateGambleView.swift in Sources */,
+				136AEC652BDAC04100F99AB9 /* UserContentListView.swift in Sources */,
+				136AEC632BDAA02F00F99AB9 /* UserProfileHeaderView.swift in Sources */,
 				133105CC2B3670C0009356B4 /* GamesView.swift in Sources */,
 				136AEC522BBB042B00F99AB9 /* ProfileGambleFilter.swift in Sources */,
 				1371EEE22B62153B00A95866 /* EventView.swift in Sources */,
