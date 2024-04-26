@@ -9,9 +9,11 @@ import Foundation
 import Combine
 import FirebaseAuth
 
+
 class CurrentUserProfileViewModel: ObservableObject {
     
     @Published var currentUser: FirebaseAuth.User?
+    
     private var cancellables = Set<AnyCancellable>()
     
     init() {

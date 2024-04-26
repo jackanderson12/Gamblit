@@ -11,7 +11,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     let userId: String
     let isAnonymous: Bool?
     let dateCreated: Date?
-    let photoUrl: String?
+    let profileImageUrl: String?
     let isPremium: Bool?
     let sportsBooks: [String]?
     
@@ -23,7 +23,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
         self.isAnonymous = auth.isAnonymous
-        self.photoUrl = auth.photoUrl
+        self.profileImageUrl = auth.profileImageUrl
         self.dateCreated = Date()
         self.isPremium = false
         self.sportsBooks = nil
@@ -38,7 +38,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     ) {
         self.userId = userId
         self.isAnonymous = isAnonymous
-        self.photoUrl = photoUrl
+        self.profileImageUrl = photoUrl
         self.dateCreated = Date()
         self.isPremium = isPremium
         self.sportsBooks = sportsBooks
@@ -58,7 +58,7 @@ struct DBUser: Codable, Identifiable, Hashable {
         self.userId = try container.decode(String.self, forKey: .userId)
         self.isAnonymous = try container.decodeIfPresent(Bool.self, forKey: .isAnonymous)
         self.dateCreated = try container.decodeIfPresent(Date.self, forKey: .dateCreated)
-        self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
+        self.profileImageUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
         self.isPremium = try container.decodeIfPresent(Bool.self, forKey: .isPremium)
         self.sportsBooks = try container.decodeIfPresent([String].self, forKey: .sportsBooks)
     }
@@ -67,7 +67,7 @@ struct DBUser: Codable, Identifiable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.userId, forKey: .userId)
         try container.encodeIfPresent(self.isAnonymous, forKey: .isAnonymous)
-        try container.encodeIfPresent(self.photoUrl, forKey: .photoUrl)
+        try container.encodeIfPresent(self.profileImageUrl, forKey: .photoUrl)
         try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(self.isPremium, forKey: .isPremium)
         try container.encodeIfPresent(self.sportsBooks, forKey: .sportsBooks)

@@ -29,8 +29,8 @@ final class UserManager {
             "is_anonymous" : auth.isAnonymous,
             "date_created" : Timestamp(),
         ]
-        if let photoUrl = auth.photoUrl {
-            userData["photo_url"] = photoUrl
+        if let profileImageUrl = auth.profileImageUrl {
+            userData["profileImageUrl"] = profileImageUrl
         }
         
         try await userDocument(userId: auth.uid).setData(userData, merge: false)
@@ -44,12 +44,22 @@ final class UserManager {
         try await userCollection.getDocuments(as: DBUser.self)
     }
     
+    //MARK: Photo Functionality
+    @MainActor
+    func updateUserProfileImage(userId: String, withImageUrl imageUrl: String) async throws {
+        let data: [String:Any] = ["profileImageUrl": imageUrl]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
+    //MARK: Premium Functionality
     func updateUserPremiumStatus(userId: String, isPremium: Bool) async throws {
         let data: [String:Any] = [
             DBUser.CodingKeys.isPremium.rawValue : isPremium
         ]
         try await userDocument(userId: userId).updateData(data)
     }
+    
+    //MARK: Sportsbooks Functionality
     
     func addUserSportsBooks(userId: String, sportsBooks: String) async throws {
         let data: [String:Any] = [

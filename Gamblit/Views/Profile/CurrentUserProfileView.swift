@@ -11,6 +11,7 @@ import FirebaseAuth
 struct CurrentUserProfileView: View {
     
     @StateObject var viewModel = CurrentUserProfileViewModel()
+    @State private var showEditProfile: Bool = false
     
     private var currentUser: DBUser? {
         var user: DBUser? = nil
@@ -27,7 +28,7 @@ struct CurrentUserProfileView: View {
                     UserProfileHeaderView(user: currentUser)
                     
                     Button {
-                        
+                        showEditProfile.toggle()
                     } label: {
                         Text("Edit Profile")
                             .font(.subheadline)
@@ -47,6 +48,11 @@ struct CurrentUserProfileView: View {
                     
                 }
             }
+            .sheet(isPresented: $showEditProfile, content: {
+                if let user = currentUser {
+                    EditProfileView(user: user)
+                }
+            })
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button {

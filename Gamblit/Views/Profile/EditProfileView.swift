@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct EditProfileView: View {
+    
+    let user: DBUser
+    
+    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel = EditProfileViewModel()
     
     @State private var bio = ""
     @State private var link = ""
@@ -26,12 +32,22 @@ struct EditProfileView: View {
                             Text("Name")
                                 .fontWeight(.semibold)
                             
-                            Text("First Last")
+                            Text(user.userId)
                         }
                         
                         Spacer()
                         
-                        CircularProfileImageView()
+                        PhotosPicker(selection: $viewModel.selectedItem) {
+                            if let image = viewModel.profileImage {
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width:40, height: 40)
+                                    .clipShape(.circle)
+                            } else {
+                                CircularProfileImageView(user: user, size: .small)
+                            }
+                        }
                     }
                     
                     Divider()
@@ -72,13 +88,16 @@ struct EditProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") {
-                        
+                        Task {
+                            try await viewModel.updateUserData()
+                            dismiss()
+                        }
                     }
                     .foregroundStyle(.black)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
-                        
+                        dismiss()
                     }
                     .foregroundStyle(.black)
                 }
@@ -89,6 +108,6 @@ struct EditProfileView: View {
 
 #Preview {
     NavigationStack {
-        EditProfileView()
+        EditProfileView(user: DeveloperPreview.shared.user)
     }
 }
