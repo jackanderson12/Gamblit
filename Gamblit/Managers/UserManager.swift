@@ -36,6 +36,7 @@ final class UserManager {
         try await userDocument(userId: auth.uid).setData(userData, merge: false)
     }
     
+    @MainActor
     func getUser(userId: String) async throws -> DBUser {
         try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }

@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct GambleCellView: View {
+    let gamble: Gamble
+    
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 12) {
                 
-                CircularProfileImageView(user: nil, size: .small)
+                CircularProfileImageView(user: gamble.user, size: .small)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text("username1")
+                        Text(gamble.userId)
                             .font(.footnote)
                             .fontWeight(.semibold)
                         
                         Spacer()
                         
-                        Text("10m")
+                        Text(gamble.timestamp.timestampString())
                             .font(.caption)
                             .foregroundStyle(Color(.systemGray))
                         Button {
@@ -32,7 +34,8 @@ struct GambleCellView: View {
                                 .foregroundStyle(Color(.darkGray))
                         }
                     }
-                    Text("Gamble details would go here.")
+                    Text(gamble.title)
+                    Text(gamble.title)
                         .font(.footnote)
                         .multilineTextAlignment(.leading)
                     
@@ -71,5 +74,5 @@ struct GambleCellView: View {
 }
 
 #Preview {
-    GambleCellView()
+    GambleCellView(gamble: DeveloperPreview.shared.gamble)
 }

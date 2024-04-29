@@ -9,12 +9,17 @@ import SwiftUI
 
 struct UserContentListView: View {
     
+    @StateObject var viewModel: UserContentListViewModel
     @State private var selectedFilter: ProfileGambleFilter = .gambles
     @Namespace var animation
     
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ProfileGambleFilter.allCases.count)
         return (UIScreen.current?.bounds.size.width)! / count - 16
+    }
+    
+    init(user: DBUser) {
+        self._viewModel = StateObject(wrappedValue: UserContentListViewModel(user: user))
     }
     
     var body: some View {
@@ -46,8 +51,8 @@ struct UserContentListView: View {
             }
             
             LazyVStack {
-                ForEach(0 ... 10, id: \.self) { gamble in
-                    GambleCellView()
+                ForEach(viewModel.gambles) { gamble in
+                    GambleCellView(gamble: gamble)
                 }
             }
         }
@@ -56,5 +61,5 @@ struct UserContentListView: View {
 }
 
 #Preview {
-    UserContentListView()
+    UserContentListView(user: DeveloperPreview.shared.user)
 }

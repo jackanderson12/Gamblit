@@ -14,7 +14,7 @@ struct GamblitTabView: View {
     
     var body: some View {
         TabView {
-            GambleFeedView(profileViewModel: ProfileViewModel())
+            GambleFeedView()
                 .tabItem {
                     Image(systemName: selectedTab == 0 ? "newspaper.fill" : "newspaper")
                         .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)

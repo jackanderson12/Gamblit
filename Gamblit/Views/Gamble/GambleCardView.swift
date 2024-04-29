@@ -30,8 +30,8 @@ struct GambleCardView: View {
                 .foregroundStyle(.foreground)
                 .padding(10)
 
-            EventCardView(book: gamble.game.bookmakers!.first!)
-                .foregroundStyle(.blue)
+//            EventCardView(book: gamble.game.bookmakers!.first!)
+//                .foregroundStyle(.blue)
             
             Text(gamble.description)
                 .font(.body)
@@ -44,12 +44,12 @@ struct GambleCardView: View {
                     Task {
                         userLikes.toggle()
                         
-                        if userLikes && !userDislikes {
-                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes + 1)
-                        } else if userLikes && userDislikes {
-                            userDislikes.toggle()
-                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes + 2)
-                        }
+//                        if userLikes && !userDislikes {
+//                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes + 1)
+//                        } else if userLikes && userDislikes {
+//                            userDislikes.toggle()
+//                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes + 2)
+//                        }
                     }
                 }) {
                         Image(systemName: "arrow.up")
@@ -62,11 +62,11 @@ struct GambleCardView: View {
                     Task {
                         userDislikes.toggle()
                         
-                        if userDislikes && !userLikes {
-                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes - 1)
-                        } else if userDislikes && userLikes {
-                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes - 2)
-                        }
+//                        if userDislikes && !userLikes {
+//                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes - 1)
+//                        } else if userDislikes && userLikes {
+//                            try? await viewModel.updateGambleLikeCount(gambleId: gamble.id, likes: gamble.likes - 2)
+//                        }
                     }
                 }) {
                     Image(systemName: "arrow.down")
@@ -87,10 +87,10 @@ struct GambleCardView: View {
             VStack(alignment: .center) {
                 TextField("Reply", text: $tableTalkContent)
                 Button("Submit") {
-                    Task {
-                        try? await viewModel.uploadTableTalk(gambleId:gamble.id, userId:profileViewModel.user!.userId, content: tableTalkContent)
-                        try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
-                    }
+//                    Task {
+//                        try? await viewModel.uploadTableTalk(gambleId:gamble.id, userId:profileViewModel.user!.userId, content: tableTalkContent)
+//                        try? await viewModel.getTableTalkForGamble(gambleId: gamble.id)
+//                    }
                     dismiss()
                     newTableTalk = false
                 }

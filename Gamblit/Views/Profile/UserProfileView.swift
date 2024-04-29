@@ -29,7 +29,7 @@ struct UserProfileView: View {
                 }
                 
                 //User Content List View
-                UserContentListView()
+                UserContentListView(user: user)
             }
         }
         .navigationBarTitleDisplayMode(.inline)

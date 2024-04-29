@@ -18,21 +18,22 @@ final class GambleFeedViewModel: ObservableObject {
     
     init() {
         Task {
-            try await getAllGambles()
+            try await fetchGambles()
         }
     }
     
-    func getAllGambles() async throws {
-        Task {
-            self.gambles = try await GambleManager.shared.getAllGambles()
-        }
+    func fetchGambles() async throws {
+        self.gambles = try await GambleManagerRemodel.fetchGambles()
+        try await fetchUserDataForGambles()
     }
     
-    func getGamblesByLikes() {
-        Task {
-            let (gamblesToShow, lastDocument) = try await GambleManager.shared.getGambleByLikes(count: 5, lastGamble: lastDocument)
-            self.gambles.append(contentsOf: gamblesToShow)
-            self.lastDocument = lastDocument
+    private func fetchUserDataForGambles() async throws {
+        for i in 0..<gambles.count {
+            let gamble = gambles[i]
+            let userId = gamble.userId
+            let gambleUser = try await UserManager.shared.getUser(userId: userId)
+            
+            gambles[i].user = gambleUser
         }
     }
     

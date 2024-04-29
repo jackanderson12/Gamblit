@@ -14,6 +14,7 @@ import CryptoKit
 struct AuthenticationView: View {
     
     @StateObject private var viewModel = AuthenticationViewModel()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {

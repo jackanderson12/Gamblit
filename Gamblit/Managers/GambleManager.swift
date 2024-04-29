@@ -37,25 +37,6 @@ final class GambleManager {
         try await gambleCollection.getDocuments(as: Gamble.self)
     }
     
-    func getGambleByLikes(count: Int, lastGamble: DocumentSnapshot?) async throws -> (gambles: [Gamble], lastDocument: DocumentSnapshot?) {
-        if let lastGamble {
-            return try await gambleCollection
-                .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
-                .limit(to: count)
-                .start(afterDocument: lastGamble)
-                .getDocumentsWithSnapshot(as: Gamble.self)
-        } else {
-            return try await gambleCollection
-                .order(by: Gamble.CodingKeys.likes.rawValue, descending: true)
-                .limit(to: count)
-                .getDocumentsWithSnapshot(as: Gamble.self)
-        }
-    }
-    
-    func updateGambleLikeCount(gambleId: String, likes: Int) async throws {
-        try await gambleDocument(gambleId: gambleId).updateData(["likes": likes])
-    }
-    
     func addListenerForGambleFeed() -> AnyPublisher<[Gamble], Error> {
         let (publisher, listener) = gambleCollection.addSnapshotListener(as: Gamble.self)
         

@@ -9,28 +9,36 @@ import SwiftUI
 
 struct CreateGambleRemodelView: View {
     
-    @State private var title = ""
+    @StateObject var viewModel = GambleViewModel()
     @Environment(\.dismiss) var dismiss
+    
+    private var currentUser: DBUser? {
+        var user: DBUser? = nil
+        Task {
+            user = try? await UserManager.shared.getUser(userId: viewModel.currentUser?.uid ?? "")
+        }
+        return user
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
-                    CircularProfileImageView(user: nil, size: .small)
+                    CircularProfileImageView(user: currentUser, size: .small)
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("username1")
+                        Text(currentUser?.userId ?? "")
                             .fontWeight(.semibold)
                         
-                        TextField("Start a Gamble...", text: $title, axis: .vertical)
+                        TextField("Start a Gamble...", text: $viewModel.title, axis: .vertical)
                     }
                     .font(.footnote)
                     
                     Spacer()
                     
-                    if !title.isEmpty {
+                    if !viewModel.title.isEmpty {
                         Button {
-                            title = ""
+                            viewModel.title = ""
                         } label: {
                             Image(systemName: "xmark")
                                 .resizable()
@@ -50,15 +58,19 @@ struct CreateGambleRemodelView: View {
                     Button("cancel") {
                         dismiss()
                     }
-                    .foregroundStyle(.black)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Post") {
-                        
+                        Task {
+                            try await viewModel.uploadGamble()
+                            dismiss()
+                        }
                     }
-                    .opacity(title.isEmpty ? 0.5 : 1.0)
-                    .disabled(title.isEmpty)
-                    .foregroundStyle(.black)
+                    .opacity(viewModel.title.isEmpty ? 0.5 : 1.0)
+                    .disabled(viewModel.title.isEmpty)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.secondary)
                 }
             }
         }

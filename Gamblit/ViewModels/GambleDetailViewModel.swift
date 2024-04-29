@@ -24,14 +24,14 @@ final class GambleDetailViewModel: ObservableObject {
         }
     }
     
-    func updateGambleLikeCount(gambleId: String, likes: Int) async throws {
-        try await GambleManager.shared.updateGambleLikeCount(gambleId: gambleId, likes: likes)
-    }
+//    func updateGambleLikeCount(gambleId: String, likes: Int) async throws {
+//        try await GambleManager.shared.updateGambleLikeCount(gambleId: gambleId, likes: likes)
+//    }
     
-    func uploadTableTalk(gambleId: String, userId: String, content: String) async throws {
-        let gambleRef = GambleManager.shared.gambleDocument(gambleId: gambleId)
-        try await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), gambleReference: gambleRef, userId: userId, content: content, replies: []))
-    }
+//    func uploadTableTalk(gambleId: String, userId: String, content: String) async throws {
+//        let gambleRef = GambleManager.shared.gambleDocument(gambleId: gambleId)
+//        try await GambleManager.shared.uploadTableTalk(tableTalk: TableTalk(id: String("\(UUID())"), gambleReference: gambleRef, userId: userId, content: content, replies: []))
+//    }
     
     func addListenerForTableTalksOnGamble() {
         GambleManager.shared.addListenerForAllTableTalksOnGamble()

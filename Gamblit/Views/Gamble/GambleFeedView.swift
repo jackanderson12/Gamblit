@@ -10,24 +10,20 @@ import SwiftUI
 struct GambleFeedView: View {
     
     @StateObject private var viewModel = GambleFeedViewModel()
-    @StateObject private var gambleDetailViewModel = GambleDetailViewModel()
-    @StateObject var profileViewModel: ProfileViewModel
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack {
-                    ForEach($viewModel.gambles, id: \.id) { gamble in
-                        NavigationLink {
-                            GambleDetailView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
-                        } label: {
-                            GambleCardView(viewModel: gambleDetailViewModel, profileViewModel: profileViewModel, gamble: gamble)
-                        }
+                    ForEach(viewModel.gambles, id: \.id) { gamble in
+                        GambleCellView(gamble: gamble)
                     }
                 }
             }
             .refreshable {
-                print("DEBUG: Refresh threads")
+                Task {
+                    try await viewModel.fetchGambles()
+                }
             }
             .navigationTitle("Gambles")
             .navigationBarTitleDisplayMode(.inline)
@@ -38,5 +34,9 @@ struct GambleFeedView: View {
             }
         }
     }
+}
+
+#Preview {
+    GambleFeedView()
 }
 

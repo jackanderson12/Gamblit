@@ -6,40 +6,32 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import Firebase
+import FirebaseFirestoreSwift
 
 struct Gamble: Identifiable, Codable {
-    var id: String
-    var userId: String
-    var game: Game
-    //var sportsBooks: String
-    var title: String
-    var description: String
-    var likes: Int
+    @DocumentID var gambleId: String?
     
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case userId = "user_id"
-        case game = "game"
-        //case sportsBooks = "sports_books"
-        case title = "title"
-        case description = "description"
-        case likes = "likes"
+    let userId: String
+    let game: Game
+    //var sportsBooks: String
+    let title: String
+    let description: String
+    var likes: Int
+    let timestamp: Timestamp
+    
+    var id: String {
+        return gambleId ?? UUID().uuidString
     }
+    
+    var user: DBUser?
 }
 
 struct TableTalk: Identifiable, Codable {
-    var id: String
-    var gambleReference: DocumentReference
-    var userId: String
-    var content: String
+    let id: String
+    let gambleReference: DocumentReference
+    let userId: String
+    let content: String
     var replies: [TableTalk]
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case gambleReference = "gamble_reference"
-        case userId = "user_id"
-        case content
-        case replies
-    }
+    let timestamp: Timestamp
 }

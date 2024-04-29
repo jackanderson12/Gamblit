@@ -39,7 +39,7 @@ struct GameDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("New Gamble") {
-                    CreateGambleView(profileViewModel: profileViewModel, game: game)
+                    //CreateGambleView(profileViewModel: profileViewModel, game: game)
                 }
             }
         }

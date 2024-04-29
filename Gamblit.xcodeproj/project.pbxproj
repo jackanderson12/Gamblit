@@ -46,6 +46,9 @@
 		136AEC672BDC153900F99AB9 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */; };
 		136AEC692BDC175300F99AB9 /* ImageUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */; };
 		136AEC6C2BDC2D2600F99AB9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 136AEC6B2BDC2D2600F99AB9 /* Kingfisher */; };
+		136AEC6E2BDFD62F00F99AB9 /* GambleManagerRemodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */; };
+		136AEC702BE0061000F99AB9 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */; };
+		136AEC722BE015E900F99AB9 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC712BE015E900F99AB9 /* Timestamp.swift */; };
 		136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */; };
 		136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */; };
 		136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136CF1262B753FC3004CC5B3 /* DataPoint.swift */; };
@@ -101,7 +104,6 @@
 		13EEAEE92B279C8A0014CD9F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EEAEE82B279C8A0014CD9F /* Utilities.swift */; };
 		13F557D92B8B9FDF00C1398B /* GambleFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */; };
 		13F557DB2B8BA08500C1398B /* GambleFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F557DA2B8BA08500C1398B /* GambleFeedView.swift */; };
-		13F557DD2B8BA5EB00C1398B /* CreateGambleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F557DC2B8BA5EB00C1398B /* CreateGambleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +146,9 @@
 		136AEC642BDAC04100F99AB9 /* UserContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListView.swift; sourceTree = "<group>"; };
 		136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadManager.swift; sourceTree = "<group>"; };
+		136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleManagerRemodel.swift; sourceTree = "<group>"; };
+		136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
+		136AEC712BE015E900F99AB9 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalChartView.swift; sourceTree = "<group>"; };
 		136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericChartView.swift; sourceTree = "<group>"; };
 		136CF1262B753FC3004CC5B3 /* DataPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
@@ -175,7 +180,6 @@
 		13EEAEE82B279C8A0014CD9F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleFeedViewModel.swift; sourceTree = "<group>"; };
 		13F557DA2B8BA08500C1398B /* GambleFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleFeedView.swift; sourceTree = "<group>"; };
-		13F557DC2B8BA5EB00C1398B /* CreateGambleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGambleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,7 @@
 				13695D002BA72AD800CB9FE3 /* Query+EXT.swift */,
 				136AEC532BBC456100F99AB9 /* UIWindow+EXT.swift */,
 				136AEC552BBC458200F99AB9 /* UIScreen+EXT.swift */,
+				136AEC712BE015E900F99AB9 /* Timestamp.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,7 +331,6 @@
 			children = (
 				13CD7A652B28BDDD00E261DA /* GambleCardView.swift */,
 				13F557DA2B8BA08500C1398B /* GambleFeedView.swift */,
-				13F557DC2B8BA5EB00C1398B /* CreateGambleView.swift */,
 				13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */,
 				13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */,
 				136AEC472BB463A600F99AB9 /* GambleCellView.swift */,
@@ -362,6 +366,7 @@
 				1302A91D2B2CE53A008D2E79 /* GambleManager.swift */,
 				133105D52B36820C009356B4 /* GamesManager.swift */,
 				136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */,
+				136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				136AEC5F2BCD694400F99AB9 /* CurrentUserProfileViewModel.swift */,
 				13054D4F2BCF4D60009F4F12 /* ExploreViewModel.swift */,
 				136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */,
+				136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -529,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				136AEC6E2BDFD62F00F99AB9 /* GambleManagerRemodel.swift in Sources */,
 				1371EEE82B62F65800A95866 /* HistoricalPickerView.swift in Sources */,
 				13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */,
 				13EEAEDE2B2798A90014CD9F /* AuthenticationViewModel.swift in Sources */,
@@ -555,10 +562,11 @@
 				13F557DB2B8BA08500C1398B /* GambleFeedView.swift in Sources */,
 				136AEC562BBC458200F99AB9 /* UIScreen+EXT.swift in Sources */,
 				136AEC4A2BB46BA500F99AB9 /* ExploreView.swift in Sources */,
-				13F557DD2B8BA5EB00C1398B /* CreateGambleView.swift in Sources */,
+				136AEC702BE0061000F99AB9 /* UserContentListViewModel.swift in Sources */,
 				136AEC652BDAC04100F99AB9 /* UserContentListView.swift in Sources */,
 				136AEC632BDAA02F00F99AB9 /* UserProfileHeaderView.swift in Sources */,
 				133105CC2B3670C0009356B4 /* GamesView.swift in Sources */,
+				136AEC722BE015E900F99AB9 /* Timestamp.swift in Sources */,
 				136AEC522BBB042B00F99AB9 /* ProfileGambleFilter.swift in Sources */,
 				1371EEE22B62153B00A95866 /* EventView.swift in Sources */,
 				1302A9142B2B5B0A008D2E79 /* SettingsViewModel.swift in Sources */,
