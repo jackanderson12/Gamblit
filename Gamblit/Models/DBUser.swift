@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct DBUser: Codable, Identifiable, Hashable {
-    let userId: String
+    @DocumentID var userId: String?
     let isAnonymous: Bool?
     let dateCreated: Date?
     let profileImageUrl: String?
@@ -17,7 +18,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     
     // Computed property to conform to Identifiable
     var id: String {
-        return userId
+        return userId ?? ""
     }
     
     init(auth: AuthDataResultModel) {

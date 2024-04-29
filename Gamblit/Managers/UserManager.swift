@@ -6,12 +6,19 @@
 //
 
 import Foundation
-import FirebaseFirestore
+import Firebase
 import FirebaseFirestoreSwift
 
 final class UserManager {
+    
+    @Published var currentUser: DBUser?
+    
     static let shared = UserManager()
-    private init() { }
+    init() {
+        Task {
+            try await fetchCurrentUser()
+        }
+    }
     
     private let userCollection = Firestore.firestore().collection("users")
     
@@ -19,8 +26,16 @@ final class UserManager {
         userCollection.document(userId)
     }
     
+    @MainActor 
+    func fetchCurrentUser() async throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let snapshot = try await userCollection.document(uid).getDocument()
+        let user = try snapshot.data(as: DBUser.self)
+        self.currentUser = user
+    }
+    
     func createNewUser(user: DBUser) async throws {
-        try userDocument(userId: user.userId).setData(from: user, merge: false)
+        try userDocument(userId: user.userId!).setData(from: user, merge: false)
     }
     
     func createNewUser(auth: AuthDataResultModel) async throws {
@@ -36,7 +51,6 @@ final class UserManager {
         try await userDocument(userId: auth.uid).setData(userData, merge: false)
     }
     
-    @MainActor
     func getUser(userId: String) async throws -> DBUser {
         try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }

@@ -18,7 +18,7 @@ class UserContentListViewModel: ObservableObject {
     }
     
     func fetchGambles() async throws {
-        var gambles = try await GambleManagerRemodel.fetchUserGambles(uid: user.userId)
+        var gambles = try await GambleManagerRemodel.fetchUserGambles(uid: user.userId!)
         
         for i in 0 ..< gambles.count {
             gambles[i].user = self.user

@@ -27,8 +27,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         let currentValue = user.isPremium ?? false
         Task {
-            try await UserManager.shared.updateUserPremiumStatus(userId: user.userId, isPremium: !currentValue)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.updateUserPremiumStatus(userId: user.userId!, isPremium: !currentValue)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
     
@@ -36,8 +36,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         
         Task {
-            try await UserManager.shared.addUserSportsBooks(userId: user.userId, sportsBooks: sportsBooks)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.addUserSportsBooks(userId: user.userId!, sportsBooks: sportsBooks)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
     
@@ -45,8 +45,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         
         Task {
-            try await UserManager.shared.removeUserSportsBooks(userId: user.userId, sportsBooks: sportsBooks)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.removeUserSportsBooks(userId: user.userId!, sportsBooks: sportsBooks)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
 }

@@ -20,7 +20,7 @@ struct ProfileView: View {
         NavigationStack {
             List {
                 if let user = viewModel.user {
-                    Text("UserId: \(user.userId)")
+                    Text("UserId: \(user.userId!)")
                     
                     if let isAnonymous = user.isAnonymous {
                         Text("Is Anonymous: \(isAnonymous.description.capitalized)")

@@ -13,11 +13,7 @@ struct CreateGambleRemodelView: View {
     @Environment(\.dismiss) var dismiss
     
     private var currentUser: DBUser? {
-        var user: DBUser? = nil
-        Task {
-            user = try? await UserManager.shared.getUser(userId: viewModel.currentUser?.uid ?? "")
-        }
-        return user
+        return UserManager.shared.currentUser
     }
     
     var body: some View {

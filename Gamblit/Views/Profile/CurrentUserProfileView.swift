@@ -14,18 +14,16 @@ struct CurrentUserProfileView: View {
     @State private var showEditProfile: Bool = false
     
     private var currentUser: DBUser? {
-        var user: DBUser? = nil
-        Task {
-            user = try? await UserManager.shared.getUser(userId: viewModel.currentUser?.uid ?? "")
-        }
-        return user
+        return UserManager.shared.currentUser
     }
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    UserProfileHeaderView(user: currentUser)
+                    if let user = currentUser {
+                        UserProfileHeaderView(user: user)
+                    }
                     
                     Button {
                         showEditProfile.toggle()

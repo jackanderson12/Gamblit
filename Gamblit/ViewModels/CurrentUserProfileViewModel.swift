@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class CurrentUserProfileViewModel: ObservableObject {
     
-    @Published var currentUser: FirebaseAuth.User?
+    @Published var currentUser: DBUser?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -21,7 +21,7 @@ class CurrentUserProfileViewModel: ObservableObject {
     }
     
     private func setupSubscribers() {
-        AuthenticationManager.shared.$userSession.sink { [weak self] user in
+        UserManager.shared.$currentUser.sink { [weak self] user in
             self?.currentUser = user
         }.store(in: &cancellables)
     }

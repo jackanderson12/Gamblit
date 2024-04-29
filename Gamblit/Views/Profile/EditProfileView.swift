@@ -32,7 +32,7 @@ struct EditProfileView: View {
                             Text("Name")
                                 .fontWeight(.semibold)
                             
-                            Text(user.userId)
+                            Text(user.userId!)
                         }
                         
                         Spacer()
