@@ -31,8 +31,10 @@ struct EditProfileView: View {
                         VStack(alignment: .leading) {
                             Text("Name")
                                 .fontWeight(.semibold)
+                                .foregroundStyle(.secondary)
                             
-                            Text(user.userId!)
+                            Text(user.userId ?? "No user id found")
+                                .foregroundStyle(.secondary)
                         }
                         
                         Spacer()
@@ -56,8 +58,10 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Bio")
                             .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
                         
                         TextField("Enter your bio...", text: $bio, axis: .vertical)
+                            .foregroundStyle(.secondary)
                     }
                     
                     Divider()
@@ -65,8 +69,10 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Link")
                             .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
                         
                         TextField("Add Link...", text: $link, axis: .vertical)
+                            .foregroundStyle(.secondary)
                     }
                     
                     Divider()

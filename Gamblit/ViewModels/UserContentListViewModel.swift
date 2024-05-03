@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 class UserContentListViewModel: ObservableObject {
+    
     @Published var gambles: [Gamble] = []
     
     let user: DBUser
@@ -18,7 +19,7 @@ class UserContentListViewModel: ObservableObject {
     }
     
     func fetchGambles() async throws {
-        var gambles = try await GambleManagerRemodel.fetchUserGambles(uid: user.userId!)
+        var gambles = try await GambleManagerRemodel.fetchUserGambles(uid: user.userId ?? "No user id found")
         
         for i in 0 ..< gambles.count {
             gambles[i].user = self.user

@@ -39,7 +39,7 @@ class EditProfileViewModel: ObservableObject {
     private func updateProfileImage() async throws {
         guard let image = self.uiImage else { return }
         guard let imageUrl = try? await ImageUploadManager.uploadImage(image) else { return }
-        guard let uid = AuthenticationManager.shared.userSession?.uid else { return }
+        guard let uid = await AuthenticationManager.shared.userSession?.uid else { return }
         
         try await UserManager.shared.updateUserProfileImage(userId: uid, withImageUrl: imageUrl)
     }

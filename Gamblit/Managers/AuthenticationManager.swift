@@ -25,12 +25,14 @@ enum AuthProviderOption: String {
     case apple = "apple.com"
 }
 
+@MainActor
 final class AuthenticationManager: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?
     
     static let shared = AuthenticationManager()
-    private init() { 
+    
+    private init() {
         self.userSession = Auth.auth().currentUser
     }
     
@@ -69,6 +71,7 @@ final class AuthenticationManager: ObservableObject {
         guard let user = Auth.auth().currentUser else {
             throw URLError(.badURL)
         }
+        self.userSession = nil
         
         try await user.delete()
     }
@@ -91,6 +94,7 @@ extension AuthenticationManager {
     
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
+        self.userSession = Auth.auth().currentUser
         return AuthDataResultModel(user: authDataResult.user)
     }
 }

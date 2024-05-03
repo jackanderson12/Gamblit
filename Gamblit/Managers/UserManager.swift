@@ -34,6 +34,10 @@ final class UserManager {
         self.currentUser = user
     }
     
+    func reset() {
+        self.currentUser = nil
+    }
+    
     func createNewUser(user: DBUser) async throws {
         try userDocument(userId: user.userId!).setData(from: user, merge: false)
     }

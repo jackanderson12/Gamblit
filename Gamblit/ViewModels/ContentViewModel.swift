@@ -9,9 +9,11 @@ import Foundation
 import Combine
 import Firebase
 
+@MainActor
 class ContentViewModel: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?
+    
     private var cancellables = Set<AnyCancellable>()
     
     init() {

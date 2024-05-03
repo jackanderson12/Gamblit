@@ -8,6 +8,7 @@
 import Firebase
 import Combine
 
+@MainActor
 class GambleViewModel: ObservableObject {
     
     @Published var game: Game? = nil

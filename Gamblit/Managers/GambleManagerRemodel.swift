@@ -30,11 +30,21 @@ struct GambleManagerRemodel {
         let snapshot = try await Firestore
             .firestore()
             .collection("gambles")
-            .whereField("userId", isEqualTo: uid)
             .getDocuments()
-        
+//            .whereField("userId", isEqualTo: uid)
         let gambles = snapshot.documents.compactMap({ try? $0.data(as: Gamble.self) })
-        return gambles.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() })
+        print(gambles)
+        
+        var gamblesToReturn = [Gamble]()
+        
+        for gamble in gambles {
+            if gamble.userId == uid {
+                gamblesToReturn.append(gamble)
+            }
+        }
+        
+        print(gamblesToReturn)
+        return gamblesToReturn.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() })
     }
     
 }
