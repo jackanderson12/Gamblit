@@ -13,7 +13,7 @@ import CryptoKit
 
 struct AuthenticationView: View {
     
-    @StateObject private var viewModel = AuthenticationViewModel()
+    @StateObject var viewModel = AuthenticationViewModel()
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
