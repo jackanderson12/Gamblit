@@ -14,14 +14,18 @@ struct ContentActionButtonsView: View {
         self.viewModel = ContentActionButtonsViewModel(gamble: gamble)
     }
     
+    private var didLike: Bool {
+        return viewModel.thread.didLike ?? false
+    }
+    
     var body: some View {
         HStack(spacing: 16) {
             Button {
                 
             } label: {
-                Image(systemName: "heart")
+                Image(systemName: didLike ? "heart.fill" : "heart")
+                    .foregroundStyle(didLike ? .red : .black)
             }
-
             Button {
                 
             } label: {
@@ -43,5 +47,5 @@ struct ContentActionButtonsView: View {
 }
 
 #Preview {
-    ContentActionButtonsView()
+    ContentActionButtonsView(gamble: DeveloperPreview.shared.gamble)
 }
