@@ -16,6 +16,9 @@ class UserContentListViewModel: ObservableObject {
     
     init(user: DBUser) {
         self.user = user
+        Task {
+            try await fetchGambles()
+        }
     }
     
     func fetchGambles() async throws {

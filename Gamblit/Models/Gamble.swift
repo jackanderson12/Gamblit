@@ -17,8 +17,10 @@ struct Gamble: Identifiable, Codable {
     //var sportsBooks: String
     let title: String
     let description: String
-    var likes: Int
     let timestamp: Timestamp
+    
+    var likes: Int
+    var didLike: Bool? = false
     
     var id: String {
         return gambleId ?? UUID().uuidString
