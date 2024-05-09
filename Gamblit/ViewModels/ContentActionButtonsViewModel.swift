@@ -14,8 +14,10 @@ class ContentActionButtonsViewModel: ObservableObject {
         self.gamble = gamble
     }
     
-    func likeGamble() {
+    func likeGamble() async throws {
+        try await GambleManagerRemodel.likeGamble(gamble)
         self.gamble.didLike = true
+        self.gamble.likes += 1
     }
     
     func unlikeGamble() {

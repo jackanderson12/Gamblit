@@ -37,4 +37,21 @@ struct GambleManagerRemodel {
         return gambles.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() })
     }
     
+    //MARK: - Likes Functionality
+    static func likeGamble(_ gamble: Gamble) async throws {
+        guard let uid = Auth.auth().currentUser?.userId else { return }
+        let gambleReference = FirestoreConstants.gambleCollection.document(gamble.id)
+        
+        async let _ = try await gambleReference.collection("gamble-likes").document(uid).setData([:])
+        async let _ = try await gambleReference.updateData(["likes": gamble.likes + 1])
+        async let _ = try await FirestoreConstants.userCollection.document(uid).collection("user-likes").document(gamble.id).setData([:])
+    }
+    static func unlikeGamble(_ gamble: Gamble) async throws {
+        
+    }
+    static func checkIfUserLikedGamble(_ gamble: Gamble) async throws -> Bool {
+        return false
+    }
+    
+    
 }
