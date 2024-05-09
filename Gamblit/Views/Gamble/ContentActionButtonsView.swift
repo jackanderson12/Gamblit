@@ -15,13 +15,21 @@ struct ContentActionButtonsView: View {
     }
     
     private var didLike: Bool {
-        return viewModel.thread.didLike ?? false
+        return viewModel.gamble.didLike ?? false
+    }
+    
+    func handleLikeTapped() {
+        if didLike {
+            viewModel.unlikeGamble()
+        } else {
+            viewModel.likeGamble()
+        }
     }
     
     var body: some View {
         HStack(spacing: 16) {
             Button {
-                
+                handleLikeTapped()
             } label: {
                 Image(systemName: didLike ? "heart.fill" : "heart")
                     .foregroundStyle(didLike ? .red : .black)
