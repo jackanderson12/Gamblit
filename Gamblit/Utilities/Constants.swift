@@ -16,7 +16,7 @@ struct FirestoreConstants {
     static let followersCollection = Root.collection("followers")
     static let followingCollection = Root.collection("following")
     
-    static let repliesCollection = Root.collection("replies")
+    static let tableTalkCollection = Root.collection("tableTalks")
     static let activityCollection = Root.collection("activity")
 }
 

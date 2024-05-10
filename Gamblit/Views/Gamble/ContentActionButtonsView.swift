@@ -60,11 +60,21 @@ struct ContentActionButtonsView: View {
                     Image(systemName: "paperplane")
                 }
             }
-            if gamble.likes > 0 {
-                Text("\(gamble.likes) likes")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.vertical, 4)
+            HStack(spacing: 4) {
+                if gamble.likes > 0 {
+                    Text("\(gamble.likes) likes")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 4)
+                }
+                
+                if gamble.likes > 0 && gamble.tableTalkCount > 0 {
+                    Text("-")
+                }
+                
+                if gamble.tableTalkCount > 0 {
+                    Text("\(gamble.tableTalkCount) replies")
+                }
             }
         }
         .sheet(isPresented: $showTableTalkSheet) {

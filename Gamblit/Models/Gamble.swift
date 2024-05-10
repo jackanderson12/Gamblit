@@ -19,6 +19,7 @@ struct Gamble: Identifiable, Codable {
     let description: String
     let timestamp: Timestamp
     
+    var tableTalkCount: Int
     var likes: Int
     var didLike: Bool? = false
     
@@ -30,10 +31,18 @@ struct Gamble: Identifiable, Codable {
 }
 
 struct TableTalk: Identifiable, Codable {
-    let id: String
-    let gambleReference: DocumentReference
+    @DocumentID var tableTalkId: String?
+    
+    let gambleId: String
+    let gambleOwnerUserId: String
     let userId: String
     let content: String
-    var replies: [TableTalk]
     let timestamp: Timestamp
+    
+    var gamble: Gamble?
+    var user: DBUser?
+    
+    var id: String {
+        return tableTalkId ?? UUID().uuidString
+    }
 }

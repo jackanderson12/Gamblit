@@ -28,6 +28,8 @@
 		134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911552B5C2F3200311799 /* GameChartPickerView.swift */; };
 		135208D12BEA629100B0ADF6 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D02BEA629100B0ADF6 /* TextFieldModifier.swift */; };
 		135208D32BED54DD00B0ADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D22BED54DD00B0ADF6 /* Constants.swift */; };
+		135208D52BEE677C00B0ADF6 /* TableTalkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */; };
+		135208D72BEE689400B0ADF6 /* TableTalkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D62BEE689400B0ADF6 /* TableTalkViewModel.swift */; };
 		13695CFE2BA7158900CB9FE3 /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13695CFD2BA7158900CB9FE3 /* OnFirstAppearViewModifier.swift */; };
 		13695D012BA72AD800CB9FE3 /* Query+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13695D002BA72AD800CB9FE3 /* Query+EXT.swift */; };
 		136AEC482BB463A600F99AB9 /* GambleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136AEC472BB463A600F99AB9 /* GambleCellView.swift */; };
@@ -135,6 +137,8 @@
 		134911552B5C2F3200311799 /* GameChartPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartPickerView.swift; sourceTree = "<group>"; };
 		135208D02BEA629100B0ADF6 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		135208D22BED54DD00B0ADF6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalkManager.swift; sourceTree = "<group>"; };
+		135208D62BEE689400B0ADF6 /* TableTalkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalkViewModel.swift; sourceTree = "<group>"; };
 		13695CFD2BA7158900CB9FE3 /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		13695D002BA72AD800CB9FE3 /* Query+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+EXT.swift"; sourceTree = "<group>"; };
 		136AEC472BB463A600F99AB9 /* GambleCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleCellView.swift; sourceTree = "<group>"; };
@@ -383,6 +387,7 @@
 				133105D52B36820C009356B4 /* GamesManager.swift */,
 				136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */,
 				136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */,
+				135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */,
 				136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */,
 				13F164712BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift */,
+				135208D62BEE689400B0ADF6 /* TableTalkViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */,
 				13EEAEE52B279A390014CD9F /* AuthenticationManager.swift in Sources */,
 				136AEC4C2BB483F900F99AB9 /* CircularProfileImageView.swift in Sources */,
+				135208D72BEE689400B0ADF6 /* TableTalkViewModel.swift in Sources */,
 				13F164782BED8DE900720A8F /* String.swift in Sources */,
 				1302A9122B2B5969008D2E79 /* SettingsView.swift in Sources */,
 				13F164702BEADE8100720A8F /* ContentActionButtonsView.swift in Sources */,
@@ -601,6 +608,7 @@
 				135208D12BEA629100B0ADF6 /* TextFieldModifier.swift in Sources */,
 				1302A91C2B2CB26E008D2E79 /* DBUser.swift in Sources */,
 				13EEAEDC2B2791DE0014CD9F /* AuthenticationView.swift in Sources */,
+				135208D52BEE677C00B0ADF6 /* TableTalkManager.swift in Sources */,
 				136AEC5A2BBC69A400F99AB9 /* CreateGambleRemodelView.swift in Sources */,
 				1302A9162B2B5BAF008D2E79 /* ProfileView.swift in Sources */,
 				136CF1232B6B400F004CC5B3 /* HistoricalChartView.swift in Sources */,

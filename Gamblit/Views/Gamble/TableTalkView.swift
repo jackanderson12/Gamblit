@@ -12,6 +12,7 @@ struct TableTalkView: View {
     let gamble: Gamble
     @State private var tableTalkText = ""
     @State private var gambleViewHeight: CGFloat = 24
+    @StateObject var viewModel = TableTalkViewModel()
     @Environment(\.dismiss) var dismiss
     
     private var currentUser: DBUser? {
@@ -21,6 +22,12 @@ struct TableTalkView: View {
     func setGambleViewHeight() {
         let imageDimension: CGFloat = ProfileImageSize.small.dimension
         let padding: CGFloat = 16
+        let width = UIScreen.current?.bounds.width - imageDimension - padding
+        
+        let font = UIFont.systemFont(ofSize: 12)
+        let titleSize = gamble.title.heightWithConstrainedWidth(width, font: font)
+        
+        gambleViewHeight = titleSize + imageDimension - 16
     }
     
     var body: some View {
@@ -33,7 +40,7 @@ struct TableTalkView: View {
                             CircularProfileImageView(user: gamble.user, size: .small)
                             
                             Rectangle()
-                                .frame(width: 2, height: 50)
+                                .frame(width: 2, height: gambleViewHeight)
                                 .foregroundStyle(.secondary)
                         }
                         
@@ -63,6 +70,9 @@ struct TableTalkView: View {
                 }
                 .padding()
             }
+            .onAppear {
+                setGambleViewHeight()
+            }
             .navigationTitle("Table Talk")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -74,7 +84,7 @@ struct TableTalkView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Post") {
                         Task {
-                            //try await viewModel.uploadGamble()
+                            try await viewModel.uploadTableTalk(tableTalkText: tableTalkText, gamble: gamble)
                             dismiss()
                         }
                     }

@@ -13,5 +13,5 @@ class DeveloperPreview {
     
     let user = DBUser(userId: String("\(UUID())"), isAnonymous: false, photoUrl: "www.google.com/images", dateCreated: Date(), isPremium: true, sportsBooks: ["Draftkings", "Fanduel"])
     
-    let gamble = Gamble(userId: "123", game: Game(id: "123", commenceTime: "Tomorrow", homeTeam: "Washington Captials", awayTeam: "Boston Bruins", sportKey: "NHL", sportTitle: "Hockey", bookmakers: []), title: "The Capitals are going to win!", description: "The caps will win because OV is on the goal scoring record chase.", timestamp: Timestamp(), likes: 100)
+    let gamble = Gamble(userId: "123", game: Game(id: "123", commenceTime: "Tomorrow", homeTeam: "Washington Captials", awayTeam: "Boston Bruins", sportKey: "NHL", sportTitle: "Hockey", bookmakers: []), title: "The Capitals are going to win!", description: "The caps will win because OV is on the goal scoring record chase.", timestamp: Timestamp(), tableTalkCount: 9, likes: 100)
 }

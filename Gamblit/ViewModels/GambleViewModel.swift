@@ -32,7 +32,8 @@ class GambleViewModel: ObservableObject {
     
     func uploadGamble() async throws {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let gamble = Gamble(userId: uid, game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []), title: title, description: description, timestamp: Timestamp(), likes: likes)
+        
+        let gamble = Gamble(userId: uid, game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []), title: title, description: description, timestamp: Timestamp(), tableTalkCount: 0, likes: likes)
         try? await GambleManagerRemodel.uploadGamble(gamble)
     }
 }
