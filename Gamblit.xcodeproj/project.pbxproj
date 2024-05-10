@@ -106,6 +106,8 @@
 		13EEAEE92B279C8A0014CD9F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EEAEE82B279C8A0014CD9F /* Utilities.swift */; };
 		13F164702BEADE8100720A8F /* ContentActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F1646F2BEADE8100720A8F /* ContentActionButtonsView.swift */; };
 		13F164722BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F164712BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift */; };
+		13F164762BED820900720A8F /* TableTalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F164752BED820900720A8F /* TableTalkView.swift */; };
+		13F164782BED8DE900720A8F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F164772BED8DE900720A8F /* String.swift */; };
 		13F557D92B8B9FDF00C1398B /* GambleFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */; };
 		13F557DB2B8BA08500C1398B /* GambleFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F557DA2B8BA08500C1398B /* GambleFeedView.swift */; };
 /* End PBXBuildFile section */
@@ -186,6 +188,8 @@
 		13EEAEE82B279C8A0014CD9F /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		13F1646F2BEADE8100720A8F /* ContentActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentActionButtonsView.swift; sourceTree = "<group>"; };
 		13F164712BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentActionButtonsViewModel.swift; sourceTree = "<group>"; };
+		13F164752BED820900720A8F /* TableTalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalkView.swift; sourceTree = "<group>"; };
+		13F164772BED8DE900720A8F /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleFeedViewModel.swift; sourceTree = "<group>"; };
 		13F557DA2B8BA08500C1398B /* GambleFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleFeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +262,7 @@
 				136AEC532BBC456100F99AB9 /* UIWindow+EXT.swift */,
 				136AEC552BBC458200F99AB9 /* UIScreen+EXT.swift */,
 				136AEC712BE015E900F99AB9 /* Timestamp.swift */,
+				13F164772BED8DE900720A8F /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				136AEC472BB463A600F99AB9 /* GambleCellView.swift */,
 				136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */,
 				13F1646F2BEADE8100720A8F /* ContentActionButtonsView.swift */,
+				13F164752BED820900720A8F /* TableTalkView.swift */,
 			);
 			path = Gamble;
 			sourceTree = "<group>";
@@ -587,6 +593,7 @@
 				1371EEDE2B5C370300A95866 /* BookmakersButtonsView.swift in Sources */,
 				13EEAEE52B279A390014CD9F /* AuthenticationManager.swift in Sources */,
 				136AEC4C2BB483F900F99AB9 /* CircularProfileImageView.swift in Sources */,
+				13F164782BED8DE900720A8F /* String.swift in Sources */,
 				1302A9122B2B5969008D2E79 /* SettingsView.swift in Sources */,
 				13F164702BEADE8100720A8F /* ContentActionButtonsView.swift in Sources */,
 				13054D4C2BBCC204009F4F12 /* ContentViewModel.swift in Sources */,
@@ -606,6 +613,7 @@
 				13695CFE2BA7158900CB9FE3 /* OnFirstAppearViewModifier.swift in Sources */,
 				136AEC482BB463A600F99AB9 /* GambleCellView.swift in Sources */,
 				136CF1272B753FC3004CC5B3 /* DataPoint.swift in Sources */,
+				13F164762BED820900720A8F /* TableTalkView.swift in Sources */,
 				136AEC502BBAFF9300F99AB9 /* UserProfileView.swift in Sources */,
 				1371EEE42B62155500A95866 /* HistoricalView.swift in Sources */,
 				134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */,

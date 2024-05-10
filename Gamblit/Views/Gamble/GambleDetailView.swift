@@ -19,7 +19,7 @@ struct GambleDetailView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 16) {
                     ForEach(viewModel.filteredTableTalks(for: gamble.id), id: \.id) { tableTalk in
-                        TableTalkView(tableTalk: tableTalk)
+                        ShowTableTalkView(tableTalk: tableTalk)
                             .padding(.horizontal)
                     }
                 }
@@ -34,7 +34,7 @@ struct GambleDetailView: View {
     }
 }
 
-struct TableTalkView: View {
+struct ShowTableTalkView: View {
     let tableTalk: TableTalk
     
     var body: some View {
@@ -51,7 +51,7 @@ struct TableTalkView: View {
             if !tableTalk.replies.isEmpty {
                 VStack(alignment: .leading, spacing: 8) {
                     ForEach(tableTalk.replies, id: \.id) { reply in
-                        TableTalkView(tableTalk: reply)
+                        ShowTableTalkView(tableTalk: reply)
                             .padding(.leading)
                     }
                 }

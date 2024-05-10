@@ -39,7 +39,7 @@ struct GambleManagerRemodel {
     
     //MARK: - Likes Functionality
     static func likeGamble(_ gamble: Gamble) async throws {
-        guard let uid = Auth.auth().currentUser?.userId else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let gambleReference = FirestoreConstants.gambleCollection.document(gamble.id)
         
         async let _ = try await gambleReference.collection("gamble-likes").document(uid).setData([:])
@@ -47,10 +47,24 @@ struct GambleManagerRemodel {
         async let _ = try await FirestoreConstants.userCollection.document(uid).collection("user-likes").document(gamble.id).setData([:])
     }
     static func unlikeGamble(_ gamble: Gamble) async throws {
+        guard gamble.likes > 0 else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let gambleReference = FirestoreConstants.gambleCollection.document(gamble.id)
         
+        async let _ = gambleReference.collection("gamble-likes").document(uid).delete()
+        async let _ = try await gambleReference.updateData(["likes": gamble.likes - 1])
+        async let _ = try await FirestoreConstants.userCollection.document(uid).collection("user-likes").document(gamble.id).delete()
     }
     static func checkIfUserLikedGamble(_ gamble: Gamble) async throws -> Bool {
-        return false
+        guard let uid = Auth.auth().currentUser?.uid else { return false }
+        
+        let snapshot = try await FirestoreConstants.userCollection
+            .document(uid)
+            .collection("user-likes")
+            .document(gamble.id)
+            .getDocument()
+        
+        return snapshot.exists
     }
     
     

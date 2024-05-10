@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentActionButtonsView: View {
     @ObservedObject var viewModel: ContentActionButtonsViewModel
     
+    @State private var showTableTalkSheet: Bool = false
+    
     init(gamble: Gamble) {
         self.viewModel = ContentActionButtonsViewModel(gamble: gamble)
     }
@@ -18,10 +20,14 @@ struct ContentActionButtonsView: View {
         return viewModel.gamble.didLike ?? false
     }
     
+    private var gamble: Gamble {
+        return viewModel.gamble
+    }
+    
     func handleLikeTapped() {
         Task {
             if didLike {
-                viewModel.unlikeGamble()
+                try await viewModel.unlikeGamble()
             } else {
                 try await viewModel.likeGamble()
             }
@@ -29,29 +35,40 @@ struct ContentActionButtonsView: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
-            Button {
-                handleLikeTapped()
-            } label: {
-                Image(systemName: didLike ? "heart.fill" : "heart")
-                    .foregroundStyle(didLike ? .red : .black)
-            }
-            Button {
+        VStack(alignment: .leading) {
+            HStack(spacing: 16) {
+                Button {
+                    handleLikeTapped()
+                } label: {
+                    Image(systemName: didLike ? "heart.fill" : "heart")
+                        .foregroundStyle(didLike ? .red : .secondary)
+                }
+                Button {
+                    showTableTalkSheet.toggle()
+                } label: {
+                    Image(systemName: "bubble.right")
+                }
+                Button {
+                    
+                } label: {
+                    Image(systemName: "arrow.rectanglepath")
+                }
                 
-            } label: {
-                Image(systemName: "bubble.right")
+                Button {
+                    
+                } label: {
+                    Image(systemName: "paperplane")
+                }
             }
-            Button {
-                
-            } label: {
-                Image(systemName: "arrow.rectanglepath")
+            if gamble.likes > 0 {
+                Text("\(gamble.likes) likes")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.vertical, 4)
             }
-
-            Button {
-                
-            } label: {
-                Image(systemName: "paperplane")
-            }
+        }
+        .sheet(isPresented: $showTableTalkSheet) {
+            TableTalkView(gamble: gamble)
         }
     }
 }

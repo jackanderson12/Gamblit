@@ -40,7 +40,7 @@ struct GambleCellView: View {
                         .multilineTextAlignment(.leading)
                     
                     ContentActionButtonsView(gamble: gamble)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.secondary)
                         .padding(.vertical, 8)
                 }
             }
