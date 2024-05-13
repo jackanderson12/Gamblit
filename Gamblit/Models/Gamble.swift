@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct Gamble: Identifiable, Codable {
+struct Gamble: Identifiable, Codable, Hashable {
     @DocumentID var gambleId: String?
     
     let userId: String

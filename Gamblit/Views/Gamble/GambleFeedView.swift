@@ -16,7 +16,9 @@ struct GambleFeedView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.gambles, id: \.id) { gamble in
-                        GambleCellView(gamble: gamble)
+                        NavigationLink(value: gamble) {
+                            GambleCellView(gamble: gamble)
+                        }
                     }
                 }
             }
@@ -25,6 +27,9 @@ struct GambleFeedView: View {
                     try await viewModel.fetchGambles()
                 }
             }
+            .navigationDestination(for: Gamble.self, destination: { gamble in
+                GambleDetailView(gamble: gamble)
+            })
             .navigationTitle("Gambles")
             .navigationBarTitleDisplayMode(.inline)
         }
