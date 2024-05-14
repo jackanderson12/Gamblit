@@ -22,7 +22,7 @@ struct TableTalkView: View {
     func setGambleViewHeight() {
         let imageDimension: CGFloat = ProfileImageSize.small.dimension
         let padding: CGFloat = 16
-        let width = UIScreen.current?.bounds.width - imageDimension - padding
+        let width = (UIScreen.current?.bounds.width ?? 250) - imageDimension - padding
         
         let font = UIFont.systemFont(ofSize: 12)
         let titleSize = gamble.title.heightWithConstrainedWidth(width, font: font)

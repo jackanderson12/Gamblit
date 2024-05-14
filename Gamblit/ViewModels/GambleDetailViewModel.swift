@@ -21,6 +21,6 @@ class GambleDetailViewModel: ObservableObject {
     }
     
     private func fetchTableTalks() async throws{
-        self.tableTalks = TableTalkManager.fetchGambleTableTalks(forGambles: gamble)
+        self.tableTalks = try await TableTalkManager.fetchGambleTableTalks(forGambles: gamble)
     }
 }
