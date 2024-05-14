@@ -51,8 +51,15 @@ struct UserContentListView: View {
             }
             
             LazyVStack {
-                ForEach(viewModel.gambles) { gamble in
-                    GambleCellView(gamble: gamble)
+                switch selectedFilter {
+                case .gambles:
+                    ForEach(viewModel.gambles) { gamble in
+                        GambleCellView(gamble: gamble)
+                    }
+                case .tabletalks:
+                    ForEach(viewModel.tableTalks) { tableTalk in
+                        GambleTableTalksProfileCellView(tableTalk: tableTalk)
+                    }
                 }
             }
         }

@@ -10,6 +10,13 @@ import SwiftUI
 struct GambleDetailView: View {
     let gamble: Gamble
     
+    @StateObject var viewModel: GambleDetailViewModel
+    
+    init(gamble: Gamble, viewModel: GambleDetailViewModel) {
+        self.gamble = gamble
+        self._viewModel = StateObject(wrappedValue: GambleDetailViewModel(gamble: gamble))
+    }
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -46,8 +53,8 @@ struct GambleDetailView: View {
                     .padding(.vertical)
                 
                 LazyVStack {
-                    ForEach(0...10, id: \.self) { tableTalk in
-                        Text("Table Talks go here...")
+                    ForEach(viewModel.tableTalks, id: \.self) { tableTalk in
+                        TableTalkCellView(tableTalk: tableTalk)
                     }
                 }
             }

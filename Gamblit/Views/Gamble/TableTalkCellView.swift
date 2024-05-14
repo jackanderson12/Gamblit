@@ -9,11 +9,48 @@ import SwiftUI
 
 struct TableTalkCellView: View {
     
-    @Binding var tableTalk: TableTalk
+    let tableTalk: TableTalk
+    
+    private var user: DBUser? {
+        return tableTalk.user
+    }
     
     var body: some View {
         VStack {
-            Text(tableTalk.content)
+            HStack(alignment: .top, spacing: 12) {
+                
+                CircularProfileImageView(user: user, size: .small)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text(user?.userId ?? "")
+                            .font(.footnote)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                        
+                        Text(tableTalk.timestamp.timestampString())
+                            .font(.caption)
+                            .foregroundStyle(Color(.systemGray))
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .foregroundStyle(Color(.darkGray))
+                        }
+                    }
+                    Text(tableTalk.title)
+                    Text(tableTalk.title)
+                        .font(.footnote)
+                        .multilineTextAlignment(.leading)
+                }
+            }
+            Divider()
         }
+        .padding()
     }
+}
+
+#Preview {
+    TableTalkCellView(tableTalk: DeveloperPreview.shared.tableTalk)
 }

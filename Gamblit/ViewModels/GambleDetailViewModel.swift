@@ -18,9 +18,22 @@ class GambleDetailViewModel: ObservableObject {
     
     init(gamble: Gamble) {
         self.gamble = gamble
+        Task {
+            try await fetchTableTalks()
+        }
     }
     
     private func fetchTableTalks() async throws{
         self.tableTalks = try await TableTalkManager.fetchGambleTableTalks(forGambles: gamble)
+        try await fetchUserDataForTableTalks()
+    }
+    
+    private func fetchUserDataForTableTalks() {
+        for i in 0 ..< tableTalks.count {
+            let tabletalk = tableTalks[i]
+            
+            async let user = try await UserManager.shared.getUser(userId: tabletalk.userId)
+            self.tableTalks[i].user = try await user
+        }
     }
 }

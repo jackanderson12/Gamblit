@@ -22,4 +22,14 @@ class DeveloperPreview {
         tableTalkCount: 9,
         likes: 100
     )
+    
+    lazy var tableTalk = TableTalk(
+        gambleId: "123",
+        gambleOwnerUserId: "12345",
+        userId: "12345",
+        content: "This is a tableTalk",
+        timestamp: Timestamp(),
+        gamble: gamble,
+        user: user
+    )
 }
