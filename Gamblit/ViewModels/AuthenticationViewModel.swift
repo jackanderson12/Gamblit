@@ -29,7 +29,6 @@ final class AuthenticationViewModel: ObservableObject {
         let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
         let user = DBUser(auth: authDataResult)
         try await UserManager.shared.createNewUser(user: user)
-
     }
     
     func signInAnonymous() async throws {
@@ -51,7 +50,7 @@ struct GoogleSignInResultModel {
 final class SignInGoogleHelper {
     
     @MainActor
-    func signIn() async throws -> GoogleSignInResultModel{
+    func signIn() async throws -> GoogleSignInResultModel {
         guard let topVC = Utilities.shared.topViewController() else {
             throw URLError(.cannotFindHost)
         }

@@ -11,7 +11,6 @@ import FirebaseAuth
 struct SettingsView: View {
     
     @StateObject private var viewModel = SettingsViewModel()
-    @Binding var showSignInView: Bool
     
     var body: some View {
         List {
@@ -19,7 +18,6 @@ struct SettingsView: View {
                 Task {
                     do {
                         try viewModel.signOut()
-                        showSignInView = true
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -29,7 +27,6 @@ struct SettingsView: View {
                 Task {
                     do {
                         try await viewModel.deleteAccount()
-                        showSignInView = true
                     } catch {
                         print(error.localizedDescription)
                     }

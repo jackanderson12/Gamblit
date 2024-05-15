@@ -36,6 +36,13 @@ struct GameDetailView: View {
                 HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink("New Gamble") {
+                    //CreateGambleView(profileViewModel: profileViewModel, game: game)
+                }
+            }
+        }
         .onChange(of: viewModel.selectedFilter) {
             Task {
                 viewModel.eventId = game.id
