@@ -28,7 +28,7 @@ struct GambleFeedView: View {
                 }
             }
             .navigationDestination(for: Gamble.self, destination: { gamble in
-                GambleDetailView(gamble: gamble)
+                GambleDetailView(gamble: gamble, viewModel: GambleDetailViewModel(gamble: gamble))
             })
             .navigationTitle("Gambles")
             .navigationBarTitleDisplayMode(.inline)

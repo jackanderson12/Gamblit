@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GambleDetailView: View {
     let gamble: Gamble
-    
     @StateObject var viewModel: GambleDetailViewModel
     
     init(gamble: Gamble, viewModel: GambleDetailViewModel) {
@@ -66,5 +65,5 @@ struct GambleDetailView: View {
 }
 
 #Preview {
-    GambleDetailView(gamble: DeveloperPreview.shared.gamble)
+    GambleDetailView(gamble: DeveloperPreview.shared.gamble, viewModel: GambleDetailViewModel(gamble: DeveloperPreview.shared.gamble))
 }

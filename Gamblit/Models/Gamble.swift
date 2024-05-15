@@ -30,7 +30,7 @@ struct Gamble: Identifiable, Codable, Hashable {
     var user: DBUser?
 }
 
-struct TableTalk: Identifiable, Codable {
+struct TableTalk: Identifiable, Codable, Hashable {
     @DocumentID var tableTalkId: String?
     
     let gambleId: String
