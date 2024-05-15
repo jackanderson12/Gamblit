@@ -68,33 +68,3 @@ struct GambleDetailView: View {
 #Preview {
     GambleDetailView(gamble: DeveloperPreview.shared.gamble)
 }
-
-//struct ShowTableTalkView: View {
-//    let tableTalk: TableTalk
-//    
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 8) {
-//            HStack {
-//                Text(tableTalk.userId)
-//                    .font(.subheadline)
-//                    .fontWeight(.bold)
-//            }
-//            
-//            Text(tableTalk.content)
-//                .font(.body)
-//            
-//            if !tableTalk.replies.isEmpty {
-//                VStack(alignment: .leading, spacing: 8) {
-//                    ForEach(tableTalk.replies, id: \.id) { reply in
-//                        ShowTableTalkView(tableTalk: reply)
-//                            .padding(.leading)
-//                    }
-//                }
-//            }
-//        }
-//        .padding()
-//        .background(Color(.systemBackground))
-//        .cornerRadius(8)
-//        .shadow(radius: 2)
-//    }
-//}

@@ -39,8 +39,8 @@ struct TableTalkCellView: View {
                                 .foregroundStyle(Color(.darkGray))
                         }
                     }
-                    Text(tableTalk.title)
-                    Text(tableTalk.title)
+                    Text(tableTalk.content)
+                    Text(tableTalk.content)
                         .font(.footnote)
                         .multilineTextAlignment(.leading)
                 }

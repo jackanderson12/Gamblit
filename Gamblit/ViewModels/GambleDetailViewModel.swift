@@ -7,7 +7,6 @@
 
 import Foundation
 import FirebaseFirestore
-import Combine
 
 @MainActor
 class GambleDetailViewModel: ObservableObject {
@@ -28,7 +27,7 @@ class GambleDetailViewModel: ObservableObject {
         try await fetchUserDataForTableTalks()
     }
     
-    private func fetchUserDataForTableTalks() {
+    private func fetchUserDataForTableTalks() async throws {
         for i in 0 ..< tableTalks.count {
             let tabletalk = tableTalks[i]
             

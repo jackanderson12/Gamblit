@@ -51,7 +51,9 @@ struct GambleTableTalksProfileCell: View {
             }
             
             Divider()
+                .padding(.bottom, 8)
         }
+        .padding(.horizontal)
     }
 }
 

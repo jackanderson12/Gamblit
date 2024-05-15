@@ -11,6 +11,7 @@ import Foundation
 class UserContentListViewModel: ObservableObject {
     
     @Published var gambles: [Gamble] = []
+    @Published var tableTalks: [TableTalk] = []
     
     let user: DBUser
     
@@ -18,6 +19,9 @@ class UserContentListViewModel: ObservableObject {
         self.user = user
         Task {
             try await fetchGambles()
+        }
+        Task {
+            try await fetchUserTableTalks()
         }
     }
     
@@ -29,5 +33,21 @@ class UserContentListViewModel: ObservableObject {
         }
         
         self.gambles = gambles
+    }
+    
+    func fetchUserTableTalks() async throws {
+        self.tableTalks = try await GambleManagerRemodel.fetchUserTableTalks(forUser: user)
+        try await fetchTableTalkGambleData()
+    }
+    
+    func fetchTableTalkGambleData() async throws {
+        for i in 0 ..< tableTalks.count {
+            let tableTalk = tableTalks[i]
+            
+            var gamble = try await GambleManagerRemodel.fetchGamble(gambleId: tableTalk.gambleId)
+            gamble.user = try await UserManager.shared.getUser(userId: gamble.userId)
+            
+            tableTalks[i].gamble = gamble
+        }
     }
 }

@@ -26,6 +26,14 @@ struct GambleManagerRemodel {
         return snapshot.documents.compactMap({ try? $0.data(as: Gamble.self)})
     }
     
+    static func fetchGamble(gambleId: String) async throws -> Gamble {
+        let snapshot = try await FirestoreConstants.gambleCollection
+            .document(gambleId)
+            .getDocument()
+        
+        return try snapshot.data(as: Gamble.self)
+    }
+    
     static func fetchUserGambles(uid: String) async throws -> [Gamble] {
         let snapshot = try await Firestore
             .firestore()
@@ -35,6 +43,20 @@ struct GambleManagerRemodel {
         let gambles = snapshot.documents.compactMap({ try? $0.data(as: Gamble.self) })
         
         return gambles.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() })
+    }
+    
+    static func fetchUserTableTalks(forUser user: DBUser) async throws -> [TableTalk] {
+        let snapshot = try await FirestoreConstants.tableTalkCollection
+            .whereField("userId", isEqualTo: user.id)
+            .getDocuments()
+        
+        var tableTalks = snapshot.documents.compactMap({ try? $0.data(as: TableTalk.self) })
+        
+        for i in 0 ..< tableTalks.count {
+            tableTalks[i].user = user
+        }
+        
+        return tableTalks
     }
     
     //MARK: - Likes Functionality

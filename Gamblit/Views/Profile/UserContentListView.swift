@@ -55,10 +55,12 @@ struct UserContentListView: View {
                 case .gambles:
                     ForEach(viewModel.gambles) { gamble in
                         GambleCellView(gamble: gamble)
+                            .transition(.move(edge: .leading))
                     }
                 case .tabletalks:
                     ForEach(viewModel.tableTalks) { tableTalk in
-                        GambleTableTalksProfileCellView(tableTalk: tableTalk)
+                        GambleTableTalksProfileCell(tableTalk: tableTalk)
+                            .transition(.move(edge: .trailing))
                     }
                 }
             }
