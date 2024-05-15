@@ -69,3 +69,7 @@ fastlane/test_output
 *.pbxproj
 *.pbxproj
 *.pbxproj
+.DS_Store
+*.xcuserstate
+Gamblit.xcodeproj/project.pbxproj
+*.pbxproj

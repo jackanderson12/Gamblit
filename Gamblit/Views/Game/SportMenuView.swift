@@ -15,25 +15,27 @@ struct SportMenuView: View {
     @State private var selectedSport: Sport = .football
     
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
-            ForEach(Sport.allCases, id: \.self) { sport in
-                NavigationLink {
-                    DelayedGamesView(viewModel: viewModel, profileViewModel: profileViewModel)
-                } label: {
-                    Text(sport.rawValue)
+        NavigationStack {
+            VStack(alignment: .center, spacing: 20) {
+                ForEach(Sport.allCases, id: \.self) { sport in
+                    NavigationLink {
+                        DelayedGamesView(viewModel: viewModel, profileViewModel: profileViewModel)
+                    } label: {
+                        Text(sport.rawValue)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        selectedSport = sport
+                    })
+                    .buttonStyle(.borderedProminent)
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    selectedSport = sport
-                })
-                .buttonStyle(.borderedProminent)
             }
-        }
-        .onChange(of: selectedSport) {
-            viewModel.selectedSport = selectedSport
-        }
-        .task {
-            try? await profileViewModel.loadCurrentUser()
-            viewModel.selectedBooks = profileViewModel.user?.sportsBooks
+            .onChange(of: selectedSport) {
+                viewModel.selectedSport = selectedSport
+            }
+            .task {
+                try? await profileViewModel.loadCurrentUser()
+                viewModel.selectedBooks = profileViewModel.user?.sportsBooks
+            }
         }
     }
 }

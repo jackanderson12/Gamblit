@@ -12,6 +12,12 @@ final class ProfileViewModel: ObservableObject {
     
     @Published private (set) var user: DBUser? = nil
     
+    init() {
+        Task {
+            try? await loadCurrentUser()
+        }
+    }
+    
     func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
@@ -21,8 +27,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         let currentValue = user.isPremium ?? false
         Task {
-            try await UserManager.shared.updateUserPremiumStatus(userId: user.userId, isPremium: !currentValue)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.updateUserPremiumStatus(userId: user.userId!, isPremium: !currentValue)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
     
@@ -30,8 +36,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         
         Task {
-            try await UserManager.shared.addUserSportsBooks(userId: user.userId, sportsBooks: sportsBooks)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.addUserSportsBooks(userId: user.userId!, sportsBooks: sportsBooks)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
     
@@ -39,8 +45,8 @@ final class ProfileViewModel: ObservableObject {
         guard let user else { return }
         
         Task {
-            try await UserManager.shared.removeUserSportsBooks(userId: user.userId, sportsBooks: sportsBooks)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            try await UserManager.shared.removeUserSportsBooks(userId: user.userId!, sportsBooks: sportsBooks)
+            self.user = try await UserManager.shared.getUser(userId: user.userId!)
         }
     }
 }

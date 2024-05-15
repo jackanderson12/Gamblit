@@ -11,29 +11,32 @@ struct GambleFeedView: View {
     
     @StateObject private var viewModel = GambleFeedViewModel()
     
-    @State private var gambles: [Gamble] = []
-    
     var body: some View {
         NavigationStack {
-            VStack {
-                ForEach($gambles, id: \.id) { gamble in
-                    GambleCardView(Gamble: gamble)
+            ScrollView {
+                LazyVStack {
+                    ForEach(viewModel.gambles, id: \.id) { gamble in
+                        NavigationLink(value: gamble) {
+                            GambleCellView(gamble: gamble)
+                        }
+                    }
                 }
             }
+            .refreshable {
+                Task {
+                    try await viewModel.fetchGambles()
+                }
+            }
+            .navigationDestination(for: Gamble.self, destination: { gamble in
+                GambleDetailView(gamble: gamble, viewModel: GambleDetailViewModel(gamble: gamble))
+            })
+            .navigationTitle("Gambles")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    CreateGambleView()
-                } label: {
-                    Image(systemName: "square.and.pencil")
-                }
-
+                Image(systemName: "arrow.counterclockwise")
             }
-        }
-        .task {
-            try? await viewModel.getAllGambles()
-            gambles = viewModel.gambles
         }
     }
 }
@@ -41,3 +44,4 @@ struct GambleFeedView: View {
 #Preview {
     GambleFeedView()
 }
+
