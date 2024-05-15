@@ -31,9 +31,9 @@ struct CurrentUserProfileView: View {
                         Text("Edit Profile")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.secondary)
                             .frame(width: 352, height: 32)
-                            .background(.white)
+                            .background(.primary)
                             .clipShape(.buttonBorder)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 8)

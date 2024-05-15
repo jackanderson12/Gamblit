@@ -92,7 +92,6 @@
 		13BE43DF2B280FC20041DEEE /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 13BE43DE2B280FC20041DEEE /* FirebaseAuthCombine-Community */; };
 		13CD7A642B28B3D600E261DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13CD7A632B28B3D600E261DA /* GoogleService-Info.plist */; };
 		13CD7A662B28BDDD00E261DA /* GambleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A652B28BDDD00E261DA /* GambleCardView.swift */; };
-		13CD7A722B293E0D00E261DA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD7A712B293E0D00E261DA /* ViewModel.swift */; };
 		13E99AB72B9A0D88009A25A1 /* GambleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E99AB62B9A0D88009A25A1 /* GambleDetailViewModel.swift */; };
 		13E99AB92B9A2C9D009A25A1 /* TableTalkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */; };
 		13EEAECD2B2782870014CD9F /* Gamble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EEAECC2B2782870014CD9F /* Gamble.swift */; };
@@ -184,7 +183,6 @@
 		13CD7A622B28AD8F00E261DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		13CD7A632B28B3D600E261DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13CD7A652B28BDDD00E261DA /* GambleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleCardView.swift; sourceTree = "<group>"; };
-		13CD7A712B293E0D00E261DA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		13E99AB62B9A0D88009A25A1 /* GambleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleDetailViewModel.swift; sourceTree = "<group>"; };
 		13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalkCellView.swift; sourceTree = "<group>"; };
 		13EEAECC2B2782870014CD9F /* Gamble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamble.swift; sourceTree = "<group>"; };
@@ -239,6 +237,299 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133C7C772BF51C7A000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */,
+				136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */,
+				136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */,
+				136AEC622BDAA02F00F99AB9 /* UserProfileHeaderView.swift */,
+				136AEC642BDAC04100F99AB9 /* UserContentListView.swift */,
+				136AEC572BBC472E00F99AB9 /* EditProfileView.swift */,
+				136AEC4B2BB483F900F99AB9 /* CircularProfileImageView.swift */,
+				135208D82BF3E80600B0ADF6 /* GambleTableTalksProfileCell.swift */,
+				1302A9152B2B5BAF008D2E79 /* ProfileView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C782BF51C90000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1302A9192B2B9364008D2E79 /* ProfileViewModel.swift */,
+				136AEC5F2BCD694400F99AB9 /* CurrentUserProfileViewModel.swift */,
+				136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */,
+				136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C792BF51CE2000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				136AEC512BBB042B00F99AB9 /* ProfileGambleFilter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C7A2BF51D42000B87B7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C7D2BF51DD7000B87B7 /* Views */,
+				133C7C7C2BF51DC8000B87B7 /* ViewModels */,
+				133C7C7B2BF51DBD000B87B7 /* Managers */,
+				133C7C7E2BF51DE1000B87B7 /* Models */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		133C7C7B2BF51DBD000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				13EEAEE42B279A390014CD9F /* AuthenticationManager.swift */,
+				1302A9172B2B70CC008D2E79 /* UserManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		133C7C7C2BF51DC8000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				13EEAEDD2B2798A90014CD9F /* AuthenticationViewModel.swift */,
+				1302A9132B2B5B0A008D2E79 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C7D2BF51DD7000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13EEAEDB2B2791DE0014CD9F /* AuthenticationView.swift */,
+				1302A9112B2B5969008D2E79 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C7E2BF51DE1000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1302A91B2B2CB26E008D2E79 /* DBUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C7F2BF51E59000B87B7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C8F2BF52060000B87B7 /* TabView */,
+				133C7C802BF51E6C000B87B7 /* Gambles */,
+				133C7C812BF51E74000B87B7 /* Games */,
+				133C7C822BF51E7B000B87B7 /* TableTalks */,
+				136AEC612BDA9FED00F99AB9 /* Profile */,
+				133C7C7A2BF51D42000B87B7 /* Authentication */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		133C7C802BF51E6C000B87B7 /* Gambles */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C862BF51EA3000B87B7 /* Views */,
+				133C7C852BF51E9D000B87B7 /* ViewModels */,
+				133C7C842BF51E92000B87B7 /* Managers */,
+				133C7C832BF51E89000B87B7 /* Models */,
+			);
+			path = Gambles;
+			sourceTree = "<group>";
+		};
+		133C7C812BF51E74000B87B7 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C872BF51EFF000B87B7 /* Views */,
+				133C7C882BF51F10000B87B7 /* ViewModels */,
+				133C7C892BF51F17000B87B7 /* Managers */,
+				133C7C8A2BF51F1F000B87B7 /* Models */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		133C7C822BF51E7B000B87B7 /* TableTalks */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C8E2BF51F81000B87B7 /* Views */,
+				133C7C8D2BF51F79000B87B7 /* ViewModels */,
+				133C7C8C2BF51F73000B87B7 /* Managers */,
+				133C7C8B2BF51F6E000B87B7 /* Models */,
+			);
+			path = TableTalks;
+			sourceTree = "<group>";
+		};
+		133C7C832BF51E89000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13EEAECC2B2782870014CD9F /* Gamble.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C842BF51E92000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1302A91D2B2CE53A008D2E79 /* GambleManager.swift */,
+				136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		133C7C852BF51E9D000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				134911512B5A1E5500311799 /* GambleViewModel.swift */,
+				13E99AB62B9A0D88009A25A1 /* GambleDetailViewModel.swift */,
+				13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C862BF51EA3000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13CD7A652B28BDDD00E261DA /* GambleCardView.swift */,
+				13F557DA2B8BA08500C1398B /* GambleFeedView.swift */,
+				13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */,
+				136AEC472BB463A600F99AB9 /* GambleCellView.swift */,
+				136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C872BF51EFF000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				134911542B5C2F0F00311799 /* Components */,
+				133105CD2B367182009356B4 /* SportMenuView.swift */,
+				133105CB2B3670C0009356B4 /* GamesView.swift */,
+				1371EEDF2B5C488500A95866 /* GameDetailView.swift */,
+				1371EEE12B62153B00A95866 /* EventView.swift */,
+				1371EEE32B62155500A95866 /* HistoricalView.swift */,
+				136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */,
+				136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C882BF51F10000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				133105C92B3670AC009356B4 /* GamesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C892BF51F17000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				133105D52B36820C009356B4 /* GamesManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		133C7C8A2BF51F1F000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				136CF1262B753FC3004CC5B3 /* DataPoint.swift */,
+				13AE6B132B4772100067B6B7 /* Sport.swift */,
+				133105D32B367D2A009356B4 /* Game.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C8B2BF51F6E000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C8C2BF51F73000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		133C7C8D2BF51F79000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				13F164712BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift */,
+				135208D62BEE689400B0ADF6 /* TableTalkViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C8E2BF51F81000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */,
+				13F1646F2BEADE8100720A8F /* ContentActionButtonsView.swift */,
+				13F164752BED820900720A8F /* TableTalkView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C8F2BF52060000B87B7 /* TabView */ = {
+			isa = PBXGroup;
+			children = (
+				133C7C932BF5208E000B87B7 /* Views */,
+				133C7C922BF52087000B87B7 /* ViewModels */,
+				133C7C912BF5207F000B87B7 /* Managers */,
+				133C7C902BF52078000B87B7 /* Models */,
+			);
+			path = TabView;
+			sourceTree = "<group>";
+		};
+		133C7C902BF52078000B87B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		133C7C912BF5207F000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		133C7C922BF52087000B87B7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				13054D4B2BBCC204009F4F12 /* ContentViewModel.swift */,
+				13054D4F2BCF4D60009F4F12 /* ExploreViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		133C7C932BF5208E000B87B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				138EFA302B261414007F006E /* ContentView.swift */,
+				136AEC492BB46BA500F99AB9 /* ExploreView.swift */,
+				13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		133C7C942BF52100000B87B7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		134911542B5C2F0F00311799 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,14 +567,10 @@
 		136AEC612BDA9FED00F99AB9 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				136AEC4D2BB4847F00F99AB9 /* UserCellView.swift */,
-				136AEC4F2BBAFF9300F99AB9 /* UserProfileView.swift */,
-				136AEC5D2BCD67BB00F99AB9 /* CurrentUserProfileView.swift */,
-				136AEC622BDAA02F00F99AB9 /* UserProfileHeaderView.swift */,
-				136AEC642BDAC04100F99AB9 /* UserContentListView.swift */,
-				136AEC572BBC472E00F99AB9 /* EditProfileView.swift */,
-				136AEC4B2BB483F900F99AB9 /* CircularProfileImageView.swift */,
-				135208D82BF3E80600B0ADF6 /* GambleTableTalksProfileCell.swift */,
+				133C7C772BF51C7A000B87B7 /* Views */,
+				133C7C782BF51C90000B87B7 /* ViewModels */,
+				133C7C942BF52100000B87B7 /* Managers */,
+				133C7C792BF51CE2000B87B7 /* Models */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -311,10 +598,7 @@
 				13CD7A622B28AD8F00E261DA /* Info.plist */,
 				13CD7A632B28B3D600E261DA /* GoogleService-Info.plist */,
 				138EFA2E2B261414007F006E /* GamblitApp.swift */,
-				13EEAEC92B2772870014CD9F /* Views */,
-				13EEAECA2B2772960014CD9F /* ViewModels */,
-				13CD7A702B28F4C600E261DA /* Managers */,
-				13EEAECB2B2772A60014CD9F /* Models */,
+				133C7C7F2BF51E59000B87B7 /* Core */,
 				13EEAEE72B279C740014CD9F /* Utilities */,
 				138EFA342B261415007F006E /* Preview Content */,
 				138EFA322B261415007F006E /* Assets.xcassets */,
@@ -332,46 +616,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		13AE6B112B476DCB0067B6B7 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				134911542B5C2F0F00311799 /* Components */,
-				133105CD2B367182009356B4 /* SportMenuView.swift */,
-				133105CB2B3670C0009356B4 /* GamesView.swift */,
-				1371EEDF2B5C488500A95866 /* GameDetailView.swift */,
-				1371EEE12B62153B00A95866 /* EventView.swift */,
-				1371EEE32B62155500A95866 /* HistoricalView.swift */,
-				136CF1222B6B400F004CC5B3 /* HistoricalChartView.swift */,
-				136CF1242B6BE5FE004CC5B3 /* GenericChartView.swift */,
-			);
-			path = Game;
-			sourceTree = "<group>";
-		};
-		13AE6B122B476DE40067B6B7 /* Gamble */ = {
-			isa = PBXGroup;
-			children = (
-				13CD7A652B28BDDD00E261DA /* GambleCardView.swift */,
-				13F557DA2B8BA08500C1398B /* GambleFeedView.swift */,
-				13033B662B9A0B3C00BC9EA1 /* GambleDetailView.swift */,
-				13E99AB82B9A2C9D009A25A1 /* TableTalkCellView.swift */,
-				136AEC472BB463A600F99AB9 /* GambleCellView.swift */,
-				136AEC592BBC69A400F99AB9 /* CreateGambleRemodelView.swift */,
-				13F1646F2BEADE8100720A8F /* ContentActionButtonsView.swift */,
-				13F164752BED820900720A8F /* TableTalkView.swift */,
-			);
-			path = Gamble;
-			sourceTree = "<group>";
-		};
-		13AE6B152B4790F40067B6B7 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				13EEAEDB2B2791DE0014CD9F /* AuthenticationView.swift */,
-				1302A9112B2B5969008D2E79 /* SettingsView.swift */,
-				1302A9152B2B5BAF008D2E79 /* ProfileView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		13CD7A6B2B28ECC600E261DA /* API Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,74 +625,11 @@
 			path = "API Data";
 			sourceTree = "<group>";
 		};
-		13CD7A702B28F4C600E261DA /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				13EEAEE42B279A390014CD9F /* AuthenticationManager.swift */,
-				1302A9172B2B70CC008D2E79 /* UserManager.swift */,
-				1302A91D2B2CE53A008D2E79 /* GambleManager.swift */,
-				133105D52B36820C009356B4 /* GamesManager.swift */,
-				136AEC682BDC175300F99AB9 /* ImageUploadManager.swift */,
-				136AEC6D2BDFD62F00F99AB9 /* GambleManagerRemodel.swift */,
-				135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		13EEAEC92B2772870014CD9F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				136AEC612BDA9FED00F99AB9 /* Profile */,
-				13695CFC2BA7153200CB9FE3 /* ViewModifier */,
-				13AE6B152B4790F40067B6B7 /* Settings */,
-				13AE6B122B476DE40067B6B7 /* Gamble */,
-				13AE6B112B476DCB0067B6B7 /* Game */,
-				138EFA302B261414007F006E /* ContentView.swift */,
-				136AEC492BB46BA500F99AB9 /* ExploreView.swift */,
-				13054D4D2BBCC3D9009F4F12 /* GamblitTabView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		13EEAECA2B2772960014CD9F /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				13EEAEDD2B2798A90014CD9F /* AuthenticationViewModel.swift */,
-				13CD7A712B293E0D00E261DA /* ViewModel.swift */,
-				1302A9132B2B5B0A008D2E79 /* SettingsViewModel.swift */,
-				1302A9192B2B9364008D2E79 /* ProfileViewModel.swift */,
-				133105C92B3670AC009356B4 /* GamesViewModel.swift */,
-				134911512B5A1E5500311799 /* GambleViewModel.swift */,
-				13F557D82B8B9FDF00C1398B /* GambleFeedViewModel.swift */,
-				13E99AB62B9A0D88009A25A1 /* GambleDetailViewModel.swift */,
-				13054D4B2BBCC204009F4F12 /* ContentViewModel.swift */,
-				136AEC5F2BCD694400F99AB9 /* CurrentUserProfileViewModel.swift */,
-				13054D4F2BCF4D60009F4F12 /* ExploreViewModel.swift */,
-				136AEC662BDC153900F99AB9 /* EditProfileViewModel.swift */,
-				136AEC6F2BE0061000F99AB9 /* UserContentListViewModel.swift */,
-				13F164712BEAE0CB00720A8F /* ContentActionButtonsViewModel.swift */,
-				135208D62BEE689400B0ADF6 /* TableTalkViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		13EEAECB2B2772A60014CD9F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				13695CFF2BA72AC000CB9FE3 /* Extensions */,
-				13EEAECC2B2782870014CD9F /* Gamble.swift */,
-				133105D32B367D2A009356B4 /* Game.swift */,
-				1302A91B2B2CB26E008D2E79 /* DBUser.swift */,
-				13AE6B132B4772100067B6B7 /* Sport.swift */,
-				136CF1262B753FC3004CC5B3 /* DataPoint.swift */,
-				136AEC512BBB042B00F99AB9 /* ProfileGambleFilter.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		13EEAEE72B279C740014CD9F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				13695CFC2BA7153200CB9FE3 /* ViewModifier */,
+				13695CFF2BA72AC000CB9FE3 /* Extensions */,
 				13EEAEE82B279C8A0014CD9F /* Utilities.swift */,
 				135208D22BED54DD00B0ADF6 /* Constants.swift */,
 			);
@@ -576,7 +757,6 @@
 				13AE6B142B4772100067B6B7 /* Sport.swift in Sources */,
 				13033B672B9A0B3C00BC9EA1 /* GambleDetailView.swift in Sources */,
 				136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */,
-				13CD7A722B293E0D00E261DA /* ViewModel.swift in Sources */,
 				136AEC4E2BB4847F00F99AB9 /* UserCellView.swift in Sources */,
 				133105D42B367D2A009356B4 /* Game.swift in Sources */,
 				136AEC692BDC175300F99AB9 /* ImageUploadManager.swift in Sources */,

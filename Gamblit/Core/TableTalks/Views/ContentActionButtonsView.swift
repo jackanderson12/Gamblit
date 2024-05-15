@@ -74,6 +74,9 @@ struct ContentActionButtonsView: View {
                 
                 if gamble.tableTalkCount > 0 {
                     Text("\(gamble.tableTalkCount) replies")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 4)
                 }
             }
         }

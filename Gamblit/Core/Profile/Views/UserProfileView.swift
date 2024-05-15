@@ -22,9 +22,9 @@ struct UserProfileView: View {
                     Text("Follow")
                         .font(.subheadline)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.background)
                         .frame(width: 352, height: 32)
-                        .background(.black)
+                        .background(.foreground)
                         .clipShape(.buttonBorder)
                 }
                 

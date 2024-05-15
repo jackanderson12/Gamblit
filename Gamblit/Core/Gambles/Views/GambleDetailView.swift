@@ -41,6 +41,9 @@ struct GambleDetailView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
+                    
+                    //GambleChartView?
+                    
                     Text(gamble.title)
                         .font(.subheadline)
                     
