@@ -9,52 +9,15 @@ import SwiftUI
 import Charts
 
 struct GambleCardView: View {
-    let game: Game
+    let selectedGame: Game
     let selectedBook: [Bookmakers]
+    let selectedOutcome: [Outcome]
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                .foregroundStyle(.green)
-                .opacity(0.5)
-            HStack {
-                VStack(alignment: .center, spacing: 5) {
-                    Text(game.homeTeam ?? "Home Team")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                    Text("vs.")
-                    Text(game.awayTeam ?? "Away Team")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                }
-                .frame(width: 100)
-                Spacer()
-                HStack {
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("H2H")
-                            .font(.headline)
-                        Text("\(gameAverage.0 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.1 ?? 0, specifier: "%.1f")")
-                    }
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("Total")
-                            .font(.headline)
-                        Text("\(gameAverage.2 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.3 ?? 0, specifier: "%.1f")")
-                    }
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("Spread")
-                            .font(.headline)
-                        Text("\(gameAverage.4 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.5 ?? 0, specifier: "%.1f")")
-                    }
-                }
-            }
-            .padding(.horizontal)
-        }
+        
     }
 }
 
 #Preview {
-    GambleCardView(game: DeveloperPreview.shared.game, selectedBook: DeveloperPreview.shared.bookmakers)
+    GambleCardView(selectedGame: DeveloperPreview.shared.game, selectedBook: DeveloperPreview.shared.bookmakers, selectedOutcome: DeveloperPreview.shared.outcomes)
 }
