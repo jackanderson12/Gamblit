@@ -29,20 +29,3 @@ struct Gamble: Identifiable, Codable, Hashable {
     
     var user: DBUser?
 }
-
-struct TableTalk: Identifiable, Codable, Hashable {
-    @DocumentID var tableTalkId: String?
-    
-    let gambleId: String
-    let gambleOwnerUserId: String
-    let userId: String
-    let content: String
-    let timestamp: Timestamp
-    
-    var gamble: Gamble?
-    var user: DBUser?
-    
-    var id: String {
-        return tableTalkId ?? UUID().uuidString
-    }
-}

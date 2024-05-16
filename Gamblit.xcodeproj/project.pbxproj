@@ -26,6 +26,7 @@
 		1349114E2B5813C200311799 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349114D2B5813C200311799 /* ChartView.swift */; };
 		134911522B5A1E5500311799 /* GambleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911512B5A1E5500311799 /* GambleViewModel.swift */; };
 		134911562B5C2F3200311799 /* GameChartPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134911552B5C2F3200311799 /* GameChartPickerView.swift */; };
+		134F198E2BF58BE000636615 /* TableTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134F198D2BF58BE000636615 /* TableTalk.swift */; };
 		135208D12BEA629100B0ADF6 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D02BEA629100B0ADF6 /* TextFieldModifier.swift */; };
 		135208D32BED54DD00B0ADF6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D22BED54DD00B0ADF6 /* Constants.swift */; };
 		135208D52BEE677C00B0ADF6 /* TableTalkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */; };
@@ -135,6 +136,7 @@
 		134911512B5A1E5500311799 /* GambleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GambleViewModel.swift; sourceTree = "<group>"; };
 		134911532B5B008700311799 /* historical_nfl_game_odds.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = historical_nfl_game_odds.json; sourceTree = "<group>"; };
 		134911552B5C2F3200311799 /* GameChartPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChartPickerView.swift; sourceTree = "<group>"; };
+		134F198D2BF58BE000636615 /* TableTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalk.swift; sourceTree = "<group>"; };
 		135208D02BEA629100B0ADF6 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		135208D22BED54DD00B0ADF6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		135208D42BEE677C00B0ADF6 /* TableTalkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTalkManager.swift; sourceTree = "<group>"; };
@@ -359,7 +361,7 @@
 				133C7C8E2BF51F81000B87B7 /* Views */,
 				133C7C8D2BF51F79000B87B7 /* ViewModels */,
 				133C7C8C2BF51F73000B87B7 /* Managers */,
-				133C7C8B2BF51F6E000B87B7 /* Models */,
+				134F198C2BF58BCF00636615 /* Models */,
 			);
 			path = TableTalks;
 			sourceTree = "<group>";
@@ -440,13 +442,6 @@
 				136CF1262B753FC3004CC5B3 /* DataPoint.swift */,
 				13AE6B132B4772100067B6B7 /* Sport.swift */,
 				133105D32B367D2A009356B4 /* Game.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		133C7C8B2BF51F6E000B87B7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -541,6 +536,14 @@
 				1371EEE72B62F65800A95866 /* HistoricalPickerView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		134F198C2BF58BCF00636615 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				134F198D2BF58BE000636615 /* TableTalk.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		13695CFC2BA7153200CB9FE3 /* ViewModifier */ = {
@@ -757,6 +760,7 @@
 				13AE6B142B4772100067B6B7 /* Sport.swift in Sources */,
 				13033B672B9A0B3C00BC9EA1 /* GambleDetailView.swift in Sources */,
 				136CF1252B6BE5FE004CC5B3 /* GenericChartView.swift in Sources */,
+				134F198E2BF58BE000636615 /* TableTalk.swift in Sources */,
 				136AEC4E2BB4847F00F99AB9 /* UserCellView.swift in Sources */,
 				133105D42B367D2A009356B4 /* Game.swift in Sources */,
 				136AEC692BDC175300F99AB9 /* ImageUploadManager.swift in Sources */,
