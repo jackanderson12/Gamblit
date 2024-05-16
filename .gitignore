@@ -74,3 +74,5 @@ fastlane/test_output
 Gamblit.xcodeproj/project.pbxproj
 *.pbxproj
 Gamblit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+*.resolved
+Gamblit.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
