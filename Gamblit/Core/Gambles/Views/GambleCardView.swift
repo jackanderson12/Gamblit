@@ -14,7 +14,11 @@ struct GambleCardView: View {
     let selectedOutcome: [Outcome]
     
     var body: some View {
-        
+        ForEach(selectedBook, id:\.self) { book in
+            HStack {
+                GambleCardComponentView(game: selectedGame, bookmaker: book)
+            }
+        }
     }
 }
 

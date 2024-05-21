@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct GambleCardComponentView: View {
+    
     let game: Game
     let bookmaker: Bookmakers
-    let outcome: Outcome
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
@@ -30,23 +30,43 @@ struct GambleCardComponentView: View {
                 .frame(width: 100)
                 Spacer()
                 HStack {
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("H2H")
-                            .font(.headline)
-                        Text("\(gameAverage.0 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.1 ?? 0, specifier: "%.1f")")
-                    }
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("Total")
-                            .font(.headline)
-                        Text("\(gameAverage.2 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.3 ?? 0, specifier: "%.1f")")
-                    }
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("Spread")
-                            .font(.headline)
-                        Text("\(gameAverage.4 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.5 ?? 0, specifier: "%.1f")")
+                    ForEach(bookmaker.markets ?? [], id: \.self) { market in
+                        switch market.key {
+                        case "h2h":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("H2H")
+                                    .font(.headline)
+                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
+                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
+                            }
+                        case "totals":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("Total")
+                                    .font(.headline)
+                                HStack {
+                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                    VStack{
+                                        Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
+                                        Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
+                                    }
+                                }
+                            }
+                        case "spreads":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("Spread")
+                                    .font(.headline)
+                                VStack {
+                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
+                                }
+                                VStack {
+                                    Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
+                                }
+                            }
+                        default:
+                            Text("No Game Info")
+                        }
                     }
                 }
             }
@@ -56,5 +76,5 @@ struct GambleCardComponentView: View {
 }
 
 #Preview {
-    GambleCardComponentView()
+    GambleCardComponentView(game: DeveloperPreview.shared.game, bookmaker: DeveloperPreview.shared.bookmakers.first!)
 }
