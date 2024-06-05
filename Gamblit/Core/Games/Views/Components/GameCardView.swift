@@ -63,9 +63,6 @@ struct GameCardView: View {
                 }
             )
         }
-        .onAppear {
-            print(gameAverage)
-        }
         .padding(.all)
     }
 }
