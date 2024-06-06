@@ -25,7 +25,7 @@ final class GamesViewModel: ObservableObject {
     @Published var selectedMarkets: [Markets]?
     @Published var selectedBooks: [String]?
     @Published var selectedDate: String?
-    @Published var selectedFilter: apiFilter = .sports
+    @Published var selectedFilter: apiFilter = .event
     @Published var eventId: String? {
         didSet {
             if selectedFilter == .event { 
@@ -43,8 +43,8 @@ final class GamesViewModel: ObservableObject {
         
         switch selectedFilter {
             
-        case .sports:
-            return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
+//        case .sports:
+//            return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .event:
             return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(eventId ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us")!
         case .historical:
