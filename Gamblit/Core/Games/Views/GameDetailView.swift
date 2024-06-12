@@ -25,11 +25,11 @@ struct GameDetailView: View {
         }
         VStack {
             switch viewModel.selectedFilter {
-//            case .sports:
-//                if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
-//                    GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
-//                        .frame(width: 355, height: 200)
-//                }
+            case .sports:
+                if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
+                    GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
+                        .frame(width: 355, height: 200)
+                }
             case .event:
                 EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             case .historical:
@@ -39,13 +39,13 @@ struct GameDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("New Gamble") {
-                    //CreateGambleView(profileViewModel: profileViewModel, game: game)
+                    CreateGambleRemodelView()
                 }
             }
         }
-        .onChange(of: viewModel.selectedFilter) {
+        .onAppear {
+            viewModel.selectedGame = game
             Task {
-                viewModel.eventId = game.id
                 await viewModel.refreshData()
             }
         }
@@ -57,7 +57,7 @@ struct GameDetailView: View {
         }
         .onDisappear {
             Task {
-                viewModel.selectedFilter = .event
+                viewModel.selectedFilter = .sports
                 await viewModel.refreshData()
             }
         }

@@ -25,16 +25,8 @@ final class GamesViewModel: ObservableObject {
     @Published var selectedMarkets: [Markets]?
     @Published var selectedBooks: [String]?
     @Published var selectedDate: String?
-    @Published var selectedFilter: apiFilter = .event
-    @Published var eventId: String? {
-        didSet {
-            if selectedFilter == .event { 
-                Task {
-                    await refreshData()
-                }
-            }
-        }
-    }
+    @Published var selectedFilter: apiFilter = .sports
+    @Published var selectedGame: Game?
     
     var gamesManager: GamesManager
     
@@ -42,11 +34,10 @@ final class GamesViewModel: ObservableObject {
         let baseURL = "https://us-central1-gamblit-47419.cloudfunctions.net/main"
         
         switch selectedFilter {
-            
-//        case .sports:
-//            return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
+        case .sports:
+            return URL(string: "\(baseURL)/sports?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .event:
-            return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(eventId ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us")!
+            return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(selectedGame?.id ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&regions=us")!
         case .historical:
             return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))")!
         }

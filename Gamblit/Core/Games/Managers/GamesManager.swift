@@ -26,8 +26,8 @@ final class GamesManager {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             switch apiFilter {
-//            case .sports:
-//                try handleSportsResponse(data: data, response: response)
+            case .sports:
+                try handleSportsResponse(data: data, response: response)
             case .event:
                 try handleEventResponse(data: data, response: response)
             case .historical:
@@ -64,6 +64,7 @@ final class GamesManager {
         do {
             let decodeResults = try JSONDecoder().decode(Game.self, from: data)
             games.append(decodeResults)
+
         } catch {
             throw error
         }

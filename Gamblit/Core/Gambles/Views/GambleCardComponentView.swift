@@ -28,50 +28,57 @@ struct GambleCardComponentView: View {
                         .multilineTextAlignment(.center)
                 }
                 .frame(width: 100)
-                Spacer()
-                HStack {
+                .padding()
+                LazyVGrid(columns: [
+                    GridItem(.flexible(minimum: 50)),
+                    GridItem(.flexible(minimum: 80)),
+                    GridItem(.flexible(minimum: 50))
+                ]) {
                     ForEach(bookmaker.markets ?? [], id: \.self) { market in
                         switch market.key {
                         case "h2h":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("H2H")
                                     .font(.headline)
-                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
-                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
+                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                             }
-                        case "totals":
-                            VStack(alignment: .center, spacing: 2) {
-                                Text("Total")
-                                    .font(.headline)
-                                HStack {
-                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
-                                    VStack{
-                                        Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
-                                        Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
-                                    }
-                                }
-                            }
+                            .padding(4)
                         case "spreads":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("Spread")
                                     .font(.headline)
                                 VStack {
                                     Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
-                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.2f")")
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 }
                                 VStack {
                                     Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
-                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.2f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 }
                             }
+                            .padding(4)
+                        case "totals":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("Total")
+                                    .font(.headline)
+                                Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                VStack {
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                }
+                            }
+                            .padding(4)
                         default:
                             Text("No Game Info")
+                                .padding(4)
                         }
                     }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
         }
+        .padding(.all)
     }
 }
 

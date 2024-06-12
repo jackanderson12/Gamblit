@@ -9,43 +9,82 @@ import SwiftUI
 
 struct EventCardView: View {
     
-    var book: Bookmakers
-    
+    let game: Game
+    let bookmaker: Bookmakers
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
                 .foregroundStyle(.green)
                 .opacity(0.5)
-            HStack(alignment: .center, spacing: 2) {
-                ForEach(book.markets ?? [], id:\.key) { market in
-                    VStack(alignment: .center, spacing: 2) {
-                        Text("\(market.key?.capitalized ?? "")")
-                            .fontWeight(.black)
-                            .padding(.all)
-                        ForEach(market.outcomes ?? [], id:\.name) { outcome in
-                            if let name = outcome.name {
-                                Text(name.capitalized)
-                                    .multilineTextAlignment(.center)
-                                    .fontWeight(.bold)
-                                    .padding(.horizontal)
+            HStack {
+                VStack(alignment: .center, spacing: 5) {
+                    Text(game.homeTeam ?? "Home Team")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                    Text("vs.")
+                    Text(game.awayTeam ?? "Away Team")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(width: 100)
+                .padding()
+                LazyVGrid(columns: [
+                    GridItem(.flexible(minimum: 50)), // Minimum width for each column
+                    GridItem(.flexible(minimum: 80)),
+                    GridItem(.flexible(minimum: 50))
+                ]) {
+                    ForEach(bookmaker.markets ?? [], id: \.self) { market in
+                        switch market.key {
+                        case "h2h":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("H2H")
+                                    .font(.headline)
+                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                             }
-                            if let price = outcome.price {
-                                Text("\(price, specifier: "%.2f")")
-                                    .padding(.horizontal)
+                            .padding(4)
+                        case "spreads":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("Spread")
+                                    .font(.headline)
+                                VStack {
+                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                }
+                                VStack {
+                                    Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                }
                             }
-                            if let point = outcome.point {
-                                Text("\(point, specifier: "%.1f")")
-                                    .padding(.horizontal)
+                            .padding(4)
+                        case "totals":
+                            VStack(alignment: .center, spacing: 2) {
+                                Text("Total")
+                                    .font(.headline)
+                                Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                VStack {
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                }
                             }
+                            .padding(4)
+                        default:
+                            Text("No Game Info")
+                                .padding(4)
                         }
                     }
                 }
+                .padding(.horizontal)
             }
-            .frame(maxHeight: 300)
         }
+        .padding(.all)
     }
 }
 
+
+
+
 #Preview {
-    EventCardView(book: Bookmakers(key: "", title: "", lastUpdate: "", markets: []))
+    EventCardView(game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []),bookmaker: Bookmakers(key: "", title: "", lastUpdate: "", markets: []))
 }

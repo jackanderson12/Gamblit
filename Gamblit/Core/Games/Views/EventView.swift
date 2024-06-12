@@ -27,7 +27,7 @@ struct EventView: View {
                             .font(.headline)
                             .fontWeight(.black)
                             .padding(.vertical, 10)
-                        EventCardView(book: book)
+                        EventCardView(game: game, bookmaker: book)
                     }
                 }
             }
