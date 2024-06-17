@@ -14,6 +14,7 @@ struct Gamble: Identifiable, Codable, Hashable {
     
     let userId: String
     let game: Game
+    let bookmakers: [Bookmakers]
     
     let title: String
     let description: String

@@ -9,19 +9,22 @@ import SwiftUI
 import Charts
 
 struct GambleCardView: View {
-    let selectedGame: Game
-    let selectedBook: [Bookmakers]
-    let selectedOutcome: [Outcome]
+    
+    let gamble: Gamble
     
     var body: some View {
-        ForEach(selectedBook, id:\.self) { book in
-            HStack {
-                GambleCardComponentView(game: selectedGame, bookmaker: book)
+        VStack {
+            Text(gamble.title)
+                .font(.subheadline)
+            ForEach(gamble.bookmakers, id:\.self) { book in
+                HStack {
+                    GambleCardComponentView(game: gamble.game, bookmaker: book)
+                }
             }
         }
     }
 }
 
 #Preview {
-    GambleCardView(selectedGame: DeveloperPreview.shared.game, selectedBook: DeveloperPreview.shared.bookmakers, selectedOutcome: DeveloperPreview.shared.outcomes)
+    GambleCardView(gamble: DeveloperPreview.shared.gamble)
 }

@@ -12,6 +12,8 @@ struct EventView: View {
     @StateObject var profileViewModel: ProfileViewModel
     
     var game: Game
+    @Binding var books: [Bookmakers]?
+    @Binding var isSelectingBooks: Bool
     
     var body: some View {
         ScrollView {
@@ -22,19 +24,52 @@ struct EventView: View {
                 }
                 
                 ForEach(game.bookmakers ?? [], id: \.key) { book in
-                    VStack {
-                        Text("\(book.title?.capitalized ?? "Book Name")")
-                            .font(.headline)
-                            .fontWeight(.black)
-                            .padding(.vertical, 10)
-                        EventCardView(game: game, bookmaker: book)
+                    BookmakerView(book: book, game: game, isSelected: books?.contains(where: { $0.key == book.key }) ?? false) {
+                        toggleBookSelection(book: book)
                     }
                 }
             }
         }
     }
+    
+    private func toggleBookSelection(book: Bookmakers) {
+        guard var currentBooks = books else {
+            books = [book]
+            return
+        }
+        
+        if let index = currentBooks.firstIndex(where: { $0.key == book.key }) {
+            currentBooks.remove(at: index)
+        } else {
+            currentBooks.append(book)
+        }
+        
+        books = currentBooks
+    }
 }
 
 #Preview {
-    EventView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
+    EventView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []), books: DeveloperPreview.shared.bindingBooks, isSelectingBooks: .constant(false))
 }
+
+struct BookmakerView: View {
+    let book: Bookmakers
+    let game: Game
+    let isSelected: Bool
+    let onTap: () -> Void
+    
+    var body: some View {
+        VStack {
+            Text("\(book.title?.capitalized ?? "Book Name")")
+                .font(.headline)
+                .fontWeight(.black)
+                .padding(.vertical, 10)
+            EventCardView(game: game, bookmaker: book)
+                .background(isSelected ? Color.green.opacity(0.3) : Color.clear)
+                .onTapGesture {
+                    onTap()
+                }
+        }
+    }
+}
+

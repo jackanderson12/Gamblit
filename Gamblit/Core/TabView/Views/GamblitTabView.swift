@@ -64,7 +64,7 @@ struct GamblitTabView: View {
         .sheet(isPresented: $showCreateGambleView, onDismiss: {
             selectedTab = 0
         }, content: {
-            CreateGambleRemodelView()
+            //CreateGambleRemodelView()
         })
     }
 }

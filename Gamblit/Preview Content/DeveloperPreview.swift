@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 class DeveloperPreview {
     static let shared = DeveloperPreview()
@@ -55,6 +56,7 @@ class DeveloperPreview {
     lazy var gamble: Gamble = Gamble(
         userId: "123",
         game: game,
+        bookmakers: bookmakers, 
         title: "The Capitals are going to win!",
         description: "The caps will win because OV is on the goal scoring record chase.",
         timestamp: Timestamp(),
@@ -69,5 +71,13 @@ class DeveloperPreview {
         content: "",
         timestamp: Timestamp()
     )
+    
+    lazy var bindingBooks: Binding<[Bookmakers]?> =
+        Binding(
+            get: { self.bookmakers },
+            set: { newValue in
+                self.bookmakers = newValue ?? []
+            }
+        )
 }
 

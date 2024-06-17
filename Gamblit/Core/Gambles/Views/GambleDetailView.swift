@@ -41,11 +41,7 @@ struct GambleDetailView: View {
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    
-                    //GambleChartView?
-                    
-                    Text(gamble.title)
-                        .font(.subheadline)
+                    GambleCardView(gamble: gamble)
                     
                     ContentActionButtonsView(gamble: gamble)
                 }
@@ -61,7 +57,6 @@ struct GambleDetailView: View {
                 }
             }
         }
-        .padding()
         .navigationTitle("Gamble")
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -1,10 +1,3 @@
-//
-//  GameDetailView.swift
-//  Gamblit
-//
-//  Created by Jack Anderson on 1/20/24.
-//
-
 import SwiftUI
 
 struct GameDetailView: View {
@@ -13,8 +6,11 @@ struct GameDetailView: View {
     @StateObject var profileViewModel: ProfileViewModel
     
     var game: Game
+    @State private var books: [Bookmakers]? = []
     @State private var bookmakers: [(String, Bool)] = []
     @State private var isAverage: Bool = true
+    
+    @State private var isSelectingBooks = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
@@ -31,7 +27,7 @@ struct GameDetailView: View {
                         .frame(width: 355, height: 200)
                 }
             case .event:
-                EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
+                EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, books: $books, isSelectingBooks: $isSelectingBooks)
             case .historical:
                 HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
@@ -39,7 +35,14 @@ struct GameDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("New Gamble") {
-                    CreateGambleRemodelView()
+                    CreateGambleRemodelView(game: game, bookmakers: books ?? [])
+                }
+            }
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    isSelectingBooks.toggle()
+                }) {
+                    Text(isSelectingBooks ? "Done" : "Select Books")
                 }
             }
         }
@@ -62,8 +65,4 @@ struct GameDetailView: View {
             }
         }
     }
-}
-
-#Preview {
-    GameDetailView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
 }

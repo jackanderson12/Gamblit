@@ -14,7 +14,7 @@ struct GambleFeedView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack {
+                LazyVStack(spacing: 10) {
                     ForEach(viewModel.gambles, id: \.id) { gamble in
                         NavigationLink(value: gamble) {
                             GambleCellView(gamble: gamble)
@@ -36,6 +36,7 @@ struct GambleFeedView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Image(systemName: "arrow.counterclockwise")
+                    .padding() // Add padding to the toolbar item for better spacing
             }
         }
     }

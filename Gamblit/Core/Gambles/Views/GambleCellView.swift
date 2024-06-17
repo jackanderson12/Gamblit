@@ -11,42 +11,36 @@ struct GambleCellView: View {
     let gamble: Gamble
     
     var body: some View {
-        VStack {
-            HStack(alignment: .top, spacing: 12) {
-                
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
                 CircularProfileImageView(user: gamble.user, size: .small)
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(gamble.userId)
-                            .font(.footnote)
-                            .fontWeight(.semibold)
-                        
-                        Spacer()
-                        
-                        Text(gamble.timestamp.timestampString())
-                            .font(.caption)
-                            .foregroundStyle(Color(.systemGray))
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "ellipsis")
-                                .foregroundStyle(Color(.darkGray))
-                        }
-                    }
-                    Text(gamble.title)
-                    Text(gamble.title)
-                        .font(.footnote)
-                        .multilineTextAlignment(.leading)
+                Text(gamble.user?.userId ?? "")
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Text(gamble.timestamp.timestampString())
+                    .font(.caption)
+                    .foregroundStyle(Color(.systemGray3))
+                
+                Button {
                     
-                    ContentActionButtonsView(gamble: gamble)
-                        .foregroundStyle(.secondary)
-                        .padding(.vertical, 8)
+                } label: {
+                    Image(systemName: "ellipsis")
                 }
+                
             }
-            Divider()
+            GambleCardView(gamble: gamble)
+            
+            ContentActionButtonsView(gamble: gamble)
+                .foregroundColor(.secondary)
+                .padding(.vertical, 8)
         }
-        .padding()
+        .padding(.horizontal)
+        
+        Divider()
     }
 }
 
