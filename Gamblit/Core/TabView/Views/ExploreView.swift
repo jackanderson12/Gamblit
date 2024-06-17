@@ -35,6 +35,7 @@ struct ExploreView: View {
             .searchable(text: $searchText, prompt: "Search")
             .navigationTitle("Search")
         }
+        .foregroundStyle(.foreground)
     }
 }
 

@@ -36,6 +36,7 @@ struct GambleDetailView: View {
                         
                     } label: {
                         Image(systemName: "ellipsis")
+                            .foregroundStyle(Color(.systemGray3))
                     }
 
                 }
@@ -45,7 +46,6 @@ struct GambleDetailView: View {
                     
                     ContentActionButtonsView(gamble: gamble)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider()
                     .padding(.vertical)

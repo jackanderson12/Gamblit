@@ -27,7 +27,7 @@ struct GambleCardComponentView: View {
                         .font(.headline)
                         .multilineTextAlignment(.center)
                 }
-                .frame(width: 100)
+                .frame(width: 90)
                 .padding()
                 LazyVGrid(columns: [
                     GridItem(.flexible(minimum: 50)),
@@ -75,10 +75,8 @@ struct GambleCardComponentView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
             }
         }
-        .padding(.all)
     }
 }
 

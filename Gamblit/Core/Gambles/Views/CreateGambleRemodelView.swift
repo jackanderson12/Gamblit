@@ -37,12 +37,6 @@ struct CreateGambleRemodelView: View {
                             VStack(spacing: 15) {
                                 ForEach(bookmakers, id: \.self) { book in
                                     GambleCardComponentView(game: game, bookmaker: book)
-                                        .frame(width: UIScreen.main.bounds.width - 40, height: 200)
-                                        .cornerRadius(15)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 15)
-                                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                        )
                                 }
                             }
                         }
@@ -62,11 +56,9 @@ struct CreateGambleRemodelView: View {
                             .padding(.leading, 10)
                         }
                     }
-                    .padding(.horizontal, 20)
                     
                     Spacer()
                 }
-                .padding(.top, 20)
             }
             .navigationTitle("New Gamble")
             .navigationBarTitleDisplayMode(.inline)

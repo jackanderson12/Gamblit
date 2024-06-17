@@ -66,6 +66,7 @@ struct BookmakerView: View {
                 .padding(.vertical, 10)
             EventCardView(game: game, bookmaker: book)
                 .background(isSelected ? Color.green.opacity(0.3) : Color.clear)
+                .clipShape(.rect(cornerRadius: 4))
                 .onTapGesture {
                     onTap()
                 }

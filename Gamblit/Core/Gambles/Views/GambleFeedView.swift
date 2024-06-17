@@ -33,10 +33,11 @@ struct GambleFeedView: View {
             .navigationTitle("Gambles")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .foregroundStyle(.foreground)
+        .padding(.horizontal)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Image(systemName: "arrow.counterclockwise")
-                    .padding() // Add padding to the toolbar item for better spacing
             }
         }
     }

@@ -29,18 +29,18 @@ struct GambleCellView: View {
                     
                 } label: {
                     Image(systemName: "ellipsis")
+                        .foregroundStyle(Color(.systemGray3))
                 }
                 
             }
             GambleCardView(gamble: gamble)
             
             ContentActionButtonsView(gamble: gamble)
-                .foregroundColor(.secondary)
                 .padding(.vertical, 8)
+            
+            Divider()
+                .padding(.top, 8)
         }
-        .padding(.horizontal)
-        
-        Divider()
     }
 }
 

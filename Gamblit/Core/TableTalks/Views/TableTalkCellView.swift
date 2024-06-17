@@ -40,7 +40,6 @@ struct TableTalkCellView: View {
                         }
                     }
                     Text(tableTalk.content)
-                    Text(tableTalk.content)
                         .font(.footnote)
                         .multilineTextAlignment(.leading)
                 }
