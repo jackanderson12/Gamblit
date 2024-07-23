@@ -63,6 +63,18 @@ final class UserManager {
         try await userCollection.getDocuments(as: DBUser.self)
     }
     
+    //MARK: Username Functionality
+    func updateUsername(for userId: String, newUsername: String) async throws {
+        let data: [String: Any] = ["username": newUsername]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
+    func isUsernameTaken(_ username: String) async throws -> Bool {
+        let query = userCollection.whereField("username", isEqualTo: username)
+        let snapshot = try await query.getDocuments()
+        return !snapshot.isEmpty
+    }
+    
     //MARK: Photo Functionality
     @MainActor
     func updateUserProfileImage(userId: String, withImageUrl imageUrl: String) async throws {

@@ -37,7 +37,6 @@ def verify_token(req):
     except Exception as e:
         return jsonify({'error': 'error with verify_id_token'}), 401
 
-
 @app.route('/sports', methods=['GET'])
 def sports():
     # Verify Firebase Auth Token
@@ -55,8 +54,14 @@ def sports():
     response = requests.get(url)
     if response.status_code == 200:
         return jsonify(response.json())
+    elif response.status_code == 400:
+        return jsonify({'error': 'Bad Request'}), 400
+    elif response.status_code == 404:
+        return jsonify({'error': 'Resource Not Found'}), 404
+    elif response.status_code == 500:
+        return jsonify({'error': 'Internal Server Error'}), 500
     else:
-        return jsonify({'error': 'Error with API request'}), 500
+        return jsonify({'error': 'Error with API request', 'status_code': response.status_code}), response.status_code
 
 @app.route('/event', methods=['GET'])
 def event():
@@ -76,8 +81,14 @@ def event():
     response = requests.get(url)
     if response.status_code == 200:
         return jsonify(response.json())
+    elif response.status_code == 400:
+        return jsonify({'error': 'Bad Request'}), 400
+    elif response.status_code == 404:
+        return jsonify({'error': 'Resource Not Found'}), 404
+    elif response.status_code == 500:
+        return jsonify({'error': 'Internal Server Error'}), 500
     else:
-        return jsonify({'error': 'Error with API request'}), 500
+        return jsonify({'error': 'Error with API request', 'status_code': response.status_code}), response.status_code
 
 @app.route('/historical', methods=['GET'])
 def historical():
@@ -97,8 +108,14 @@ def historical():
     response = requests.get(url)
     if response.status_code == 200:
         return jsonify(response.json())
+    elif response.status_code == 400:
+        return jsonify({'error': 'Bad Request'}), 400
+    elif response.status_code == 404:
+        return jsonify({'error': 'Resource Not Found'}), 404
+    elif response.status_code == 500:
+        return jsonify({'error': 'Internal Server Error'}), 500
     else:
-        return jsonify({'error': 'Error with API request'}), 500
+        return jsonify({'error': 'Error with API request', 'status_code': response.status_code}), response.status_code
 
 # Define a Firebase Cloud Function to handle requests
 @https_fn.on_request()

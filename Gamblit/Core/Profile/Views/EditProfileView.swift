@@ -31,10 +31,15 @@ struct EditProfileView: View {
                         VStack(alignment: .leading) {
                             Text("Name")
                                 .fontWeight(.semibold)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                             
-                            Text(user.userId ?? "No user id found")
-                                .foregroundStyle(.secondary)
+                            TextField("\(user.username ?? user.userId!)", text: $viewModel.username, axis: .vertical)
+                                .foregroundStyle(.black)
+                                .onSubmit {
+                                    Task {
+                                        try await viewModel.setUsername(user: user)
+                                    }
+                                }
                         }
                         
                         Spacer()
@@ -58,10 +63,10 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Bio")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                         
                         TextField("Enter your bio...", text: $bio, axis: .vertical)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                     }
                     
                     Divider()
@@ -69,10 +74,10 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Link")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                         
                         TextField("Add Link...", text: $link, axis: .vertical)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                     }
                     
                     Divider()
@@ -81,7 +86,7 @@ struct EditProfileView: View {
                 }
                 .font(.footnote)
                 .padding()
-                .background(.white)
+                .background(.secondary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
@@ -99,13 +104,13 @@ struct EditProfileView: View {
                             dismiss()
                         }
                     }
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
             }
         }
