@@ -10,6 +10,7 @@ import GoogleSignIn
 import GoogleSignInSwift
 import AuthenticationServices
 import CryptoKit
+import FirebaseAuth
 
 struct AuthenticationView: View {
     

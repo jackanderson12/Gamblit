@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Firebase
+import FirebaseAuth
 
 @MainActor
 class ContentViewModel: ObservableObject {
