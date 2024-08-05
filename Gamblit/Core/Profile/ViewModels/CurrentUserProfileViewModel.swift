@@ -25,4 +25,9 @@ class CurrentUserProfileViewModel: ObservableObject {
             self?.currentUser = user
         }.store(in: &cancellables)
     }
+    
+    @MainActor
+    func refreshUser() async throws {
+        try await UserManager.shared.fetchCurrentUser()
+    }
 }

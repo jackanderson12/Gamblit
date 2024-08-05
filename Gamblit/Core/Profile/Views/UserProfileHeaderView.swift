@@ -24,14 +24,20 @@ struct UserProfileHeaderView: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text(user?.bio ?? "")
-                        .font(.subheadline)
+                    if user?.bio != nil {
+                        Text(user?.bio ?? "")
+                            .font(.subheadline)
+                    }
                 }
                 
                 if let books = user?.sportsBooks {
-                    ForEach(books, id: \.self) { book in
-                        Text(book)
-                            .font(.footnote)
+                    ScrollView(.horizontal) {
+                        HStack{
+                            ForEach(books, id: \.self) { book in
+                                Text(book)
+                                    .font(.footnote)
+                            }
+                        }
                     }
                 }
                 

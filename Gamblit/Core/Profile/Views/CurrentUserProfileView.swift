@@ -14,7 +14,7 @@ struct CurrentUserProfileView: View {
     @State private var showEditProfile: Bool = false
     
     private var currentUser: DBUser? {
-        return UserManager.shared.currentUser
+        return viewModel.currentUser
     }
     
     var body: some View {
@@ -48,11 +48,16 @@ struct CurrentUserProfileView: View {
                     
                 }
             }
-            .sheet(isPresented: $showEditProfile, content: {
+            .sheet(isPresented: $showEditProfile, onDismiss: {
+                Task {
+                    try? await viewModel.refreshUser()
+                }
+            },content: {
                 if let user = currentUser {
                     EditProfileView(user: user)
                 }
             })
+            
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button {
@@ -60,7 +65,7 @@ struct CurrentUserProfileView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }
-
+                    
                 }
             }
             .padding(.horizontal)

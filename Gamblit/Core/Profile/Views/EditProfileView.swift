@@ -15,13 +15,14 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = EditProfileViewModel()
     
+    @State private var localSelectedSportsBooks: Set<String> = Set()
     @State private var link = ""
     @State private var isPrivateProfile = false
     
     let sportsBooks: [String] = ["Draft Kings", "Fanduel", "Bet MGM", "Caesars"]
     
     private func sportsBookIsSelected(sportsBook: String) -> Bool {
-        user.sportsBooks?.contains(sportsBook) == true
+        localSelectedSportsBooks.contains(sportsBook)
     }
     
     var body: some View {
@@ -77,7 +78,7 @@ struct EditProfileView: View {
                             .onSubmit {
                                 if viewModel.bio != "" {
                                     Task {
-                                        try await viewModel.setUsername(user: user)
+                                        try await viewModel.setBio(user: user)
                                     }
                                 }
                             }
@@ -91,11 +92,13 @@ struct EditProfileView: View {
                             HStack {
                                 ForEach(sportsBooks, id: \.self) { book in
                                     Button(book) {
-                                        if sportsBookIsSelected(sportsBook: book) {
+                                        if localSelectedSportsBooks.contains(book) {
+                                            localSelectedSportsBooks.remove(book)
                                             Task {
                                                 try await viewModel.removeUserSportsBooks(user: user, sportsBooks: book)
                                             }
                                         } else {
+                                            localSelectedSportsBooks.insert(book)
                                             Task {
                                                 try await viewModel.addUserSportsBooks(user: user, sportsBooks: book)
                                             }
@@ -103,11 +106,11 @@ struct EditProfileView: View {
                                     }
                                     .font(.subheadline)
                                     .buttonStyle(.borderedProminent)
-                                    .tint(sportsBookIsSelected(sportsBook: book) ? .green : .red)
+                                    .tint(localSelectedSportsBooks.contains(book) ? .green : .red)
                                 }
                             }
                         }
-                        Text("User Sports Books: \((user.sportsBooks  ?? []).joined(separator: ", "))")
+                        Text("User Sports Books: \(localSelectedSportsBooks.joined(separator: ", "))")
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
@@ -154,6 +157,9 @@ struct EditProfileView: View {
                     }
                     .foregroundStyle(.primary)
                 }
+            }
+            .onAppear {
+                localSelectedSportsBooks = Set(user.sportsBooks ?? [])
             }
         }
     }
