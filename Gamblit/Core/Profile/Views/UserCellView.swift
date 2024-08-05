@@ -15,10 +15,10 @@ struct UserCellView: View {
             CircularProfileImageView(user: user, size: .small)
             
             VStack(alignment: .leading, spacing: 2) {
-                Text(user.userId ?? "")
+                Text(user.username ?? "")
                     .fontWeight(.semibold)
                 
-                Text(user.userId ?? "")
+                Text(user.bio ?? "")
             }
             .font(.footnote)
             

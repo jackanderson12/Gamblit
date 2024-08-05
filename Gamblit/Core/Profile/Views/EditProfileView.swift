@@ -15,9 +15,14 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = EditProfileViewModel()
     
-    @State private var bio = ""
     @State private var link = ""
     @State private var isPrivateProfile = false
+    
+    let sportsBooks: [String] = ["Draft Kings", "Fanduel", "Bet MGM", "Caesars"]
+    
+    private func sportsBookIsSelected(sportsBook: String) -> Bool {
+        user.sportsBooks?.contains(sportsBook) == true
+    }
     
     var body: some View {
         NavigationStack {
@@ -36,8 +41,10 @@ struct EditProfileView: View {
                             TextField("\(user.username ?? user.userId!)", text: $viewModel.username, axis: .vertical)
                                 .foregroundStyle(.black)
                                 .onSubmit {
-                                    Task {
-                                        try await viewModel.setUsername(user: user)
+                                    if viewModel.username != "" {
+                                        Task {
+                                            try await viewModel.setUsername(user: user)
+                                        }
                                     }
                                 }
                         }
@@ -65,8 +72,43 @@ struct EditProfileView: View {
                             .fontWeight(.semibold)
                             .foregroundStyle(.black)
                         
-                        TextField("Enter your bio...", text: $bio, axis: .vertical)
+                        TextField("Enter your bio...", text: $viewModel.bio, axis: .vertical)
                             .foregroundStyle(.black)
+                            .onSubmit {
+                                if viewModel.bio != "" {
+                                    Task {
+                                        try await viewModel.setUsername(user: user)
+                                    }
+                                }
+                            }
+                    }
+                    
+                    Divider()
+                    
+                    //Sportsbooks Section
+                    VStack{
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(sportsBooks, id: \.self) { book in
+                                    Button(book) {
+                                        if sportsBookIsSelected(sportsBook: book) {
+                                            Task {
+                                                try await viewModel.removeUserSportsBooks(user: user, sportsBooks: book)
+                                            }
+                                        } else {
+                                            Task {
+                                                try await viewModel.addUserSportsBooks(user: user, sportsBooks: book)
+                                            }
+                                        }
+                                    }
+                                    .font(.subheadline)
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(sportsBookIsSelected(sportsBook: book) ? .green : .red)
+                                }
+                            }
+                        }
+                        Text("User Sports Books: \((user.sportsBooks  ?? []).joined(separator: ", "))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
                     Divider()

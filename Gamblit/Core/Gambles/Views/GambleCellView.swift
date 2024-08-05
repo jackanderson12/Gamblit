@@ -15,7 +15,7 @@ struct GambleCellView: View {
             HStack {
                 CircularProfileImageView(user: gamble.user, size: .small)
                 
-                Text(gamble.user?.userId ?? "")
+                Text(gamble.user?.username ?? "")
                     .font(.footnote)
                     .fontWeight(.semibold)
                 

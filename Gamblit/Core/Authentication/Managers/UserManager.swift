@@ -75,6 +75,12 @@ final class UserManager {
         return !snapshot.isEmpty
     }
     
+    //MARK: Bio Functionality
+    func updateBio(for userId: String, newBio: String) async throws {
+        let data: [String: Any] = ["bio": newBio]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
     //MARK: Photo Functionality
     @MainActor
     func updateUserProfileImage(userId: String, withImageUrl imageUrl: String) async throws {

@@ -11,11 +11,12 @@ import FirebaseFirestore
 struct DBUser: Codable, Identifiable, Hashable {
     @DocumentID var userId: String?
     var username: String?
+    var bio: String?
     let isAnonymous: Bool?
     let dateCreated: Date?
     let profileImageUrl: String?
     let isPremium: Bool?
-    let sportsBooks: [String]?
+    var sportsBooks: [String]?
     
     // Computed property to conform to Identifiable
     var id: String {
@@ -25,6 +26,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
         self.username = nil
+        self.bio = nil
         self.isAnonymous = auth.isAnonymous
         self.profileImageUrl = auth.profileImageUrl
         self.dateCreated = Date()
@@ -34,6 +36,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     
     init(userId: String,
          username: String? = nil,
+         bio: String? = nil,
          isAnonymous: Bool? = nil,
          photoUrl: String? = nil,
          dateCreated: Date? = nil,
@@ -42,6 +45,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     ) {
         self.userId = userId
         self.username = username
+        self.bio = bio
         self.isAnonymous = isAnonymous
         self.profileImageUrl = photoUrl
         self.dateCreated = Date()
@@ -52,6 +56,7 @@ struct DBUser: Codable, Identifiable, Hashable {
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
         case username
+        case bio
         case isAnonymous = "is_anonymous"
         case photoUrl = "photo_url"
         case dateCreated = "date_created"
@@ -63,6 +68,7 @@ struct DBUser: Codable, Identifiable, Hashable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.userId = try container.decode(String.self, forKey: .userId)
         self.username = try container.decodeIfPresent(String.self, forKey: .username)
+        self.bio = try container.decodeIfPresent(String.self, forKey: .bio)
         self.isAnonymous = try container.decodeIfPresent(Bool.self, forKey: .isAnonymous)
         self.dateCreated = try container.decodeIfPresent(Date.self, forKey: .dateCreated)
         self.profileImageUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
@@ -74,6 +80,7 @@ struct DBUser: Codable, Identifiable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.userId, forKey: .userId)
         try container.encodeIfPresent(self.username, forKey: .username)
+        try container.encodeIfPresent(self.bio, forKey: .bio)
         try container.encodeIfPresent(self.isAnonymous, forKey: .isAnonymous)
         try container.encodeIfPresent(self.profileImageUrl, forKey: .photoUrl)
         try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)

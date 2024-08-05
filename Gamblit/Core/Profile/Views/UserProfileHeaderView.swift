@@ -20,11 +20,11 @@ struct UserProfileHeaderView: View {
             VStack(alignment: .leading, spacing: 12) {
                 //Full Name and Username
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(user?.userId ?? "")
+                    Text(user?.username ?? "")
                         .font(.title2)
                         .fontWeight(.semibold)
                     
-                    Text(user?.userId ?? "")
+                    Text(user?.bio ?? "")
                         .font(.subheadline)
                 }
                 
