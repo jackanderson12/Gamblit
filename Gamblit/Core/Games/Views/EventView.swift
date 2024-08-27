@@ -25,8 +25,13 @@ struct EventView: View {
                 }
                 
                 ForEach(game.bookmakers ?? [], id: \.key) { book in
-                    BookmakerView(book: book, game: game, isSelected: books?.contains(where: { $0.key == book.key }) ?? false) {
-                        toggleBookSelection(book: book)
+                    if let bookKey = book.key,
+                       bookmakers.contains(where: { $0.0.lowercased() == bookKey.lowercased() && $0.1 }) {
+                        BookmakerView(book: book,
+                                      game: game,
+                                      isSelected: books?.contains(where: { $0.key == book.key }) ?? false) {
+                            toggleBookSelection(book: book)
+                        }
                     }
                 }
             }
@@ -35,9 +40,6 @@ struct EventView: View {
             Task {
                 await viewModel.refreshData()
             }
-        }
-        .onAppear {
-            filterBooks(game: game, bookmakers: bookmakers)
         }
         .task {
             await viewModel.refreshData()
@@ -57,16 +59,6 @@ struct EventView: View {
         }
         
         books = currentBooks
-    }
-    
-    //Not functioning, would like to include this to filter by the users
-    //selected books
-    private func filterBooks(game: Game, bookmakers: [(String, Bool)]) {
-        for book in game.bookmakers! {
-            if bookmakers.contains(where: { $0.0 == book.key }) {
-                books?.append(book)
-            }
-        }
     }
 }
 

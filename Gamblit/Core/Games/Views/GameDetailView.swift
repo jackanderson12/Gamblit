@@ -62,7 +62,7 @@ struct GameDetailView: View {
         .task {
             try? await profileViewModel.loadCurrentUser()
             for book in profileViewModel.user?.sportsBooks ?? [] {
-                bookmakers.append((book, true))
+                bookmakers.append((book.lowercased().replacingOccurrences(of: " ", with: ""), true))
             }
         }
         .onDisappear {
