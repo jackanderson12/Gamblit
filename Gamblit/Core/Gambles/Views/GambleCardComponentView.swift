@@ -43,7 +43,7 @@ struct GambleCardComponentView: View {
                                 Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                             }
-                            .padding(4)
+                            .padding(2)
                         case "spreads":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("Spread")
@@ -57,7 +57,7 @@ struct GambleCardComponentView: View {
                                     Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 }
                             }
-                            .padding(4)
+                            .padding(2)
                         case "totals":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("Total")
@@ -68,10 +68,10 @@ struct GambleCardComponentView: View {
                                     Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 }
                             }
-                            .padding(4)
+                            .padding(2)
                         default:
                             Text("No Game Info")
-                                .padding(4)
+                                .padding(2)
                         }
                     }
                 }

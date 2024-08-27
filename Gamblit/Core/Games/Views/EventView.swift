@@ -13,6 +13,7 @@ struct EventView: View {
     
     var game: Game
     @Binding var books: [Bookmakers]?
+    @Binding var bookmakers: [(String, Bool)]
     @Binding var isSelectingBooks: Bool
     
     var body: some View {
@@ -30,6 +31,17 @@ struct EventView: View {
                 }
             }
         }
+        .onChange(of: viewModel.selectedBooks) {
+            Task {
+                await viewModel.refreshData()
+            }
+        }
+        .onAppear {
+            filterBooks(game: game, bookmakers: bookmakers)
+        }
+        .task {
+            await viewModel.refreshData()
+        }
     }
     
     private func toggleBookSelection(book: Bookmakers) {
@@ -46,31 +58,19 @@ struct EventView: View {
         
         books = currentBooks
     }
+    
+    //Not functioning, would like to include this to filter by the users
+    //selected books
+    private func filterBooks(game: Game, bookmakers: [(String, Bool)]) {
+        for book in game.bookmakers! {
+            if bookmakers.contains(where: { $0.0 == book.key }) {
+                books?.append(book)
+            }
+        }
+    }
 }
 
 #Preview {
-    EventView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []), books: DeveloperPreview.shared.bindingBooks, isSelectingBooks: .constant(false))
-}
-
-struct BookmakerView: View {
-    let book: Bookmakers
-    let game: Game
-    let isSelected: Bool
-    let onTap: () -> Void
-    
-    var body: some View {
-        VStack {
-            Text("\(book.title?.capitalized ?? "Book Name")")
-                .font(.headline)
-                .fontWeight(.black)
-                .padding(.vertical, 10)
-            EventCardView(game: game, bookmaker: book)
-                .background(isSelected ? Color.green.opacity(0.3) : Color.clear)
-                .clipShape(.rect(cornerRadius: 4))
-                .onTapGesture {
-                    onTap()
-                }
-        }
-    }
+    EventView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []), books: DeveloperPreview.shared.bindingBooks, bookmakers: DeveloperPreview.shared.bindingBookmakers, isSelectingBooks: .constant(false))
 }
 

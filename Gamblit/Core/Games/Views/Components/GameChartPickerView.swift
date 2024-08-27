@@ -21,6 +21,3 @@ struct GameChartPickerView: View {
     }
 }
 
-//#Preview {
-//    GameChartPickerView()
-//}

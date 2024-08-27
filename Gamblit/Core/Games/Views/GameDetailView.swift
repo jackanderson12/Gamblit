@@ -1,3 +1,10 @@
+//
+//  GameDetailView.swift
+//  Gamblit
+//
+//  Created by Jack Anderson on 1/20/24.
+//
+
 import SwiftUI
 
 struct GameDetailView: View {
@@ -27,7 +34,7 @@ struct GameDetailView: View {
                         .frame(width: 355, height: 200)
                 }
             case .event:
-                EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, books: $books, isSelectingBooks: $isSelectingBooks)
+                EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, books: $books, bookmakers: $bookmakers, isSelectingBooks: $isSelectingBooks)
             case .historical:
                 HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
@@ -55,12 +62,22 @@ struct GameDetailView: View {
         .task {
             try? await profileViewModel.loadCurrentUser()
             for book in profileViewModel.user?.sportsBooks ?? [] {
-                bookmakers.append((book, false))
+                bookmakers.append((book, true))
             }
         }
         .onDisappear {
             Task {
                 viewModel.selectedFilter = .sports
+                await viewModel.refreshData()
+            }
+        }
+        .onChange(of: viewModel.selectedFilter) {
+            Task {
+                await viewModel.refreshData()
+            }
+        }
+        .onChange(of: viewModel.selectedBooks) {
+            Task {
                 await viewModel.refreshData()
             }
         }

@@ -27,16 +27,22 @@ struct CreateGambleRemodelView: View {
                         CircularProfileImageView(user: currentUser, size: .small)
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(currentUser?.userId ?? "")
+                            Text(currentUser?.username ?? "")
                                 .fontWeight(.semibold)
                             
                             TextField("Start a Gamble...", text: $viewModel.title, axis: .vertical)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding(.bottom, 10)
                             
-                            VStack(spacing: 15) {
-                                ForEach(bookmakers, id: \.self) { book in
-                                    GambleCardComponentView(game: game, bookmaker: book)
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 15) {
+                                    ForEach(bookmakers, id: \.self) { book in
+                                        VStack(spacing: 5) {
+                                            Text(book.key ?? "")
+                                                .font(.subheadline)
+                                            GambleCardComponentView(game: game, bookmaker: book)
+                                        }
+                                    }
                                 }
                             }
                         }

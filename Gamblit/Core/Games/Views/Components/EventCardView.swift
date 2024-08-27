@@ -30,7 +30,7 @@ struct EventCardView: View {
                 .frame(width: 100)
                 .padding()
                 LazyVGrid(columns: [
-                    GridItem(.flexible(minimum: 50)), // Minimum width for each column
+                    GridItem(.flexible(minimum: 50)),
                     GridItem(.flexible(minimum: 80)),
                     GridItem(.flexible(minimum: 50))
                 ]) {
@@ -40,8 +40,8 @@ struct EventCardView: View {
                             VStack(alignment: .center, spacing: 2) {
                                 Text("H2H")
                                     .font(.headline)
-                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                             }
                             .padding(4)
                         case "spreads":
@@ -49,12 +49,12 @@ struct EventCardView: View {
                                 Text("Spread")
                                     .font(.headline)
                                 VStack {
-                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
-                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
-                                }
-                                VStack {
                                     Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
                                     Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                }
+                                VStack {
+                                    Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 }
                             }
                             .padding(4)
@@ -64,8 +64,8 @@ struct EventCardView: View {
                                     .font(.headline)
                                 Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
                                 VStack {
-                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                     Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                    Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 }
                             }
                             .padding(4)

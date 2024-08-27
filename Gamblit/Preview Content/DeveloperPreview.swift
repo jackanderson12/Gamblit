@@ -43,6 +43,10 @@ class DeveloperPreview {
         )
     ]
     
+    lazy var bookmakerTuple: [(String, Bool)] = [
+        ("Draftkings", true)
+    ]
+    
     lazy var game: Game = Game(
         id: "f1db1ea65e63375c8f6f9766dac5d4f7",
         commenceTime: "2024-01-06T21:31:00Z",
@@ -79,5 +83,11 @@ class DeveloperPreview {
                 self.bookmakers = newValue ?? []
             }
         )
+    lazy var bindingBookmakers: Binding<[(String, Bool)]> = Binding(
+        get: { self.bookmakerTuple},
+        set: { newValue in
+            self.bookmakerTuple = newValue
+        }
+    )
 }
 
