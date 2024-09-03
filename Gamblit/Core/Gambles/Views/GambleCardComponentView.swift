@@ -1,13 +1,13 @@
 //
-//  EventCardView.swift
+//  GambleCardComponent.swift
 //  Gamblit
 //
-//  Created by Jack Anderson on 1/25/24.
+//  Created by Jack Anderson on 5/16/24.
 //
 
 import SwiftUI
 
-struct EventCardView: View {
+struct GambleCardComponentView: View {
     
     let game: Game
     let bookmaker: Bookmakers
@@ -27,7 +27,7 @@ struct EventCardView: View {
                         .font(.headline)
                         .multilineTextAlignment(.center)
                 }
-                .frame(width: 100)
+                .frame(width: 90)
                 .padding()
                 LazyVGrid(columns: [
                     GridItem(.flexible(minimum: 50)),
@@ -40,51 +40,46 @@ struct EventCardView: View {
                             VStack(alignment: .center, spacing: 2) {
                                 Text("H2H")
                                     .font(.headline)
-                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                             }
-                            .padding(4)
+                            .padding(2)
                         case "spreads":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("Spread")
                                     .font(.headline)
                                 VStack {
-                                    Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
-                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
-                                }
-                                VStack {
                                     Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
                                     Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
                                 }
+                                VStack {
+                                    Text("\(market.outcomes?[1].point ?? 0, specifier: "%.1f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
+                                }
                             }
-                            .padding(4)
+                            .padding(2)
                         case "totals":
                             VStack(alignment: .center, spacing: 2) {
                                 Text("Total")
                                     .font(.headline)
                                 Text("\(market.outcomes?[0].point ?? 0, specifier: "%.1f")")
                                 VStack {
-                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                     Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                    Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 }
                             }
-                            .padding(4)
+                            .padding(2)
                         default:
                             Text("No Game Info")
-                                .padding(4)
+                                .padding(2)
                         }
                     }
                 }
-                .padding(.horizontal)
             }
         }
-        .padding(.all)
     }
 }
 
-
-
-
 #Preview {
-    EventCardView(game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []),bookmaker: Bookmakers(key: "", title: "", lastUpdate: "", markets: []))
+    GambleCardComponentView(game: DeveloperPreview.shared.game, bookmaker: DeveloperPreview.shared.bookmakers.first!)
 }

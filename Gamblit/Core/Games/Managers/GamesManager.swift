@@ -63,7 +63,9 @@ final class GamesManager {
         }
         do {
             let decodeResults = try JSONDecoder().decode(Game.self, from: data)
+            games = []
             games.append(decodeResults)
+            print(games)
         } catch {
             throw error
         }
@@ -79,6 +81,7 @@ final class GamesManager {
         do {
             let decodeResults = try JSONDecoder().decode(Historical.self, from: data)
             historicalGame.append(decodeResults)
+            print(decodeResults)
         } catch {
             throw error
         }

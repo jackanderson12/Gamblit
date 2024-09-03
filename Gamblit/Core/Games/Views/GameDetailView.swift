@@ -13,8 +13,11 @@ struct GameDetailView: View {
     @StateObject var profileViewModel: ProfileViewModel
     
     var game: Game
+    @State private var books: [Bookmakers]? = []
     @State private var bookmakers: [(String, Bool)] = []
     @State private var isAverage: Bool = true
+    
+    @State private var isSelectingBooks = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
@@ -31,7 +34,7 @@ struct GameDetailView: View {
                         .frame(width: 355, height: 200)
                 }
             case .event:
-                EventView(viewModel: viewModel, game: game)
+                EventView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, books: $books, bookmakers: $bookmakers, isSelectingBooks: $isSelectingBooks)
             case .historical:
                 HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
@@ -39,20 +42,27 @@ struct GameDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink("New Gamble") {
-                    //CreateGambleView(profileViewModel: profileViewModel, game: game)
+                    CreateGambleRemodelView(game: game, bookmakers: books ?? [])
+                }
+            }
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    isSelectingBooks.toggle()
+                }) {
+                    Text(isSelectingBooks ? "Done" : "Select Books")
                 }
             }
         }
-        .onChange(of: viewModel.selectedFilter) {
+        .onAppear {
+            viewModel.selectedGame = game
             Task {
-                viewModel.eventId = game.id
                 await viewModel.refreshData()
             }
         }
         .task {
             try? await profileViewModel.loadCurrentUser()
             for book in profileViewModel.user?.sportsBooks ?? [] {
-                bookmakers.append((book, false))
+                bookmakers.append((book.lowercased().replacingOccurrences(of: " ", with: ""), true))
             }
         }
         .onDisappear {
@@ -61,9 +71,15 @@ struct GameDetailView: View {
                 await viewModel.refreshData()
             }
         }
+        .onChange(of: viewModel.selectedFilter) {
+            Task {
+                await viewModel.refreshData()
+            }
+        }
+        .onChange(of: viewModel.selectedBooks) {
+            Task {
+                await viewModel.refreshData()
+            }
+        }
     }
-}
-
-#Preview {
-    GameDetailView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), game: Game(id: "", commenceTime: "", homeTeam: "", awayTeam: "", sportKey: "", sportTitle: "", bookmakers: []))
 }

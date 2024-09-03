@@ -32,40 +32,24 @@ struct GamblitTabView: View {
                     selectedTab = 1
                 }
                 .tag(1)
-            ProgressView()
-                .tabItem {
-                    Image(systemName: "plus")
-                }
-                .onAppear {
-                    selectedTab = 2
-                }
-                .tag(2)
             ExploreView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
                 .onAppear {
-                    selectedTab = 3
+                    selectedTab = 2
                 }
-                .tag(3)
+                .tag(2)
             CurrentUserProfileView()
                 .tabItem {
                     Image(systemName: selectedTab == 3 ? "person.fill" : "person")
                         .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
                 }
                 .onAppear {
-                    selectedTab = 4
+                    selectedTab = 3
                 }
-                .tag(4)
+                .tag(3)
         }
-        .onChange(of: selectedTab, {
-            showCreateGambleView = selectedTab == 2
-        })
-        .sheet(isPresented: $showCreateGambleView, onDismiss: {
-            selectedTab = 0
-        }, content: {
-            CreateGambleRemodelView()
-        })
     }
 }
 

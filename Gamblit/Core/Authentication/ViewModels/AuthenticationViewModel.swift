@@ -11,6 +11,7 @@ import GoogleSignInSwift
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
+import FirebaseCore
 
 @MainActor
 final class AuthenticationViewModel: ObservableObject {
@@ -51,6 +52,14 @@ final class SignInGoogleHelper {
     
     @MainActor
     func signIn() async throws -> GoogleSignInResultModel {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            throw URLError(.cannotConnectToHost)
+        }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
         guard let topVC = Utilities.shared.topViewController() else {
             throw URLError(.cannotFindHost)
         }

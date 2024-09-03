@@ -9,8 +9,12 @@ import Foundation
 import PhotosUI
 import SwiftUI
 
+@MainActor
 class EditProfileViewModel: ObservableObject {
     
+    @Published var username: String = ""
+    @Published var bio: String = ""
+    @Published var sportsbooks: [String]? = []
     @Published var selectedItem: PhotosPickerItem? {
         didSet {
             Task {
@@ -26,7 +30,41 @@ class EditProfileViewModel: ObservableObject {
         try await updateProfileImage()
     }
     
-    @MainActor
+    func setUsername(user: DBUser) async throws {
+        guard let userId = user.userId else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        
+        // Check if the username is already taken
+        if try await UserManager.shared.isUsernameTaken(username) {
+            throw URLError(.dataNotAllowed)
+        }
+        
+        // Update the username in Firestore
+        try await UserManager.shared.updateUsername(for: userId, newUsername: username)
+    }
+    
+    func setBio(user: DBUser) async throws {
+        guard let userId = user.userId else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        try await UserManager.shared.updateBio(for: userId, newBio: bio)
+    }
+    
+    func addUserSportsBooks(user: DBUser, sportsBooks: String) async throws {
+        guard let userId = user.userId else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        try await UserManager.shared.addUserSportsBooks(userId: userId, sportsBooks: sportsBooks)
+    }
+    
+    func removeUserSportsBooks(user: DBUser, sportsBooks: String) async throws {
+        guard let userId = user.userId else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        try await UserManager.shared.removeUserSportsBooks(userId: userId, sportsBooks: sportsBooks)
+    }
+    
     private func loadImage() async {
         guard let item = selectedItem else { return }
         

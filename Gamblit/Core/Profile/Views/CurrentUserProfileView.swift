@@ -14,7 +14,7 @@ struct CurrentUserProfileView: View {
     @State private var showEditProfile: Bool = false
     
     private var currentUser: DBUser? {
-        return UserManager.shared.currentUser
+        return viewModel.currentUser
     }
     
     var body: some View {
@@ -31,9 +31,9 @@ struct CurrentUserProfileView: View {
                         Text("Edit Profile")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.foreground)
                             .frame(width: 352, height: 32)
-                            .background(.primary)
+                            .background(.background)
                             .clipShape(.buttonBorder)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 8)
@@ -48,7 +48,11 @@ struct CurrentUserProfileView: View {
                     
                 }
             }
-            .sheet(isPresented: $showEditProfile, content: {
+            .sheet(isPresented: $showEditProfile, onDismiss: {
+                Task {
+                    try? await viewModel.refreshUser()
+                }
+            },content: {
                 if let user = currentUser {
                     EditProfileView(user: user)
                 }
@@ -60,11 +64,15 @@ struct CurrentUserProfileView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }
-
+                    
                 }
+            }
+            .task {
+                try? await viewModel.refreshUser()
             }
             .padding(.horizontal)
         }
+        .foregroundStyle(.foreground)
     }
 }
 

@@ -15,9 +15,15 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = EditProfileViewModel()
     
-    @State private var bio = ""
+    @State private var localSelectedSportsBooks: Set<String> = Set()
     @State private var link = ""
     @State private var isPrivateProfile = false
+    
+    let sportsBooks: [String] = ["Draft Kings", "Fanduel", "Bet MGM", "Caesars"]
+    
+    private func sportsBookIsSelected(sportsBook: String) -> Bool {
+        localSelectedSportsBooks.contains(sportsBook)
+    }
     
     var body: some View {
         NavigationStack {
@@ -31,10 +37,17 @@ struct EditProfileView: View {
                         VStack(alignment: .leading) {
                             Text("Name")
                                 .fontWeight(.semibold)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.black)
                             
-                            Text(user.userId ?? "No user id found")
-                                .foregroundStyle(.secondary)
+                            TextField("\(user.username ?? user.userId!)", text: $viewModel.username, axis: .vertical)
+                                .foregroundStyle(.black)
+                                .onSubmit {
+                                    if viewModel.username != "" {
+                                        Task {
+                                            try await viewModel.setUsername(user: user)
+                                        }
+                                    }
+                                }
                         }
                         
                         Spacer()
@@ -58,10 +71,47 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Bio")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                         
-                        TextField("Enter your bio...", text: $bio, axis: .vertical)
-                            .foregroundStyle(.secondary)
+                        TextField("Enter your bio...", text: $viewModel.bio, axis: .vertical)
+                            .foregroundStyle(.black)
+                            .onSubmit {
+                                if viewModel.bio != "" {
+                                    Task {
+                                        try await viewModel.setBio(user: user)
+                                    }
+                                }
+                            }
+                    }
+                    
+                    Divider()
+                    
+                    //Sportsbooks Section
+                    VStack{
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(sportsBooks, id: \.self) { book in
+                                    Button(book) {
+                                        if localSelectedSportsBooks.contains(book) {
+                                            localSelectedSportsBooks.remove(book)
+                                            Task {
+                                                try await viewModel.removeUserSportsBooks(user: user, sportsBooks: book)
+                                            }
+                                        } else {
+                                            localSelectedSportsBooks.insert(book)
+                                            Task {
+                                                try await viewModel.addUserSportsBooks(user: user, sportsBooks: book)
+                                            }
+                                        }
+                                    }
+                                    .font(.subheadline)
+                                    .buttonStyle(.borderedProminent)
+                                    .tint(localSelectedSportsBooks.contains(book) ? .green : .red)
+                                }
+                            }
+                        }
+                        Text("User Sports Books: \(localSelectedSportsBooks.joined(separator: ", "))")
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     
                     Divider()
@@ -69,10 +119,10 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Link")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                         
                         TextField("Add Link...", text: $link, axis: .vertical)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.black)
                     }
                     
                     Divider()
@@ -81,7 +131,7 @@ struct EditProfileView: View {
                 }
                 .font(.footnote)
                 .padding()
-                .background(.white)
+                .background(.secondary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
@@ -99,14 +149,17 @@ struct EditProfileView: View {
                             dismiss()
                         }
                     }
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         dismiss()
                     }
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
+            }
+            .onAppear {
+                localSelectedSportsBooks = Set(user.sportsBooks ?? [])
             }
         }
     }

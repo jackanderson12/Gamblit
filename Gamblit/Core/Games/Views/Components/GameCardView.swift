@@ -40,16 +40,16 @@ struct GameCardView: View {
                         Text("\(gameAverage.1 ?? 0, specifier: "%.1f")")
                     }
                     VStack(alignment: .center, spacing: 2) {
-                        Text("Total")
-                            .font(.headline)
-                        Text("\(gameAverage.2 ?? 0, specifier: "%.1f")")
-                        Text("\(gameAverage.3 ?? 0, specifier: "%.1f")")
-                    }
-                    VStack(alignment: .center, spacing: 2) {
                         Text("Spread")
                             .font(.headline)
                         Text("\(gameAverage.4 ?? 0, specifier: "%.1f")")
                         Text("\(gameAverage.5 ?? 0, specifier: "%.1f")")
+                    }
+                    VStack(alignment: .center, spacing: 2) {
+                        Text("Total")
+                            .font(.headline)
+                        Text("\(gameAverage.2 ?? 0, specifier: "%.1f")")
+                        Text("\(gameAverage.3 ?? 0, specifier: "%.1f")")
                     }
                 }
             }
@@ -62,9 +62,6 @@ struct GameCardView: View {
                         .foregroundStyle(.clear)
                 }
             )
-        }
-        .onAppear {
-            print(gameAverage)
         }
         .padding(.all)
     }

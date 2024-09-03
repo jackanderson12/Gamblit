@@ -21,14 +21,20 @@ struct SportMenuView: View {
                     NavigationLink {
                         DelayedGamesView(viewModel: viewModel, profileViewModel: profileViewModel)
                     } label: {
-                        Text(sport.rawValue)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8.0, style: .continuous)
+                                .foregroundStyle(.green)
+                                .opacity(0.5)
+                                .frame(width: 150, height: 50)
+                            Text(sport.rawValue)
+                        }
                     }
                     .simultaneousGesture(TapGesture().onEnded {
                         selectedSport = sport
                     })
-                    .buttonStyle(.borderedProminent)
                 }
             }
+            .foregroundStyle(.foreground)
             .onChange(of: selectedSport) {
                 viewModel.selectedSport = selectedSport
             }
@@ -37,6 +43,7 @@ struct SportMenuView: View {
                 viewModel.selectedBooks = profileViewModel.user?.sportsBooks
             }
         }
+
     }
 }
 

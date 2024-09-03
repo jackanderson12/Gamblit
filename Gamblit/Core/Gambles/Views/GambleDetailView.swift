@@ -22,7 +22,7 @@ struct GambleDetailView: View {
                 HStack {
                     CircularProfileImageView(user: gamble.user, size: .small)
                     
-                    Text(gamble.user?.userId ?? "")
+                    Text(gamble.user?.username ?? "")
                         .font(.footnote)
                         .fontWeight(.semibold)
                     
@@ -36,20 +36,16 @@ struct GambleDetailView: View {
                         
                     } label: {
                         Image(systemName: "ellipsis")
+                            .foregroundStyle(Color(.systemGray3))
                     }
 
                 }
                 
                 VStack(alignment: .leading, spacing: 12) {
-                    
-                    //GambleChartView?
-                    
-                    Text(gamble.title)
-                        .font(.subheadline)
+                    GambleCardView(gamble: gamble)
                     
                     ContentActionButtonsView(gamble: gamble)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Divider()
                     .padding(.vertical)
@@ -61,7 +57,6 @@ struct GambleDetailView: View {
                 }
             }
         }
-        .padding()
         .navigationTitle("Gamble")
         .navigationBarTitleDisplayMode(.inline)
     }

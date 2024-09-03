@@ -28,6 +28,9 @@ struct BookmakersButtonsView: View {
                 let bookmaker = bookmakers[index].0
                 Button {
                     bookmakers[index].1.toggle()
+                    Task {
+                        await setBookSelection(book: bookmakers[index].0)
+                    }
                 } label: {
                     Text(bookmaker)
                 }
@@ -36,8 +39,17 @@ struct BookmakersButtonsView: View {
             }
         }
     }
+    
+    private func setBookSelection(book: String) async {
+        guard viewModel.selectedBooks != nil else {
+            return viewModel.selectedBooks = [book]
+        }
+        if !(viewModel.selectedBooks?.contains(where: { $0 == book }) ?? false) {
+            viewModel.selectedBooks?.append(book)
+            Task {
+                await viewModel.refreshData()
+            }
+        }
+    }
 }
 
-//#Preview {
-//    BookmakersButtonsView(viewModel: GamesViewModel(GamesManager()), profileViewModel: ProfileViewModel(), bookmakers: )
-//}
