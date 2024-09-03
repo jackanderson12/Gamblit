@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserCellView: View {
+    
     let user: DBUser
     
     var body: some View {

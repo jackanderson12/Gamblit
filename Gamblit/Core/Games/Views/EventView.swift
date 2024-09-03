@@ -26,7 +26,7 @@ struct EventView: View {
                 
                 ForEach(game.bookmakers ?? [], id: \.key) { book in
                     if let bookKey = book.key,
-                       bookmakers.contains(where: { $0.0.lowercased() == bookKey.lowercased() && $0.1 }) {
+                       bookmakers.contains(where: { $0.0 == bookKey && $0.1 }) {
                         BookmakerView(book: book,
                                       game: game,
                                       isSelected: books?.contains(where: { $0.key == book.key }) ?? false) {

@@ -171,7 +171,6 @@ final class GamesViewModel: ObservableObject {
                                             outcomePoint: outcome.point
                                         )
                                         historicalDetailedDataPoints?.append(dataPoint)
-                                        print(dataPoint)
                                     }
                                 }
                             }

@@ -99,13 +99,15 @@ def historical():
     
     # Logic for the '/historical' route
     league = request.args.get('league', 'americanfootball_nfl')
+    event_id = request.args.get('event_id', '')
     markets = request.args.get('markets', 'h2h,totals,spreads')
     date = request.args.get('date', '')
     bookmakers = request.args.get('bookmakers', 'draftkings')
 
     url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&date={date}&oddsFormat=american&apiKey={api_key}'
+    modifed_url = f'{base_url}/historical/sports/events?eventIds={event_id}&date{date}&oddsFormat=american&apiKey={api_key}'
     
-    response = requests.get(url)
+    response = requests.get(modifed_url)
     if response.status_code == 200:
         return jsonify(response.json())
     elif response.status_code == 400:

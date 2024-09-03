@@ -57,7 +57,6 @@ struct CurrentUserProfileView: View {
                     EditProfileView(user: user)
                 }
             })
-            
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     Button {
@@ -67,6 +66,9 @@ struct CurrentUserProfileView: View {
                     }
                     
                 }
+            }
+            .task {
+                try? await viewModel.refreshUser()
             }
             .padding(.horizontal)
         }
