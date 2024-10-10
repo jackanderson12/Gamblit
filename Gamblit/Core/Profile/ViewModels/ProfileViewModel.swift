@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 final class ProfileViewModel: ObservableObject {
     
-    @Published private (set) var user: DBUser? = nil
+    @Published private(set) var user: DBUser? = nil
     
     init() {
         Task {

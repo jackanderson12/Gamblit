@@ -36,6 +36,7 @@ struct HistoricalView: View {
             }
         }
         .task {
+            print(game.id ?? "No game ID")
             await viewModel.refreshData()
             await viewModel.filterHistorical(gameID: game.id ?? "")
             historicalDetailedDataPoints = viewModel.historicalDetailedDataPoints

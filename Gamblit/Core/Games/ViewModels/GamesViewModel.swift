@@ -39,7 +39,7 @@ final class GamesViewModel: ObservableObject {
         case .event:
             return  URL(string: "\(baseURL)/event?league=\(selectedLeague ?? "americanfootball_nfl")&event_id=\(selectedGame?.id ?? "")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")")!
         case .historical:
-            return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&bookmakers=\(selectedBooks?.compactMap { $0 }.joined(separator: ",") ?? "draftkings")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))")!
+            return URL(string: "\(baseURL)/historical?league=\(selectedLeague ?? "americanfootball_nfl")&markets=\(selectedMarkets?.compactMap { $0.key }.joined(separator: ",") ?? "h2h,totals,spreads")&date=\(selectedDate ?? ISO8601DateFormatter().string(from: Date()))")!
         }
     }
     
@@ -157,20 +157,25 @@ final class GamesViewModel: ObservableObject {
                 historicalGame.games.forEach { game in
                     if game.id == gameID {
                         game.bookmakers?.forEach { bookmaker in
-                            bookmaker.markets?.forEach { market in
-                                market.outcomes?.forEach { outcome in
-                                    if let price = outcome.price {
-                                        let dataPoint = DetailedDataPoint(
-                                            id: UUID(),
-                                            date: date,
-                                            value: price,
-                                            book: bookmaker.title ?? "Unknown",
-                                            marketKey: market.key ?? "Unknown",
-                                            outcomeName: outcome.name ?? "Unknown",
-                                            outcomePrice: outcome.price ?? 0.0,
-                                            outcomePoint: outcome.point
-                                        )
-                                        historicalDetailedDataPoints?.append(dataPoint)
+                            if let filteredBooks = selectedBooks?.map({ $0.lowercased().trimmingCharacters(in: .whitespaces) }) {
+                                let bookmakerKey = bookmaker.key?.lowercased().trimmingCharacters(in: .whitespaces) ?? ""
+                                if filteredBooks.contains(bookmakerKey) {
+                                    bookmaker.markets?.forEach { market in
+                                        market.outcomes?.forEach { outcome in
+                                            if let price = outcome.price {
+                                                let dataPoint = DetailedDataPoint(
+                                                    id: UUID(),
+                                                    date: date,
+                                                    value: price,
+                                                    book: bookmaker.title ?? "Unknown",
+                                                    marketKey: market.key ?? "Unknown",
+                                                    outcomeName: outcome.name ?? "Unknown",
+                                                    outcomePrice: outcome.price ?? 0.0,
+                                                    outcomePoint: outcome.point
+                                                )
+                                                historicalDetailedDataPoints?.append(dataPoint)
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -180,4 +185,5 @@ final class GamesViewModel: ObservableObject {
             }
         }
     }
+
 }
