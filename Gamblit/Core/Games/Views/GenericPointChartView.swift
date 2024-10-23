@@ -51,7 +51,6 @@ struct GenericPointChartView<DataPoint: PlottableDataPoint>: View {
         }
         .chartXScale(domain: minDate...maxDate)
         .chartYScale(domain: (domain.0 - 5)...(domain.1 + 5))
-        .padding(.all)
         .frame(minHeight: 300)
     }
 }

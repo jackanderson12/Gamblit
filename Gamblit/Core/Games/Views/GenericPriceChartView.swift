@@ -67,18 +67,22 @@ struct GenericPriceChartView<DataPoint: PlottableDataPoint>: View {
             }
             .chartYAxis {
                 AxisMarks { value in
-                    AxisGridLine()
-                    AxisTick()
-                    AxisValueLabel {
-                        if let yValue = value.as(Double.self) {
-                            Text("+\(Int(yValue))")
+                    if let yValue = value.as(Double.self) {
+                        AxisGridLine()
+                        AxisTick()
+                        AxisValueLabel {
+                            if yValue == 100 {
+                                Text("+/-100") // Display "+100" for yValue = 100
+                            } else {
+                                Text("+\(Int(yValue))") // Display other values normally
+                            }
                         }
                     }
                 }
             }
             .chartXScale(domain: minDate...maxDate) // Shared X-Axis range
             .chartYScale(domain: 100...(maxPositiveValue + 20)) // Dynamic Y-Axis for positive values
-            .frame(height: 150)
+            .frame(width: 260, height: 150)
             
             // Negative points chart
             Chart(negativePoints) { point in
@@ -94,27 +98,27 @@ struct GenericPriceChartView<DataPoint: PlottableDataPoint>: View {
                     .symbol(.circle)
                     .symbolSize(150)
                     .annotation(position: .bottom) {
-                        Text(String(format: "%.0f", point.value)) // Include the + for positive numbers
+                        Text(String(format: "%.0f", point.value))
                             .font(.caption)
                     }
             }
             .chartXAxis {
                 AxisMarks(values: .stride(by: .day))
             }
-            .chartXScale(domain: minDate...maxDate) // Shared X-Axis range
             .chartYAxis {
                 AxisMarks { value in
-                    AxisGridLine()
-                    AxisTick()
-                    AxisValueLabel {
-                        if let yValue = value.as(Double.self) {
+                    if let yValue = value.as(Double.self), yValue != -100 {
+                        AxisGridLine()
+                        AxisTick()
+                        AxisValueLabel {
                             Text("\(Int(yValue))")
                         }
                     }
                 }
             }
+            .chartXScale(domain: minDate...maxDate) // Shared X-Axis range
             .chartYScale(domain: (minNegativeValue - 20)...(-100)) // Dynamic Y-Axis for negative values
-            .frame(height: 150)
+            .frame(width: 255, height: 150)
         }
     }
 }
