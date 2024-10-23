@@ -22,6 +22,7 @@ struct HistoricalView: View {
         VStack(spacing: 15) {
             HistoricalChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, historicalDetailedDataPoints: $historicalDetailedDataPoints)
         }
+        .padding(.horizontal)
         .sheet(isPresented: $isDatePickerVisible, content: {
             HistoricalPickerView(selectedDate: $selectedDate)
                 .presentationDetents([.medium, .large])
