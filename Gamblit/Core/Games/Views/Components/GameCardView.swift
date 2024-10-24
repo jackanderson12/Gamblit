@@ -54,14 +54,6 @@ struct GameCardView: View {
                 }
             }
             .padding(.horizontal)
-            // Invisible Navigation Link
-            NavigationLink(
-                destination: GameDetailView(viewModel: viewModel, profileViewModel: profileViewModel, game: game),
-                label: {
-                    RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                        .foregroundStyle(.clear)
-                }
-            )
         }
         .padding(.all)
     }

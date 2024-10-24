@@ -20,11 +20,12 @@ struct GameDetailView: View {
     @State private var isSelectingBooks = false
     
     var body: some View {
-        VStack(alignment: .center, spacing: 15) {
+        VStack(spacing: 15) {
             if viewModel.selectedFilter != .historical {
                 BookmakersButtonsView(viewModel: viewModel, profileViewModel: profileViewModel, bookmakers: $bookmakers, isAverage: $isAverage)
             }
             GameChartPickerView(selectedFilter: $viewModel.selectedFilter)
+                .padding(.horizontal)
         }
         VStack {
             switch viewModel.selectedFilter {
@@ -38,6 +39,8 @@ struct GameDetailView: View {
             case .historical:
                 HistoricalView(viewModel: viewModel, profileViewModel: profileViewModel, game: game)
             }
+            
+            Spacer()
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -67,6 +70,7 @@ struct GameDetailView: View {
         }
         .onDisappear {
             Task {
+                bookmakers = []
                 viewModel.selectedFilter = .sports
                 await viewModel.refreshData()
             }

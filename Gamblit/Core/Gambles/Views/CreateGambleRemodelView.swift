@@ -25,6 +25,7 @@ struct CreateGambleRemodelView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(alignment: .top) {
                         CircularProfileImageView(user: currentUser, size: .small)
+                            .padding(.leading, 10)
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(currentUser?.username ?? "")
@@ -34,32 +35,18 @@ struct CreateGambleRemodelView: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding(.bottom, 10)
                             
-                            ScrollView(.horizontal) {
-                                HStack(spacing: 15) {
-                                    ForEach(bookmakers, id: \.self) { book in
-                                        VStack(spacing: 5) {
-                                            Text(book.key ?? "")
-                                                .font(.subheadline)
-                                            GambleCardComponentView(game: game, bookmaker: book)
-                                        }
-                                    }
-                                }
-                            }
                         }
                         .font(.footnote)
-                        
-                        Spacer()
-                        
-                        if !viewModel.title.isEmpty {
-                            Button {
-                                viewModel.title = ""
-                            } label: {
-                                Image(systemName: "xmark")
-                                    .resizable()
-                                    .frame(width: 12, height: 12)
-                                    .foregroundStyle(.gray)
+                    }
+                    
+                    VStack(spacing: 15) {
+                        ForEach(bookmakers, id: \.self) { book in
+                            VStack(spacing: 5) {
+                                Text(book.key?.capitalized ?? "")
+                                    .font(.subheadline)
+                                GambleCardComponentView(game: game, bookmaker: book)
+                                    .padding(.horizontal)
                             }
-                            .padding(.leading, 10)
                         }
                     }
                     

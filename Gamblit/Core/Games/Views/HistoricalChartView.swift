@@ -49,14 +49,16 @@ struct HistoricalChartView: View {
                             if !priceDataPoints.isEmpty {
                                 Text("Price Data")
                                     .font(.subheadline)
-                                GenericChartView(dataPoints: priceDataPoints, chartYaxis: chartPriceYAxisValues)
+                                GenericPriceChartView(dataPoints: priceDataPoints, chartYaxis: chartPriceYAxisValues)
                             }
                             if !pointDataPoints.isEmpty {
                                 Text("Point Data")
                                     .font(.subheadline)
-                                GenericChartView(dataPoints: pointDataPoints, chartYaxis: chartPointYAxisValues)
+                                GenericPointChartView(dataPoints: pointDataPoints, chartYaxis: chartPointYAxisValues)
                             }
                         }
+                        
+                        Divider()
                     }
                 }
             }

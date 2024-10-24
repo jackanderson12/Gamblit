@@ -22,6 +22,7 @@ struct HistoricalView: View {
         VStack(spacing: 15) {
             HistoricalChartView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, historicalDetailedDataPoints: $historicalDetailedDataPoints)
         }
+        .padding(.horizontal)
         .sheet(isPresented: $isDatePickerVisible, content: {
             HistoricalPickerView(selectedDate: $selectedDate)
                 .presentationDetents([.medium, .large])
@@ -36,6 +37,7 @@ struct HistoricalView: View {
             }
         }
         .task {
+            print(game.id ?? "No game ID")
             await viewModel.refreshData()
             await viewModel.filterHistorical(gameID: game.id ?? "")
             historicalDetailedDataPoints = viewModel.historicalDetailedDataPoints

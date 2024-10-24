@@ -102,12 +102,12 @@ def historical():
     event_id = request.args.get('event_id', '')
     markets = request.args.get('markets', 'h2h,totals,spreads')
     date = request.args.get('date', '')
-    bookmakers = request.args.get('bookmakers', 'draftkings')
+    #bookmakers = request.args.get('bookmakers', 'draftkings')
 
-    url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&bookmakers={bookmakers}&date={date}&oddsFormat=american&apiKey={api_key}'
-    modifed_url = f'{base_url}/historical/sports/events?eventIds={event_id}&date{date}&oddsFormat=american&apiKey={api_key}'
+    url = f'{base_url}/historical/sports/{league}/odds?markets={markets}&regions=us&date={date}&oddsFormat=american&apiKey={api_key}'
+    modifed_url = f'{base_url}/historical/sports/{league}/events?eventIds={event_id}&date{date}&oddsFormat=american&apiKey={api_key}'
     
-    response = requests.get(modifed_url)
+    response = requests.get(url)
     if response.status_code == 200:
         return jsonify(response.json())
     elif response.status_code == 400:

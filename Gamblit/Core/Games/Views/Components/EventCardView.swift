@@ -40,8 +40,8 @@ struct EventCardView: View {
                             VStack(alignment: .center, spacing: 2) {
                                 Text("H2H")
                                     .font(.headline)
-                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                                 Text("\(market.outcomes?[0].price ?? 0, specifier: "%.0f")")
+                                Text("\(market.outcomes?[1].price ?? 0, specifier: "%.0f")")
                             }
                             .padding(4)
                         case "spreads":

@@ -48,8 +48,18 @@ struct GamesView: View {
                     LazyVStack {
                         ForEach(filteredGames, id: \.self) { game in
                             if let gameId = game.id, let gameAverage = viewModel.gameAverages?[gameId] {
-                                GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
-                                    .frame(width: 355, height: 200)
+                                ZStack {
+                                    GameCardView(viewModel: viewModel, profileViewModel: profileViewModel, game: game, gameAverage: gameAverage)
+                                        .frame(width: 355, height: 200)
+                                    // Invisible Navigation Link
+                                    NavigationLink(
+                                        destination: GameDetailView(viewModel: viewModel, profileViewModel: profileViewModel, game: game),
+                                        label: {
+                                            RoundedRectangle(cornerRadius: 25.0, style: .continuous)
+                                                .foregroundStyle(.clear)
+                                        }
+                                    )
+                                }
                             }
                         }
                     }
